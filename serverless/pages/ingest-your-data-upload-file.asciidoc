@@ -42,9 +42,11 @@ image::images/file-uploader-UI.png[File upload UI]
 
 Drag a file into the upload area or click **Select or drag and drop a file** to choose a file from your computer.
 
-The file is uploaded and analyzed. The Data Visualizer displays the first 1000 rows of the file. You can inspect the data and make any necessary changes before importing it. Click **Import** to import the data into {es}.
+The file is uploaded and analyzed. The Data Visualizer displays the first 1000 rows of the file. You can inspect the data and make any necessary changes before importing it. Click **Import** continue the process.
 
 On the next screen, give your index a name and click **Import**.
+
+This process will create an index and import the data into {es}. Once your data is in {es}, you can start exploring it, see <<elasticsearch-explore-your-data,Explore your data>> for more information.
 
 [IMPORTANT]
 ====
