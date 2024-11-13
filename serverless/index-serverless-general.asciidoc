@@ -3,9 +3,9 @@
 
 include::{docs-content-root}/serverless/pages/welcome-to-serverless.asciidoc[leveloffset=+2]
 
-include::./pages/what-is-serverless.asciidoc[leveloffset=+2]
-
 include::./pages/sign-up.asciidoc[leveloffset=+2]
+include::./pages/get-started-general.asciidoc[leveloffset=+2]
+
 
 include::./pages/manage-org.asciidoc[leveloffset=+2]
 include::./pages/manage-access-to-org.asciidoc[leveloffset=+3]

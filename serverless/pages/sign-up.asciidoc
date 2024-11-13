@@ -1,13 +1,9 @@
 [[general-sign-up-trial]]
-= Get started with serverless
+= How do I sign up?
 
 // :description: Information about signing up for a serverless Elastic Cloud trial
 // :keywords: serverless, general, signup
-
-There are two options to create serverless projects:
-
-* If you are an existing customer, https://cloud.elastic.co/login[log in to Elastic Cloud]. On the home page, you will see a new option to create serverless projects. Note that if you are already subscribed to Elastic Cloud, there is no specific trial for serverless projects.
-* If you are a new user, you can https://cloud.elastic.co/serverless-registration[sign up for a free 14-day trial], and you will be able to launch a serverless project.
+The following page provides information on how to sign up for an Elastic Cloud Serverless account, for information on how to sign up for hosted deployments, see https://www.elastic.co/guide/en/cloud/current/ec-getting-started.html[Elasticsearch Service - How do i sign up?].
 
 [discrete]
 [[general-sign-up-trial-what-is-included-in-my-trial]]
@@ -19,6 +15,8 @@ Your free 14-day trial includes:
 
 A deployment lets you explore Elastic solutions for Search, Observability, and Security. Trial deployments run on the latest version of the Elastic Stack. They includes 8 GB of RAM spread out over two availability zones, and enough storage space to get you started. If you’re looking to evaluate a smaller workload, you can scale down your trial deployment.
 Each deployment includes Elastic features such as Maps, SIEM, machine learning, advanced security, and much more. You have some sample data sets to play with and tutorials that describe how to add your own data.
+
+To learn more about serverless Elastic Cloud Hosted, check our https://www.elastic.co/guide/en/cloud/current/ec-getting-started.html[Elasticsearch Service documentation].
 
 **One serverless project**
 
@@ -47,6 +45,8 @@ During the free 14 day trial, Elastic provides access to one hosted deployment a
 * The deployment size is limited to 8GB RAM and approximately 360GB of storage, depending on the specified hardware profile
 * Machine learning nodes are available up to 4GB RAM
 * Custom {es} plugins are not enabled
+
+To learn more about serverless Elastic Cloud Hosted, check our https://www.elastic.co/guide/en/cloud/current/ec-getting-started.html[Elasticsearch Service documentation].
 
 **Serverless projects**
 
@@ -83,7 +83,7 @@ If you’re interested in learning more ways to subscribe to Elastic Cloud, don�
 [[general-sign-up-trial-how-do-i-sign-up-through-a-marketplace]]
 == How do I sign up through a marketplace?
 
-If you’re interested in consolidated billing, subscribe from the AWS Marketplace, which allows you to skip the trial period and connect your AWS Marketplace email to your unique Elastic account.
+If you’re interested in consolidated billing, subscribe from the AWS Marketplace, which allows you to skip the trial period and connect your AWS Marketplace email to your unique Elastic account. For a list of regions supported, see <<regions,Regions>>.
 
 [NOTE]
 ====
@@ -95,3 +95,5 @@ Serverless projects are only available for AWS Marketplace. Support for GCP Mark
 == How do I get help?
 
 We’re here to help. If you have any questions, reach out to https://cloud.elastic.co/support[Support].
+
+
