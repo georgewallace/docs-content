@@ -1,12 +1,10 @@
 [[general-manage-organization]]
 = Manage your organization
 
-// :description: Manage your instances, users, and settings.
+// :description: Manage your Elastic Cloud organization.
 // :keywords: serverless, general, organization, overview
 
-When you sign up to {ecloud}, you create an **organization**.
-
-This organization is the umbrella for all of your {ecloud} resources, users, and account settings. Every organization has a unique identifier. Bills are invoiced according to the billing contact and details that you set for your organization.
+An **organization** is the umbrella for all of your {ecloud} resources, including hosted deployments and serverless projects, users, and account settings. When you sign up to {ecloud}, you create an organization.
 
 In this article we walk you through the essential processes to effectively oversee your organization.
 
@@ -16,11 +14,6 @@ Learn how to:
 * <<general-assign-user-roles>>: Assign predefined roles to users in your organization.
 * <<general-join-organization-from-existing-cloud-account>>: Join a new organization and bring over your projects.
 * <<general-leave-an-organization>>: Leave an organization.
-
-For information on billing and project features and usage, refer to:
-
-* <<general-manage-billing>>: Configure the billing details of your organization.
-* <<elasticsearch-manage-project>>: Configure project-wide features and usage.
 
 [discrete]
 [[general-manage-access-to-organization]]

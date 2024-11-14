@@ -8,7 +8,7 @@
 <titleabbrev>Manage billing</titleabbrev>
 ++++
 
-You can manage the billing details of your organization directly from the Elastic Cloud console.
+You can manage the billing details of your organization directly from the Elastic Cloud console. Bills are invoiced according to the billing contact and details that you set for your organization.
 
 . Navigate to https://cloud.elastic.co/[cloud.elastic.co] and log in to your Elastic Cloud account.
 . Go to the user icon on the header bar and select **Billing**.
