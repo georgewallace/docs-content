@@ -1,19 +1,9 @@
-++++
-<style>
-  .card-title {
-    font-size: 18px;
-    font-weight: 700;
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0;
-  }
-</style>
-++++
+= Elasticsearch Serverless Overview
+== Introduction
 
-Elastic serverless products allow you to deploy and use Elastic for your use cases without managing the underlying Elastic cluster,
-such as nodes, data tiers, and scaling. Serverless instances of the Elastic Stack that you create in {ecloud} are called **serverless projects**. These serverless projects are fully-managed, autoscaled, and automatically upgraded by Elastic so you can focus more on gaining value and insight from your data.
+Elasticsearch serverless is a fully managed solution that allows you to deploy and use Elastic for your use cases without managing the underlying infrastructure. It represents a shift in how you interact with Elasticsearch - instead of managing clusters, nodes, data tiers, and scaling, you create **serverless projects** that are fully managed and automatically scaled by Elastic. This abstraction of infrastructure decisions allows you to focus solely on gaining value and insight from your data.
 
-Serverless instances of the Elastic Stack that you create in {ecloud} are called **serverless projects**.
+Elasticsearch serverless automatically provisions, manages, and scales your Elasticsearch resources based on your actual usage. Unlike traditional deployments where you need to predict and provision resources in advance, serverless adapts to your workload in real-time, ensuring optimal performance while eliminating the need for manual capacity planning.
 
 Serverless projects use the core components of the {stack}, such as {es} and {kib}, and are based on https://www.elastic.co/blog/elastic-serverless-architecture[an architecture that
 decouples compute and storage]. Search and indexing operations are separated, which offers high flexibility for scaling your workloads while ensuring
@@ -53,17 +43,6 @@ a set of predefined settings you can edit.
 ====
 Until May 31, 2024, your serverless consumption will not incur any charges, but will be visible along with your total Elastic Cloud consumption on the https://cloud.elastic.co/billing/usage[Billing Usage page]. Unless you are in a trial period, usage on or after June 1, 2024 will be deducted from your existing Elastic Cloud credits or be billed to your active payment method.
 ====
-
-[discrete]
-[[general-what-is-serverless-elastic-control-your-data-and-performance]]
-== Control your data and performance
-
-Control your project data and query performance against your project data.
-
-**Data.** Choose the data you want to ingest, and the method to ingest it. By default, data is stored indefinitely in your project,
-and you define the retention settings for your data streams.
-
-**Performance.** For granular control over costs and query performance against your project data, serverless projects come with a set of predefined <<elasticsearch-manage-project,settings>> that you can edit.
 
 [discrete]
 [[general-what-is-serverless-elastic-differences-between-serverless-projects-and-hosted-deployments-on-ecloud]]
@@ -118,10 +97,6 @@ You can run https://www.elastic.co/guide/en/cloud/current/ec-getting-started.htm
 [discrete]
 [[general-what-is-serverless-elastic-answers-to-common-serverless-questions]]
 == Answers to common serverless questions
-
-**What Support is available for the serverless preview?**
-
-There is no official SLA for Support in Serverless until General Availability (GA). We’ll do our best to service customers and inquiries as we would any pre-GA product - at a Platinum/Enterprise Severity 3 (1 business day) SLA target.
 
 **Is there migration support between hosted deployments and serverless projects?**
 
