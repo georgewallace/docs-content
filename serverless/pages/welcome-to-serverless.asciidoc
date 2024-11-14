@@ -1,4 +1,6 @@
 = Elasticsearch Serverless Overview
+
+[discrete]
 == Introduction
 
 Elasticsearch serverless is a fully managed solution that allows you to deploy and use Elastic for your use cases without managing the underlying infrastructure. It represents a shift in how you interact with Elasticsearch - instead of managing clusters, nodes, data tiers, and scaling, you create **serverless projects** that are fully managed and automatically scaled by Elastic. This abstraction of infrastructure decisions allows you to focus solely on gaining value and insight from your data.

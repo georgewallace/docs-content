@@ -95,38 +95,39 @@ To assign a custom role to users, go to "Instance access roles" and select it fr
 endif::[]
 
 [discrete]
-[[general-assign-user-roles-es]]
-==== {es}
+[[general-assign-user-roles-table]]
+|===
+|Name  |Description  |Available
 
-* **Admin**. Has full access to project management, properties, and security privileges. Admins log into projects with superuser role privileges.
-* **Developer**. Creates API keys, indices, data streams, adds connectors, and builds visualizations.
-* **Viewer**. Has read-only access to project details, data, and features.
+|Admin |Has full access to project management, properties, and security privileges. Admins log into projects with superuser role privileges. |{es-badge}, {obs-badge}, {sec-badge}
 
-[discrete]
-[[general-assign-user-roles-observability]]
-==== {observability}
+|Developer |Creates API keys, indices, data streams, adds connectors, and builds visualizations. |{es-badge}
 
-* **Admin**. Has full access to project management, properties, and security privileges. Admins log into projects with superuser role privileges.
-* **Editor**. Configures all Observability projects. Has read-only access to data indices. Has full access to all project features.
-* **Viewer**. Has read-only access to project details, data, and features.
+|Viewer |Has read-only access to project details, data, and features. |{es-badge}, {obs-badge}, {sec-badge}
 
-[discrete]
-[[general-assign-user-roles-security]]
-==== {elastic-sec}
+|Editor |Configures all Observability or Security projects. Has read-only access to data indices. Has full access to all project features. |{obs-badge}, {sec-badge}
 
-* **Admin**. Has full access to project management, properties, and security privileges. Admins log into projects with superuser role privileges.
-* **Editor**. Configures all Security projects. Has read-only access to data indices. Has full access to all project features.
-* **Viewer**. Has read-only access to project details, data, and features.
-* **Tier 1 analyst**. Ideal for initial alert triage. General read access, can create dashboards and visualizations.
-* **Tier 2 analyst**. Ideal for alert triage and beginning the investigation process. Can create cases.
-* **Tier 3 analyst**. Deeper investigation capabilities. Access to rules, lists, cases, Osquery, and response actions.
-* **Threat intelligence analyst**. Access to alerts, investigation tools, and intelligence pages.
-* **Rule author**. Access to detection engineering and rule creation. Can create rules from available data sources and add exceptions to reduce false positives.
-* **SOC manager**. Access to alerts, cases, investigation tools, endpoint policy management, and response actions.
-* **Endpoint operations analyst**. Access to endpoint response actions. Can manage endpoint policies, {fleet}, and integrations.
-* **Platform engineer**. Access to {fleet}, integrations, endpoints, and detection content.
-* **Detections admin**. All available detection engine permissions to include creating rule actions, such as notifications to third-party systems.
-* **Endpoint policy manager**. Access to endpoint policy management and related artifacts. Can manage {fleet} and integrations.
+|Tier 1 analyst |Ideal for initial alert triage. General read access, can create dashboards and visualizations. |{sec-badge}
+
+|Tier 2 analyst |Ideal for alert triage and beginning the investigation process. Can create cases. |{sec-badge}
+
+|Tier 3 analyst |Deeper investigation capabilities. Access to rules, lists, cases, Osquery, and response actions. |{sec-badge}
+
+|Threat intelligence analyst |Access to alerts, investigation tools, and intelligence pages. |{sec-badge}
+
+|Rule author |Access to detection engineering and rule creation. Can create rules from available data sources and add exceptions to reduce false positives. |{sec-badge}
+
+|SOC manager |Access to alerts, cases, investigation tools, endpoint policy management, and response actions. |{sec-badge}
+
+|Endpoint operations analyst |Access to endpoint response actions. Can manage endpoint policies, {fleet}, and integrations. |{sec-badge}
+
+|Platform engineer |Access to {fleet}, integrations, endpoints, and detection content. |{sec-badge}
+
+|Detections admin |All available detection engine permissions to include creating rule actions, such as notifications to third-party systems. |{sec-badge}
+
+|Endpoint policy manager |Access to endpoint policy management and related artifacts. Can manage {fleet} and integrations. |{sec-badge}
+|===
+
 
 [discrete]
 [[general-leave-an-organization]]
