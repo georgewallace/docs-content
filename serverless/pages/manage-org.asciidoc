@@ -4,9 +4,9 @@
 // :description: Manage your instances, users, and settings.
 // :keywords: serverless, general, organization, overview
 
-When you sign up to Elastic Cloud, you create an **organization**.
+When you sign up to {ecloud}, you create an **organization**.
 
-This organization is the umbrella for all of your Elastic Cloud resources, users, and account settings. Every organization has a unique identifier. Bills are invoiced according to the billing contact and details that you set for your organization.
+This organization is the umbrella for all of your {ecloud} resources, users, and account settings. Every organization has a unique identifier. Bills are invoiced according to the billing contact and details that you set for your organization.
 
 In this article we walk you through the essential processes to effectively oversee your organization.
 
@@ -99,13 +99,13 @@ endif::[]
 |===
 |Name  |Description  |Available
 
-|Admin |Has full access to project management, properties, and security privileges. Admins log into projects with superuser role privileges. |{es-badge}, {obs-badge}, {sec-badge}
+|Admin |Has full access to project management, properties, and security privileges. Admins log into projects with superuser role privileges. |{es-badge}{obs-badge}{sec-badge}
 
 |Developer |Creates API keys, indices, data streams, adds connectors, and builds visualizations. |{es-badge}
 
-|Viewer |Has read-only access to project details, data, and features. |{es-badge}, {obs-badge}, {sec-badge}
+|Viewer |Has read-only access to project details, data, and features. |{es-badge}{obs-badge}{sec-badge}
 
-|Editor |Configures all Observability or Security projects. Has read-only access to data indices. Has full access to all project features. |{obs-badge}, {sec-badge}
+|Editor |Configures all Observability or Security projects. Has read-only access to data indices. Has full access to all project features. |{obs-badge}{sec-badge}
 
 |Tier 1 analyst |Ideal for initial alert triage. General read access, can create dashboards and visualizations. |{sec-badge}
 

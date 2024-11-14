@@ -1,15 +1,17 @@
-= Elasticsearch Serverless Overview
+= {serverless-full} Overview
 
 [discrete]
 == Introduction
 
-Elasticsearch serverless is a fully managed solution that allows you to deploy and use Elastic for your use cases without managing the underlying infrastructure. It represents a shift in how you interact with Elasticsearch - instead of managing clusters, nodes, data tiers, and scaling, you create **serverless projects** that are fully managed and automatically scaled by Elastic. This abstraction of infrastructure decisions allows you to focus solely on gaining value and insight from your data.
+{serverless-full} is a fully managed solution that allows you to deploy and use Elastic for your use cases without managing the underlying infrastructure. It represents a shift in how you interact with {es} - instead of managing clusters, nodes, data tiers, and scaling, you create **serverless projects** that are fully managed and automatically scaled by Elastic. This abstraction of infrastructure decisions allows you to focus solely on gaining value and insight from your data.
 
-Elasticsearch serverless automatically provisions, manages, and scales your Elasticsearch resources based on your actual usage. Unlike traditional deployments where you need to predict and provision resources in advance, serverless adapts to your workload in real-time, ensuring optimal performance while eliminating the need for manual capacity planning.
+{serverless-full} automatically provisions, manages, and scales your {es} resources based on your actual usage. Unlike traditional deployments where you need to predict and provision resources in advance, serverless adapts to your workload in real-time, ensuring optimal performance while eliminating the need for manual capacity planning.
 
-Serverless projects use the core components of the {stack}, such as {es} and {kib}, and are based on https://www.elastic.co/blog/elastic-serverless-architecture[an architecture that
-decouples compute and storage]. Search and indexing operations are separated, which offers high flexibility for scaling your workloads while ensuring
+Serverless projects use the core components of the {stack}, such as {es} and {kib}, and are based on an architecture that
+decouples compute and storage. Search and indexing operations are separated, which offers high flexibility for scaling your workloads while ensuring
 a high level of performance.
+
+// For more information see https://www.elastic.co/blog/elastic-serverless-architecture[our blog post].
 
 Elastic provides three serverless solutions available on {ecloud}:
 
@@ -39,12 +41,6 @@ The size of the cache layer and the volume of data it holds depend on <<elastics
 and you define the retention settings for your data streams.
 * Performance. For granular control over costs and query performance against your project data, serverless projects come with
 a set of predefined settings you can edit.
-
-.Serverless billing starts June 1, 2024
-[IMPORTANT]
-====
-Until May 31, 2024, your serverless consumption will not incur any charges, but will be visible along with your total Elastic Cloud consumption on the https://cloud.elastic.co/billing/usage[Billing Usage page]. Unless you are in a trial period, usage on or after June 1, 2024 will be deducted from your existing Elastic Cloud credits or be billed to your active payment method.
-====
 
 [discrete]
 [[general-what-is-serverless-elastic-differences-between-serverless-projects-and-hosted-deployments-on-ecloud]]
