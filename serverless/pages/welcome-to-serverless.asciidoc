@@ -15,6 +15,8 @@ Elastic provides three serverless solutions available on {ecloud}:
 * **https://www.elastic.co/guide/en/serverless/current/what-is-observability-serverless.html[{observability}]**: Monitor your own platforms and services using powerful machine learning and analytics tools with your logs, metrics, traces, and APM data.
 * **https://www.elastic.co/guide/en/serverless/current/what-is-security-serverless.html[{elastic-sec}]**: Detect, investigate, and respond to threats with SIEM, endpoint protection, and AI-powered analytics capabilities.
 
+// https://www.elastic.co/blog/elastic-serverless-architecture[Learn more about serverless in our blog].
+
 [discrete]
 == Benfits of serverless projects
 
@@ -47,9 +49,21 @@ You can run https://www.elastic.co/guide/en/cloud/current/ec-getting-started.htm
 |===
 | Option| Serverless| Hosted
 
+<<<<<<< HEAD
 | **Cluster management**
 | Fully managed by Elastic.
 | You provision and manage your hosted clusters. Shared responsibility with Elastic.
+=======
+<<<<<<< HEAD
+| image:https://www.elastic.co/docs/assets/images/elasticsearch.png[width=150]
+a| [.card-title]#{es}# +
+Build custom search applications with {es}.
+=======
+| **Cluster management**
+| Fully managed by Elastic.
+| You provision and manage your hosted clusters. Shared responsibility with Elastic.
+>>>>>>> 717cc8e (updating guidance for serverless overview)
+>>>>>>> c52057e (fixing merge conflicts)
 
 | **Scaling**
 | Autoscales out of the box.
