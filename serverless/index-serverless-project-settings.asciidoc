@@ -1,10 +1,10 @@
 [[project-and-management-settings]]
 == Project and management settings
 
-include::./index-serverless-devtools.asciidoc[leveloffset=+2]
+
 
 include::./pages/project-and-management-settings.asciidoc[leveloffset=+2]
-
+include::./index-serverless-devtools.asciidoc[leveloffset=+2]
 include::./pages/project-settings.asciidoc[leveloffset=+2]
 include::./pages/api-keys.asciidoc[leveloffset=+3]
 include::./pages/action-connectors.asciidoc[leveloffset=+3]
