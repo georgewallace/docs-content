@@ -16,6 +16,7 @@ Learn how to:
 * <<general-join-organization-from-existing-cloud-account>>: Join a new organization and bring over your projects.
 * <<general-leave-an-organization>>: Leave an organization.
 
+[discrete]
 [[general-user-profile]]
 == Update your user profile
 
