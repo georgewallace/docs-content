@@ -18,7 +18,7 @@ Elastic provides three serverless solutions available on {ecloud}:
 // https://www.elastic.co/blog/elastic-serverless-architecture[Learn more about serverless in our blog].
 
 [discrete]
-== Benfits of serverless projects
+== Benefits of serverless projects
 
 **Management free.** Elastic manages the underlying Elastic cluster, so you can focus on your data. With serverless projects, Elastic is responsible for automatic upgrades, data backups,
 and business continuity.
