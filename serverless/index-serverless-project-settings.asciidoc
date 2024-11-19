@@ -31,7 +31,7 @@ include::./pages/fleet-and-elastic-agent.asciidoc[leveloffset=+2]
 include::./pages/manage-org.asciidoc[leveloffset=+2]
 
 include::./pages/manage-your-project.asciidoc[leveloffset=+2]
-include::./pages/ml-nlp-auto-scale.asciidoc[leveloffset=+3]
+
 include::./pages/manage-your-project-rest-api.asciidoc[leveloffset=+3]
 
 include::./pages/manage-billing.asciidoc[leveloffset=+2]

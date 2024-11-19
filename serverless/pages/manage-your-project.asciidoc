@@ -1,5 +1,5 @@
 [[elasticsearch-manage-project]]
-= Manage your projects
+= Manage performance and data retention
 
 // :description: Configure project-wide features and usage.
 // :keywords: serverless, elasticsearch, project, manage
