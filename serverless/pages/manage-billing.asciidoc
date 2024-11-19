@@ -23,6 +23,7 @@ If you have a project that you're no longer using, refer to <<general-billing-st
 
 To learn about the serverless pricing model, refer to <<general-serverless-billing,Serverless billing dimensions>> and our https://www.elastic.co/pricing/serverless-search[pricing page].
 
+[discrete]
 [[general-billing-stop-project]]
 == Stop charges for a project
 
