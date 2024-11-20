@@ -23,7 +23,7 @@ To learn more about roles, refer to <<general-assign-user-roles>>.
 | {obs-badge}{sec-badge}
 
 | <<fleet-and-elastic-agent>>
-| Add monitoring for logs, metrics, and other types of data to a host..
+| Add monitoring for logs, metrics, and other types of data to a host.
 | {obs-badge}{sec-badge}
 
 | <<data-views>>
