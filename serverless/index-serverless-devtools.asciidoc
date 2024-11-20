@@ -1,4 +1,4 @@
-[[devtools-developer-tools]]
+[role="exclude",id="devtools-developer-tools"]
 = Dev tools
 
 include::./pages/general-developer-tools.asciidoc[leveloffset=+1]

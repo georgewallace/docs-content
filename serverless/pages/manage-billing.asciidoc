@@ -5,7 +5,7 @@
 // :keywords: serverless, general, billing, overview
 
 ++++
-<titleabbrev>Manage billing</titleabbrev>
+<titleabbrev>Billing</titleabbrev>
 ++++
 
 You can manage the billing details of your organization directly from the Elastic Cloud console. Bills are invoiced according to the billing contact and details that you set for your organization.
