@@ -4,8 +4,6 @@
 // :description: Review the limitations that apply to {es-serverless} projects.
 // :keywords: serverless, elasticsearch
 
-preview:[]
-
 The following are currently not available:
 
 * Custom plugins and custom bundles
