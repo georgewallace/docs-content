@@ -33,7 +33,6 @@ include::./pages/saved-objects.asciidoc[leveloffset=+3]
 include::./pages/files.asciidoc[leveloffset=+3]
 include::./pages/maps.asciidoc[leveloffset=+3]
 include::./pages/tags.asciidoc[leveloffset=+3]
-include::./pages/visualize-library.asciidoc[leveloffset=+3]
 
 include::./pages/project-settings-alerts.asciidoc[leveloffset=+2]
 include::./pages/rules.asciidoc[leveloffset=+3]
