@@ -12,7 +12,6 @@ The following are currently not available:
 * Snapshot and restore
 * Clone index API
 * Migrations from non-serverless {es} deployments. In the interim, you can <<elasticsearch-ingest-data-through-logstash,use Logstash>> to move data to and from serverless projects.
-* Custom roles
 * Audit logging
 * {es} for Apache Hadoop
 
