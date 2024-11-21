@@ -3,11 +3,12 @@
 
 include::./pages/welcome-to-serverless.asciidoc[leveloffset=+2]
 
-include::./pages/sign-up.asciidoc[leveloffset=+2]
 include::./pages/get-started-general.asciidoc[leveloffset=+2]
 
+include::./pages/sign-up.asciidoc[leveloffset=+2]
+
 include::./pages/service-status.asciidoc[leveloffset=+2]
-include::./pages/user-profile.asciidoc[leveloffset=+2]
+
 include::./pages/cloud-regions.asciidoc[leveloffset=+2]
 
 
