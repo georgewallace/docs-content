@@ -47,8 +47,6 @@ In the **Actions** column, click the three dots to edit a member's role or revok
 // :description: Manage the predefined set of roles and privileges for all your projects.
 // :keywords: serverless, general, organization, roles, how to
 
-preview:[]
-
 Within an organization, users can have one or more roles and each role grants specific privileges.
 
 You must assign user roles when you <<general-manage-access-to-organization,invite users to join your organization>>.
@@ -132,9 +130,6 @@ If you're the only user in the organization, you can only leave if you have dele
 [discrete]
 [[general-join-organization-from-existing-cloud-account]]
 == Join an organization from an existing Elastic Cloud account
-
-// :description: Join a new organization and bring over your projects.
-// :keywords: serverless, general, organization, join, how to
 
 If you already belong to an organization, and you want to join a new one, it is currently not possible to bring your projects over to the new organization.
 
