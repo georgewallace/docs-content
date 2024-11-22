@@ -44,9 +44,6 @@ In the **Actions** column, click the three dots to edit a member's role or revok
 [[general-assign-user-roles]]
 == Assign user roles and privileges
 
-// :description: Manage the predefined set of roles and privileges for all your projects.
-// :keywords: serverless, general, organization, roles, how to
-
 Within an organization, users can have one or more roles and each role grants specific privileges.
 
 You must assign user roles when you <<general-manage-access-to-organization,invite users to join your organization>>.
@@ -54,6 +51,11 @@ To subsequently edit the roles assigned to a user:
 
 . Go to the user icon on the header bar and select **Organization**.
 . Find the user on the **Members** tab of the **Organization** page. Click the member name to view and edit its roles.
+
+There are two types of roles you can assign to users:
+
+* **Oranization-level roles:** These roles apply to the entire organization and are not specific to any serverless project or hosted deployment.
+* **Instance access roles:** These roles are specific to each serverless project or hosted deployment.
 
 [discrete]
 [[general-assign-user-roles-organization-level-roles]]
@@ -131,11 +133,11 @@ If you're the only user in the organization, you can only leave if you have dele
 [[general-join-organization-from-existing-cloud-account]]
 == Join an organization from an existing Elastic Cloud account
 
-If you already belong to an organization, and you want to join a new one, it is currently not possible to bring your projects over to the new organization.
+If you already belong to an organization, and you want to join a new one you will need to leave your existing organzation. 
 
-If you want to join a new project, follow these steps:
+If you want to join a new organization, follow these steps:
 
-. Make sure you do not have active projects before you leave your current organization.
+. Make sure you do not have active projects or deployments before you leave your current organization.
 . Delete your projects and clear any bills.
 . Leave your current organization.
 . Ask the administrator to invite you to the organization you want to join.
