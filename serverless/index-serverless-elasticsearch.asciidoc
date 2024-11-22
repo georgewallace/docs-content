@@ -4,9 +4,6 @@
 <titleabbrev>{es}</titleabbrev>
 ++++
 
-include::./pages/what-is-elasticsearch-serverless.asciidoc[leveloffset=+2]
-include::./pages/serverless-differences.asciidoc[leveloffset=+2]
-
 include::./pages/get-started.asciidoc[leveloffset=+2]
 
 include::./pages/connecting-to-es-endpoint.asciidoc[leveloffset=+2]
@@ -46,4 +43,3 @@ include::./pages/search-playground.asciidoc[leveloffset=+2]
 include::./pages/serverless-differences.asciidoc[leveloffset=+2]
 
 include::./pages/pricing.asciidoc[leveloffset=+2]
-include::./pages/technical-preview-limitations.asciidoc[leveloffset=+2]
