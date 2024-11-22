@@ -1,5 +1,5 @@
 [[general-sign-up-trial]]
-= How do I sign up?
+= Sign up for Elastic Cloud
 
 // :description: Information about signing up for a serverless Elastic Cloud trial
 // :keywords: serverless, general, signup
@@ -81,7 +81,7 @@ If you’re interested in learning more ways to subscribe to Elastic Cloud, don�
 
 [discrete]
 [[general-sign-up-trial-how-do-i-sign-up-through-a-marketplace]]
-== How do I sign up through a marketplace?
+== Sign up through a marketplace
 
 If you’re interested in consolidated billing, subscribe from the AWS Marketplace, which allows you to skip the trial period and connect your AWS Marketplace email to your unique Elastic account. For a list of regions supported, see <<regions,Regions>>.
 
@@ -98,7 +98,7 @@ Check {cloud}/ec-account-user-settings.html[Edit user account settings] for more
 
 [discrete]
 [[general-sign-up-trial-how-do-i-get-help]]
-== How do I get help?
+== Get help and support
 
 We’re here to help. If you have any questions, reach out to https://cloud.elastic.co/support[Support].
 
