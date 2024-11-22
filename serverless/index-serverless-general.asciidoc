@@ -1,5 +1,5 @@
 [[intro]]
-== Welcome to Elastic serverless
+== Elastic Cloud Serverless
 
 include::./pages/welcome-to-serverless.asciidoc[leveloffset=+2]
 
