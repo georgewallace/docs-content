@@ -46,7 +46,7 @@ During the free 14 day trial, Elastic provides access to one hosted deployment a
 * Machine learning nodes are available up to 4GB RAM
 * Custom {es} plugins are not enabled
 
-To learn more about serverless Elastic Cloud Hosted, check our https://www.elastic.co/guide/en/cloud/current/ec-getting-started.html[Elasticsearch Service documentation].
+To learn more about Elastic Cloud Hosted, check our https://www.elastic.co/guide/en/cloud/current/ec-getting-started.html[Elasticsearch Service documentation].
 
 **Serverless projects**
 
