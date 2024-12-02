@@ -1,3 +1,4 @@
+[[intro]]
 == Elastic Cloud Serverless
 
 include::./pages/welcome-to-serverless.asciidoc[leveloffset=+2]
