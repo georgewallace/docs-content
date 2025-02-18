@@ -2,12 +2,17 @@
 mapped_urls:
   - https://www.elastic.co/guide/en/kibana/current/action-types.html
   - https://www.elastic.co/guide/en/serverless/current/action-connectors.html
-applies:
-  serverless: all
-  hosted: all
-  ece: all
-  eck: all
-  stack: all
+applies_to:
+  stack: ga all
+  deployment:
+    hosted: ga
+    ece: ga
+    eck: ga
+    self: ga
+  serverless:
+    security: ga
+    elasticsearch: ga
+    observability: ga
 ---
 
 # Manage connectors [connector-management]
@@ -62,10 +67,7 @@ The available connectors varies by project type when using {{serverless-full}}.
 * [{{webhook-cm}}](https://www.elastic.co/guide/en/kibana/current/cases-webhook-action-type.html): Send a request to a Case Management web service.
 * [xMatters](https://www.elastic.co/guide/en/kibana/current/xmatters-action-type.html): Send actionable alerts to on-call xMatters resources.
 
-::::{note}
-Some connector types are paid commercial features, while others are free. For a comparison of the Elastic subscription levels, go to [the subscription page](https://www.elastic.co/subscriptions).
 
-::::
 
 ## Required permissions [_required_permissions_2]
 
@@ -98,7 +100,11 @@ You can delete a connector even if there are still actions referencing it. When 
 
 ## Creating a new connector [creating-new-connector]
 
-New connectors can be created with the **Create connector** button, which guides you to select the type of connector and configure its properties.
+New connectors can be created with the **Create connector** button, which guides you to select the type of connector and configure its properties. For a full list of available connectors, see [Available connectors](asciidocalypse://docs/kibana/docs/reference/connectors-kibana/connectors-kibana.md)
+
+::::{note}
+Some connector types are paid commercial features, while others are free. For a comparison of the Elastic subscription levels, go to [the subscription page](https://www.elastic.co/subscriptions).
+::::
 
 :::{image} ../images/kibana-connector-select-type.png
 :alt: Connector select type
