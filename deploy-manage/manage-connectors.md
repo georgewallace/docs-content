@@ -31,7 +31,7 @@ This page is about Kibana connectors that integrate with services like generativ
 {{kib}} provides the following types of connectors:
 
 ::::{note}
-The available connectors varies by project type when using {{serverless}}.
+The available connectors varies by project type when using {{serverless-full}}.
 ::::
 
 * [{{bedrock}}](https://www.elastic.co/guide/en/kibana/current/bedrock-action-type.html): Send a request to {{bedrock}}.
@@ -79,14 +79,14 @@ Use the [action configuration settings](https://www.elastic.co/guide/en/kibana/c
 
 In **{{stack-manage-app}} > {{connectors-ui}}**, you can find a list of the connectors in the current space. You can use the search bar to find specific connectors by name and type. The **Type** dropdown also enables you to filter to a subset of connector types.
 
-:::{image} ../../../images/kibana-connector-filter-by-type.png
+:::{image} ../images/kibana-connector-filter-by-type.png
 :alt: Filtering the connector list by types of connectors
 :class: screenshot
 :::
 
 You can delete individual connectors using the trash icon. Alternatively, select multiple connectors and delete them in bulk using the **Delete** button.
 
-:::{image} ../../../images/kibana-connector-delete.png
+:::{image} ../images/kibana-connector-delete.png
 :alt: Deleting connectors individually or in bulk
 :class: screenshot
 :::
@@ -100,7 +100,7 @@ You can delete a connector even if there are still actions referencing it. When 
 
 New connectors can be created with the **Create connector** button, which guides you to select the type of connector and configure its properties.
 
-:::{image} ../../../images/kibana-connector-select-type.png
+:::{image} ../images/kibana-connector-select-type.png
 :alt: Connector select type
 :class: screenshot
 :::
@@ -117,20 +117,20 @@ You can also manage connectors as resources with the [Elasticstack provider](htt
 
 To import and export connectors, use the [Saved Objects Management UI](/explore-analyze/find-and-organize/saved-objects.md).
 
-:::{image} ../../../images/kibana-connectors-import-banner.png
+:::{image} ../images/kibana-connectors-import-banner.png
 :alt: Connectors import banner
 :class: screenshot
 :::
 
 If a connector is missing sensitive information after the import, a **Fix** button appears in **{{connectors-ui}}**.
 
-:::{image} ../../../images/kibana-connectors-with-missing-secrets.png
+:::{image} ../images/kibana-connectors-with-missing-secrets.png
 :alt: Connectors with missing secrets
 :class: screenshot
 :::
 
 ## Monitoring connectors [monitoring-connectors]
 
-The [Task Manager health API](../../../deploy-manage/monitor/kibana-task-manager-health-monitoring.md) helps you understand the performance of all tasks in your environment. However, if connectors fail to run, they will report as successful to Task Manager. The failure stats will not accurately depict the performance of connectors.
+The [Task Manager health API](../deploy-manage/monitor/kibana-task-manager-health-monitoring.md) helps you understand the performance of all tasks in your environment. However, if connectors fail to run, they will report as successful to Task Manager. The failure stats will not accurately depict the performance of connectors.
 
-For more information on connector successes and failures, refer to the [Event log index](../../../explore-analyze/alerts-cases/alerts/event-log-index.md).
+For more information on connector successes and failures, refer to the [Event log index](../explore-analyze/alerts-cases/alerts/event-log-index.md).
