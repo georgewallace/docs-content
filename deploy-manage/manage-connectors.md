@@ -26,49 +26,6 @@ This page is about Kibana connectors that integrate with services like generativ
 
 ::::
 
-:::{image} ../images/kibana-connector-listing.png
-:alt: Example connector listing in the {{rules-ui}} UI
-:class: screenshot
-:::
-
-## Available connectors [action-types]
-
-{{kib}} provides the following types of connectors:
-
-::::{note}
-The available connectors varies by project type when using {{serverless-full}}.
-::::
-
-* [{{bedrock}}](https://www.elastic.co/guide/en/kibana/current/bedrock-action-type.html): Send a request to {{bedrock}}.
-* [Cases](https://www.elastic.co/guide/en/kibana/current/cases-action-type.html): Add alerts to cases.
-* [CrowdStrike](https://www.elastic.co/guide/en/kibana/current/crowdstrike-action-type.html): Send a request to CrowdStrike.
-* [D3 Security](https://www.elastic.co/guide/en/kibana/current/d3security-action-type.html): Send a request to D3 Security.
-* [{{gemini}}](https://www.elastic.co/guide/en/kibana/current/gemini-action-type.html): Send a request to {{gemini}}.
-* [Email](https://www.elastic.co/guide/en/kibana/current/email-action-type.html): Send email from your server.
-* [{{ibm-r}}](https://www.elastic.co/guide/en/kibana/current/resilient-action-type.html): Create an incident in {{ibm-r}}.
-* [Index](https://www.elastic.co/guide/en/kibana/current/index-action-type.html): Index data into Elasticsearch.
-* [Jira](https://www.elastic.co/guide/en/kibana/current/jira-action-type.html): Create an incident in Jira.
-* [Microsoft Teams](https://www.elastic.co/guide/en/kibana/current/teams-action-type.html): Send a message to a Microsoft Teams channel.
-* [Observability AI Assistant](https://www.elastic.co/guide/en/kibana/current/obs-ai-assistant-action-type.html): Add AI-driven insights and custom actions to your workflow.
-* [OpenAI](https://www.elastic.co/guide/en/kibana/current/openai-action-type.html): Send a request to OpenAI.
-* [{{opsgenie}}](https://www.elastic.co/guide/en/kibana/current/opsgenie-action-type.html): Create or close an alert in {{opsgenie}}.
-* [PagerDuty](https://www.elastic.co/guide/en/kibana/current/pagerduty-action-type.html): Send an event in PagerDuty.
-* [SentinelOne](https://www.elastic.co/guide/en/kibana/current/sentinelone-action-type.html): Send a request to SentinelOne.
-* [ServerLog](https://www.elastic.co/guide/en/kibana/current/server-log-action-type.html): Add a message to a Kibana log.
-* [{{sn-itsm}}](https://www.elastic.co/guide/en/kibana/current/servicenow-action-type.html): Create an incident in {{sn}}.
-* [{{sn-sir}}](https://www.elastic.co/guide/en/kibana/current/servicenow-sir-action-type.html): Create a security incident in {{sn}}.
-* [{{sn-itom}}](https://www.elastic.co/guide/en/kibana/current/servicenow-itom-action-type.html): Create an event in {{sn}}.
-* [Slack](https://www.elastic.co/guide/en/kibana/current/slack-action-type.html): Send a message to a Slack channel or user.
-* [{{swimlane}}](https://www.elastic.co/guide/en/kibana/current/swimlane-action-type.html): Create an incident in {{swimlane}}.
-* [{{hive}}](https://www.elastic.co/guide/en/kibana/current/thehive-action-type.html): Create cases and alerts in {{hive}}.
-* [Tines](https://www.elastic.co/guide/en/kibana/current/tines-action-type.html): Send events to a Tines Story.
-* [Torq](https://www.elastic.co/guide/en/kibana/current/torq-action-type.html): Trigger a Torq workflow.
-* [{{webhook}}](https://www.elastic.co/guide/en/kibana/current/webhook-action-type.html): Send a request to a web service.
-* [{{webhook-cm}}](https://www.elastic.co/guide/en/kibana/current/cases-webhook-action-type.html): Send a request to a Case Management web service.
-* [xMatters](https://www.elastic.co/guide/en/kibana/current/xmatters-action-type.html): Send actionable alerts to on-call xMatters resources.
-
-
-
 ## Required permissions [_required_permissions_2]
 
 Access to connectors is granted based on your privileges to alerting-enabled features. For more information, go to [Security](../explore-analyze/alerts-cases/alerts/alerting-setup.md#alerting-security).
