@@ -21,9 +21,20 @@ Currently, a limited number of Amazon Web Services (AWS) regions are available. 
 The following AWS regions are currently available:
 
 | Region | Name |
-| --- | --- |
+| :--- | :--- |
 | ap-southeast-1 | Asia Pacific (Singapore) |
 | eu-west-1 | Europe (Ireland) |
 | us-east-1 | US East (N. Virginia) |
 | us-west-2 | US West (Oregon) |
 
+## Microsoft Azure regions [regions-azure-regions]
+
+```{applies_to}
+serverless: preview
+```
+
+The following Azure regions are currently available:
+
+| Region | Name |
+| :--- | :--- |
+| eastus | East US |
