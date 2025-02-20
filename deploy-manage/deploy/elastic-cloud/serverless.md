@@ -69,7 +69,7 @@ After you subscribe, you’ll be notified whenever a service status update is po
 
 * Learn about the [cloud organization](../../cloud-organization.md) that is the umbrella for all of your Elastic Cloud resources, users, and account settings.
 
-* Learn about how {{es-serverless}} is [billed](../../cloud-organization/billing.md).
+* Learn about how {{es-serverless}} is [billed](../../cloud-organization/billing/serverless-project-billing-dimensions.md).
 
 * Learn how to [create an API key](../../api-keys/serverless-project-api-keys.md). This key provides access to the API that enables you to manage your deployments.
 
