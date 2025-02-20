@@ -167,10 +167,8 @@ toc:
       - file: docs-content/serverless/elasticsearch-http-apis.md
       - file: docs-content/serverless/elasticsearch-ingest-data-file-upload.md
       - file: docs-content/serverless/elasticsearch-ingest-data-through-api.md
-      - file: docs-content/serverless/elasticsearch-manage-project.md
       - file: docs-content/serverless/general-billing-stop-project.md
       - file: docs-content/serverless/general-ml-nlp-auto-scale.md
-      - file: docs-content/serverless/general-serverless-status.md
       - file: docs-content/serverless/general-sign-up-trial.md
       - file: docs-content/serverless/index-management.md
       - file: docs-content/serverless/ingest-aws-securityhub-data.md
@@ -190,7 +188,6 @@ toc:
       - file: docs-content/serverless/observability-triage-threshold-breaches.md
       - file: docs-content/serverless/observability-view-alerts.md
       - file: docs-content/serverless/observability-view-infrastructure-metrics.md
-      - file: docs-content/serverless/project-and-management-settings.md
       - file: docs-content/serverless/project-setting-data.md
       - file: docs-content/serverless/project-settings-alerts.md
       - file: docs-content/serverless/project-settings-content.md
