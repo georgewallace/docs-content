@@ -23,10 +23,10 @@ Access to connectors is granted based on your privileges to alerting-enabled fea
 ## Connector networking configuration [_connector_networking_configuration]
 
 ```yaml {applies_to}
-serverless: unavailable
+stack:
 ```
 
-Use the [action configuration settings](https://www.elastic.co/guide/en/kibana/current/alert-action-settings-kb.html#action-settings) to customize connector networking configurations, such as proxies, certificates, or TLS settings. You can set configurations that apply to all your connectors or use `xpack.actions.customHostSettings` to set per-host configurations.
+If you're using {{stack}}, use the [action configuration settings](https://www.elastic.co/guide/en/kibana/current/alert-action-settings-kb.html#action-settings) to customize connector networking configurations, such as proxies, certificates, or TLS settings. You can set configurations that apply to all your connectors or use `xpack.actions.customHostSettings` to set per-host configurations.
 
 ## Connector list [connectors-list]
 
@@ -66,11 +66,11 @@ Some connector types are paid commercial features, while others are free. For a 
 After you create a connector, it is available for use any time you set up an action in the current space.
 
 ::::{tip}
-**Preconfigured connectors and the Terraform providers are not available in serverless projects.**
-
 For out-of-the-box and standardized connectors, refer to [preconfigured connectors](https://www.elastic.co/guide/en/kibana/current/pre-configured-connectors.html). 
 
 You can also manage connectors as resources with the [Elasticstack provider](https://registry.terraform.io/providers/elastic/elasticstack/latest) for Terraform. For more details, refer to the [elasticstack_kibana_action_connector](https://registry.terraform.io/providers/elastic/elasticstack/latest/docs/resources/kibana_action_connector) resource.
+
+Preconfigured connectors and the Terraform resource are not available in {{serverless-full}} projects.
 ::::
 
 ## Importing and exporting connectors [importing-and-exporting-connectors]
@@ -86,6 +86,6 @@ If a connector is missing sensitive information after the import, a **Fix** butt
 
 ## Monitoring connectors [monitoring-connectors]
 
-For all deployment types except for serverless projects, you can use the [Task Manager health API](../deploy-manage/monitor/kibana-task-manager-health-monitoring.md) to help you understand the performance of all tasks in your environment. However, if connectors fail to run, they will report as successful to Task Manager. The failure stats will not accurately depict the performance of connectors.
+You can query the [Event log index](/explore-analyze/alerts-cases/alerts/event-log-index.md) to gather information on connector successes and failures.
 
-Additionally, you can use the [console](/explore-analyze/query-filter/tools/console.md) to query the [Event log index](../explore-analyze/alerts-cases/alerts/event-log-index.md) to gather information on connector successes and failures on any type of deployment.
+If you're using {{stack}}, then you can also use the [Task Manager health API](/deploy-manage/monitor/kibana-task-manager-health-monitoring.md) to monitor connector performance. However, if connectors fail to run, they will report as successful to Task Manager. The failure stats will not accurately depict connector failures.
