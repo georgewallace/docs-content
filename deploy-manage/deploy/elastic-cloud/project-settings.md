@@ -6,23 +6,7 @@ mapped_urls:
 
 # Project settings
 
-% What needs to be done: Refine
-
-% GitHub issue: https://github.com/elastic/docs-projects/issues/337
-
-% Use migrated content from existing pages that map to this page:
-
-% - [ ] ./raw-migrated-files/docs-content/serverless/project-and-management-settings.md
-%      Notes: anything that isn't deduplicated from
-% - [ ] ./raw-migrated-files/docs-content/serverless/elasticsearch-manage-project.md
-
-% Internal links rely on the following IDs being on this page (e.g. as a heading ID, paragraph ID, etc):
-
-$$$elasticsearch-manage-project-search-ai-lake-settings$$$
-
 $$$elasticsearch-manage-project-search-power-settings$$$
-
-$$$project-features-add-ons$$$
 
 {{serverless-full}} projects are fully managed and automatically scaled by Elastic. You have the option of {{es-serverless}}, {{observability}}, or {{elastic-sec}} for your project.
 
@@ -49,37 +33,38 @@ Time series data refers to any document in standard indices or data streams that
 
 ::::
 
-
 Each project type offers different settings that let you adjust the performance and volume of search-ready data, as well as the features available in your projects.
 
 The documentation in this section describes shared capabilities that are available in multiple solutions. These settings allow you to tune your project settings not all functionality as you would have with a self-managed deployment. Look for the doc badge on each page to see if the page is valid for your solution:
 
-* [![Elasticsearch](../../../images/serverless-es-badge.svg "")](../../../solutions/search.md) for the {{es-serverless}} solution
-* [![Observability](../../../images/serverless-obs-badge.svg "")](../../../solutions/observability.md) for the {{observability}} solution
-* [![Security](../../../images/serverless-sec-badge.svg "")](../../../solutions/security/elastic-security-serverless.md) for the {{elastic-sec}} solution
-
+| Project | Badge |
+| :--- | :--- |
+| Elasticsearch | [![Elasticsearch](../../../images/serverless-es-badge.svg "elasticsearch =75%")](../../../solutions/search.md) |
+| Observability | [![Observability](../../../images/serverless-obs-badge.svg "observability =75%")](../../../solutions/observability.md) |
+| Security | [![Security](../../../images/serverless-sec-badge.svg "security =75%")](../../../solutions/security/elastic-security-serverless.md) |
 
 $$$elasticsearch-manage-project-search-power-settings$$$
 
 | Setting | Description | Available in |
 | :--- | :--- | :--- |
-| **Search Power** | Search Power controls the speed of searches against your data. With Search Power, you can improve search performance by adding more resources for querying, or you can reduce provisioned resources to cut costs. Choose from three Search Power settings:<br><br>**On-demand:*** Autoscales based on data and search load, with a lower minimum baseline for resource use. This flexibility results in more variable query latency and reduced maximum throughput.<br><br>***Performant:** Delivers consistently low latency and autoscales to accommodate moderately high query throughput.<br><br>**High-throughput:** Optimized for high-throughput scenarios, autoscaling to maintain query latency even at very high query volumes.<br> | [![Elasticsearch](../../../images/serverless-es-badge.svg "")](../../../solutions/search.md) |
+| **Search Power** | Search Power controls the speed of searches against your data. With Search Power, you can improve search performance by adding more resources for querying, or you can reduce provisioned resources to cut costs. Choose from three Search Power settings:<br><br>**On-demand:*** Autoscales based on data and search load, with a lower minimum baseline for resource use. This flexibility results in more variable query latency and reduced maximum throughput.<br><br>***Performant:** Delivers consistently low latency and autoscales to accommodate moderately high query throughput.<br><br>**High-throughput:** Optimized for high-throughput scenarios, autoscaling to maintain query latency even at very high query volumes.<br> | [![Elasticsearch](../../../images/serverless-es-badge.svg "elasticsearch")](../../../solutions/search.md) |
 | **Search Boost Window** | Non-time series data is always considered search-ready. The **Search Boost Window** determines the volume of time series project data that will be considered search-ready.<br><br>Increasing the window results in a bigger portion of time series project data included in the total search-ready data volume.<br> | [![Elasticsearch](../../../images/serverless-es-badge.svg "")](../../../solutions/search.md) |
 | **Data Retention** | Data retention policies determine how long your project data is retained.<br><br>You can specify different retention periods for specific data streams in your project.<br> | [![Elasticsearch](../../../images/serverless-es-badge.svg "")](../../../solutions/search.md)[![Observability](../../../images/serverless-obs-badge.svg "")](../../../solutions/observability.md)[![Security](../../../images/serverless-sec-badge.svg "")](../../../solutions/security/elastic-security-serverless.md) |
 |  | **Maximum data retention period**<br><br>When enabled, this setting determines the maximum length of time that data can be retained in any data streams of this project.<br><br>Editing this setting replaces the data retention set for all data streams of the project that have a longer data retention defined. Data older than the new maximum retention period that you set is permanently deleted.<br> | [![Security](../../../images/serverless-sec-badge.svg "")](../../../solutions/security/elastic-security-serverless.md) |
 |  | **Default data retention period**<br><br>When enabled, this setting determines the default retention period that is automatically applied to all data streams in your project that do not have a custom retention period already set.<br> | [![Security](../../../images/serverless-sec-badge.svg "")](../../../solutions/security/elastic-security-serverless.md) |
 | **Project features** | Controls [feature tiers and add-on options](../../../deploy-manage/deploy/elastic-cloud/project-settings.md#project-features-add-ons) for your {{elastic-sec}} project. | [![Security](../../../images/serverless-sec-badge.svg "")](../../../solutions/security/elastic-security-serverless.md) |
 
-
 ## Project features and add-ons [project-features-add-ons]
 
-[![Security](../../../images/serverless-sec-badge.svg "")](../../../solutions/security/elastic-security-serverless.md) For {{elastic-sec}} projects, edit the **Project features** to select a feature tier and enable add-on options for specific use cases.
+```yaml {applies_to}
+serverless:
+  security:
+```
 
 | Feature tier | Description and add-ons |
 | :--- | :--- |
 | **Security Analytics Essentials** | Standard security analytics, detections, investigations, and collaborations. Allows these add-ons:<br><br>* **Endpoint Protection Essentials**: endpoint protections with {{elastic-defend}}.<br>* **Cloud Protection Essentials**: Cloud native security features.<br> |
 | **Security Analytics Complete** | Everything in **Security Analytics Essentials*** plus advanced features such as entity analytics, threat intelligence, and more. Allows these add-ons:<br><br>* **Endpoint Protection Complete**: Everything in **Endpoint Protection Essentials** plus advanced endpoint detection and response features.<br>* **Cloud Protection Complete**: Everything in **Cloud Protection Essentials** plus advanced cloud security features.<br> |
-
 
 ### Downgrading the feature tier [elasticsearch-manage-project-downgrading-the-feature-tier]
 
