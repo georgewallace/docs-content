@@ -52,6 +52,8 @@ serverless:
   security:
 ```
 
+For {{elastic-sec}} projects, edit the **Project features** to select a feature tier and enable add-on options for specific use cases.
+
 | Feature tier | Description and add-ons |
 | :--- | :--- |
 | **Security Analytics Essentials** | Standard security analytics, detections, investigations, and collaborations. Allows these add-ons:<br><br>* **Endpoint Protection Essentials**: endpoint protections with {{elastic-defend}}.<br>* **Cloud Protection Essentials**: Cloud native security features.<br> |
