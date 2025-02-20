@@ -12,11 +12,9 @@ There are two options to create serverless projects:
 
 Choose the type of project that matches your needs and we’ll help you get started with our solution guides.
 
-|     |     |
-| --- | --- |
-|  |  |
-| ![elasticsearch](https://www.elastic.co/docs/assets/images/elasticsearch.png "") | Elasticsearch<br> Build custom search applications with Elasticsearch.<br><br>[**View guide →**](../../../solutions/search.md)<br> |
-| ![observability](https://www.elastic.co/docs/assets/images/observability.png "") | Observability<br> Monitor applications and systems with Elastic Observability.<br><br>[**View guide →**](../../../solutions/observability.md)<br> |
-| ![security](https://www.elastic.co/docs/assets/images/security.png "") | Security<br> Detect, investigate, and respond to threats with Elastic Security.<br><br>[**View guide →**](../../../solutions/security/elastic-security-serverless.md)<br> |
-|  |  |
+|     |     |    |    |    |    |
+| --- | --- |--- |--- |--- |--- |
+|  |  |  |  |  |  |
+| ![elasticsearch](https://www.elastic.co/docs/assets/images/elasticsearch.png "") | Elasticsearch<br> Build custom search applications with Elasticsearch.<br><br>[**View guide →**](../../../solutions/search/serverless-elasticsearch-get-started.md)<br> | ![observability](https://www.elastic.co/docs/assets/images/observability.png "") | Observability<br> Monitor applications and systems with Elastic Observability.<br><br>[**View guide →**](../../../solutions/observability/get-started/create-an-observability-project.md)<br> | ![security](https://www.elastic.co/docs/assets/images/security.png "") | Security<br> Detect, investigate, and respond to threats with Elastic Security.<br><br>[**View guide →**](../../../solutions/security/get-started/create-security-project.md)<br> |
+
 

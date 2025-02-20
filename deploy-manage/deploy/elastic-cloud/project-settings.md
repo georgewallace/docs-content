@@ -52,7 +52,7 @@ Time series data refers to any document in standard indices or data streams that
 
 Each project type offers different settings that let you adjust the performance and volume of search-ready data, as well as the features available in your projects.
 
-The documentation in this section describes shared capabilities that are available in multiple solutions. Look for the doc badge on each page to see if the page is valid for your solution:
+The documentation in this section describes shared capabilities that are available in multiple solutions. These settings allow you to tune your project settings not all functionality as you would have with a self-managed deployment. Look for the doc badge on each page to see if the page is valid for your solution:
 
 * [![Elasticsearch](../../../images/serverless-es-badge.svg "")](../../../solutions/search.md) for the {{es-serverless}} solution
 * [![Observability](../../../images/serverless-obs-badge.svg "")](../../../solutions/observability.md) for the {{observability}} solution
@@ -87,9 +87,9 @@ When you downgrade your Security project features selection from **Security Anal
 
 * All Entity Analytics features
 * The ability to use certain entity analytics-related integration packages, such as:
-    * Data Exfiltration detection
-    * Lateral Movement detection
-    * Living off the Land Attack detection
+  * Data Exfiltration detection
+  * Lateral Movement detection
+  * Living off the Land Attack detection
 * Intelligence Indicators page
 * External rule action connectors
 * Case connectors

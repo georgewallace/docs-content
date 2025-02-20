@@ -12,23 +12,6 @@ applies_to:
 
 # {{serverless-full}}
 
-% What needs to be done: Refine
-
-% GitHub issue: https://github.com/elastic/docs-projects/issues/337
-
-% Use migrated content from existing pages that map to this page: 
-
-% - [ ] ./raw-migrated-files/docs-content/serverless/intro.md
-% - [ ] ./raw-migrated-files/docs-content/serverless/general-serverless-status.md
-%      Notes: also in troubleshooting
-
-⚠️ **This page is a work in progress.** ⚠️
-
-The documentation team is working to combine content pulled from the following pages:
-
-% * [/raw-migrated-files/docs-content/serverless/intro.md](/raw-migrated-files/docs-content/serverless/intro.md)
-% * [/raw-migrated-files/docs-content/serverless/general-serverless-status.md](/raw-migrated-files/docs-content/serverless/general-serverless-status.md)
-
 {{serverless-full}} is a fully managed solution that allows you to deploy and use Elastic for your use cases without managing the underlying infrastructure. It represents a shift in how you interact with {{es}} - instead of managing clusters, nodes, data tiers, and scaling, you create **serverless projects** that are fully managed and automatically scaled by Elastic. This abstraction of infrastructure decisions allows you to focus solely on gaining value and insight from your data.
 
 {{serverless-full}} automatically provisions, manages, and scales your {{es}} resources based on your actual usage. Unlike traditional deployments where you need to predict and provision resources in advance, serverless adapts to your workload in real-time, ensuring optimal performance while eliminating the need for manual capacity planning.
@@ -84,6 +67,16 @@ To receive service status updates:
     * Atom or RSS feeds
 
 After you subscribe, you’ll be notified whenever a service status update is posted.
+
+## Where to go next?
+
+* Learn about the [cloud organization](../../cloud-organization.md) that is the umbrella for all of your Elastic Cloud resources, users, and account settings.
+
+* Learn about how {{es-serverless}} is [billed](../../cloud-organization/billing.md)
+
+* Learn how to [create an API key](../../api-keys/serverless-project-api-keys.md). This key provides access to the API that enables you to manage your deployments.
+
+* Learn how manage [users and roles](../../users-roles/cloud-organization.md) is your {{es-serverless}} deployment.
 
 ## Answers to common serverless questions [general-what-is-serverless-elastic-answers-to-common-serverless-questions]
 
