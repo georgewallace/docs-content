@@ -16,7 +16,7 @@ Currently, a limited number of Amazon Web Services (AWS) and Microsoft Azure reg
 
 
 
-## Amazon Web Services (AWS) regions [regions-amazon-web-services-aws-regions] 
+## Amazon Web Services (AWS) regions [regions-amazon-web-services-aws-regions]
 
 The following AWS regions are currently available:
 
@@ -29,7 +29,7 @@ The following AWS regions are currently available:
 
 ## Microsoft Azure regions [regions-azure-regions]
 
-```{applies_to}
+```yaml {applies_to}
 serverless: preview
 ```
 
