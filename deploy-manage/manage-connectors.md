@@ -3,26 +3,17 @@ mapped_urls:
   - https://www.elastic.co/guide/en/kibana/current/action-types.html
   - https://www.elastic.co/guide/en/serverless/current/action-connectors.html
 applies_to:
-  stack: ga all
-  deployment:
-    hosted: ga
-    ece: ga
-    eck: ga
-    self: ga
+  stack:
   serverless:
-    security: ga
-    elasticsearch: ga
-    observability: ga
 ---
 
 # Manage connectors [connector-management]
 
-$$$connector-management$$$
 
 Connectors serve as a central place to store connection information for both Elastic and third-party systems. They enable the linking of actions to rules, which execute as background tasks on the {{kib}} server when rule conditions are met. This allows rules to route actions to various destinations such as log files, ticketing systems, and messaging tools. Different {{kib}} apps may have their own rule types, but they typically share connectors. The **{{stack-manage-app}} > {{connectors-ui}}** provides a central location to view and manage all connectors in the current space.
 
 ::::{note}
-This page is about Kibana connectors that integrate with services like generative AI model providers. If you’re looking for Search connectors that synchronize third-party data into {{es}}, refer to [Connector clients](https://www.elastic.co/guide/en/serverless/current/elasticsearch-ingest-data-through-integrations-connector-client.html).
+This page is about {{kib}} connectors that integrate with services like generative AI model providers. If you’re looking for Search connectors that synchronize third-party data into {{es}}, refer to [Connector clients](https://www.elastic.co/guide/en/serverless/current/elasticsearch-ingest-data-through-integrations-connector-client.html).
 
 ::::
 
@@ -57,7 +48,7 @@ You can delete a connector even if there are still actions referencing it. When 
 
 ## Creating a new connector [creating-new-connector]
 
-New connectors can be created with the **Create connector** button, which guides you to select the type of connector and configure its properties. For a full list of available connectors, see [Available connectors](asciidocalypse://docs/kibana/docs/reference/connectors-kibana/connectors-kibana.md)
+New connectors can be created with the **Create connector** button, which guides you to select the type of connector and configure its properties. For a full list of available connectors, see [Available connectors](asciidocalypse://docs/kibana/docs/reference/connectors-kibana/connectors-kibana.md).
 
 ::::{note}
 Some connector types are paid commercial features, while others are free. For a comparison of the Elastic subscription levels, go to [the subscription page](https://www.elastic.co/subscriptions).
