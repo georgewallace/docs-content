@@ -3,25 +3,33 @@ mapped_urls:
   - https://www.elastic.co/guide/en/serverless/current/index.html
   - https://www.elastic.co/guide/en/serverless/current/intro.html
   - https://www.elastic.co/guide/en/serverless/current/general-serverless-status.html
-applies_to:
-  serverless:
 ---
 
 # {{serverless-full}}
 
 {{serverless-full}} is a fully managed solution that allows you to deploy and use Elastic for your use cases without managing the underlying infrastructure. It represents a shift in how you interact with {{es}} - instead of managing clusters, nodes, data tiers, and scaling, you create **serverless projects** that are fully managed and automatically scaled by Elastic. This abstraction of infrastructure decisions allows you to focus solely on gaining value and insight from your data.
 
+## Serverless overview
+
 {{serverless-full}} automatically provisions, manages, and scales your {{es}} resources based on your actual usage. Unlike traditional deployments where you need to predict and provision resources in advance, serverless adapts to your workload in real-time, ensuring optimal performance while eliminating the need for manual capacity planning.
 
 Serverless projects use the core components of the {{stack}}, such as {{es}} and {{kib}}, and are based on an architecture that decouples compute and storage. Search and indexing operations are separated, which offers high flexibility for scaling your workloads while ensuring a high level of performance.
 
-Elastic provides three serverless solutions available on {{ecloud}}:
+## Quickstart
+
+Elastic provides three serverless solutions available on {{ecloud}}. Follow these guides to get started with your serverless project:
 
 * **[{{es-serverless}}](../../../solutions/search/serverless-elasticsearch-get-started.md)**: Build powerful applications and search experiences using a rich ecosystem of vector search capabilities, APIs, and libraries.
 * **[{{obs-serverless}}](../../../solutions/observability/get-started/create-an-observability-project.md)**: Monitor your own platforms and services using powerful machine learning and analytics tools with your logs, metrics, traces, and APM data.
 * **[{{sec-serverless}}](../../../solutions/security/get-started/create-security-project.md)**: Detect, investigate, and respond to threats with SIEM, endpoint protection, and AI-powered analytics capabilities.
 
-[Learn more about {{serverless-full}} in our blog](https://www.elastic.co/blog/elastic-cloud-serverless).
+Afterwards, you can:
+
+* Learn about the [cloud organization](../../cloud-organization.md) that is the umbrella for all of your Elastic Cloud resources, users, and account settings.
+* Learn about how {{es-serverless}} is [billed](../../cloud-organization/billing/serverless-project-billing-dimensions.md).
+* Learn how to [create an API key](../../api-keys/serverless-project-api-keys.md). This key provides access to the API that enables you to manage your deployments.
+* Learn how manage [users and roles](../../users-roles/cloud-organization.md) is your {{es-serverless}} deployment.
+* Learn more about {{serverless-full}} in [our blog](https://www.elastic.co/blog/elastic-cloud-serverless).
 
 :::{note}
 There are differences between {{es-serverless}} and {{ech}}, for a list of differences between them, see [differences between {{ech}} and {{es-serverless}}](../elastic-cloud.md#general-what-is-serverless-elastic-differences-between-serverless-projects-and-hosted-deployments-on-ecloud).
@@ -47,33 +55,7 @@ There are differences between {{es-serverless}} and {{ech}}, for a list of diffe
 
 Serverless projects run on cloud platforms, which may undergo changes in availability. When availability changes, Elastic makes sure to provide you with a current service status.
 
-To check current and past service availability, go to the Elastic [service status](https://status.elastic.co/?section=serverless) page.
-
-### Subscribe to updates [general-serverless-status-subscribe-to-updates]
-
-You can be notified about changes to the service status automatically.
-
-To receive service status updates:
-
-1. Go to the Elastic [service status](https://status.elastic.co/?section=serverless) page.
-2. Select **SUBSCRIBE TO UPDATES**.
-3. You can be notified in the following ways:
-
-    * Email
-    * Slack
-    * Atom or RSS feeds
-
-After you subscribe, you’ll be notified whenever a service status update is posted.
-
-## Where to go next?
-
-* Learn about the [cloud organization](../../cloud-organization.md) that is the umbrella for all of your Elastic Cloud resources, users, and account settings.
-
-* Learn about how {{es-serverless}} is [billed](../../cloud-organization/billing/serverless-project-billing-dimensions.md).
-
-* Learn how to [create an API key](../../api-keys/serverless-project-api-keys.md). This key provides access to the API that enables you to manage your deployments.
-
-* Learn how manage [users and roles](../../users-roles/cloud-organization.md) is your {{es-serverless}} deployment.
+To learn more about serverless status, see [Service status](../../cloud-organization/service-status.md).
 
 ## Answers to common serverless questions [general-what-is-serverless-elastic-answers-to-common-serverless-questions]
 
