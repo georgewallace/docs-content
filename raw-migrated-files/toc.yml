@@ -174,7 +174,6 @@ toc:
       - file: docs-content/serverless/ingest-falco.md
       - file: docs-content/serverless/ingest-third-party-cloud-security-data.md
       - file: docs-content/serverless/ingest-wiz-data.md
-      - file: docs-content/serverless/monitor-k8s-otel-edot.md
       - file: docs-content/serverless/observability-add-logs-service-name.md
       - file: docs-content/serverless/observability-aggregationOptions.md
       - file: docs-content/serverless/observability-ai-assistant.md
