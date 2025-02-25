@@ -3,6 +3,8 @@ mapped_urls:
   - https://www.elastic.co/guide/en/serverless/current/index.html
   - https://www.elastic.co/guide/en/serverless/current/intro.html
   - https://www.elastic.co/guide/en/serverless/current/general-serverless-status.html
+applies_to:
+  serverless:
 ---
 
 # {{serverless-full}}
@@ -14,6 +16,10 @@ mapped_urls:
 {{serverless-full}} automatically provisions, manages, and scales your {{es}} resources based on your actual usage. Unlike traditional deployments where you need to predict and provision resources in advance, serverless adapts to your workload in real-time, ensuring optimal performance while eliminating the need for manual capacity planning.
 
 Serverless projects use the core components of the {{stack}}, such as {{es}} and {{kib}}, and are based on an architecture that decouples compute and storage. Search and indexing operations are separated, which offers high flexibility for scaling your workloads while ensuring a high level of performance.
+
+:::{note}
+There are differences between {{es-serverless}} and {{ech}}, for a list of differences between them, see [differences between {{ech}} and {{es-serverless}}](../elastic-cloud.md#general-what-is-serverless-elastic-differences-between-serverless-projects-and-hosted-deployments-on-ecloud).
+:::
 
 ## Get started
 
@@ -30,10 +36,6 @@ Afterwards, you can:
 * Learn how to [create an API key](../../api-keys/serverless-project-api-keys.md). This key provides access to the API that enables you to manage your deployments.
 * Learn how manage [users and roles](../../users-roles/cloud-organization.md) in your {{es-serverless}} deployment.
 * Learn more about {{serverless-full}} in [our blog](https://www.elastic.co/blog/elastic-cloud-serverless).
-
-:::{note}
-There are differences between {{es-serverless}} and {{ech}}, for a list of differences between them, see [differences between {{ech}} and {{es-serverless}}](../elastic-cloud.md#general-what-is-serverless-elastic-differences-between-serverless-projects-and-hosted-deployments-on-ecloud).
-:::
 
 ## Benefits of serverless projects [_benefits_of_serverless_projects]
 

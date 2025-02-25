@@ -2,6 +2,9 @@
 mapped_urls:
   - https://www.elastic.co/guide/en/serverless/current/project-and-management-settings.html
   - https://www.elastic.co/guide/en/serverless/current/elasticsearch-manage-project.html
+
+applies_to:
+  serverless:
 ---
 
 # Project settings
@@ -16,6 +19,7 @@ Your project’s performance and general data retention are controlled by the **
 2. Log in to your Elastic Cloud account.
 3. Select your project from the **Serverless projects** panel and click **Manage**.
 
+Additionally, there are [features and add-ons](#project-features-add-ons) available for security that you can configure.
 
 ## Search AI Lake settings [elasticsearch-manage-project-search-ai-lake-settings]
 

@@ -1,6 +1,8 @@
 ---
 mapped_pages:
   - https://www.elastic.co/guide/en/serverless/current/serverless-get-started.html
+applies_to:
+  serverless:
 ---
 
 # Create a serverless project [serverless-get-started]
