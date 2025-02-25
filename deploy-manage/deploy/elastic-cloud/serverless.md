@@ -15,7 +15,7 @@ mapped_urls:
 
 Serverless projects use the core components of the {{stack}}, such as {{es}} and {{kib}}, and are based on an architecture that decouples compute and storage. Search and indexing operations are separated, which offers high flexibility for scaling your workloads while ensuring a high level of performance.
 
-## Quickstart
+## Get started
 
 Elastic provides three serverless solutions available on {{ecloud}}. Follow these guides to get started with your serverless project:
 
@@ -28,7 +28,7 @@ Afterwards, you can:
 * Learn about the [cloud organization](../../cloud-organization.md) that is the umbrella for all of your Elastic Cloud resources, users, and account settings.
 * Learn about how {{es-serverless}} is [billed](../../cloud-organization/billing/serverless-project-billing-dimensions.md).
 * Learn how to [create an API key](../../api-keys/serverless-project-api-keys.md). This key provides access to the API that enables you to manage your deployments.
-* Learn how manage [users and roles](../../users-roles/cloud-organization.md) is your {{es-serverless}} deployment.
+* Learn how manage [users and roles](../../users-roles/cloud-organization.md) in your {{es-serverless}} deployment.
 * Learn more about {{serverless-full}} in [our blog](https://www.elastic.co/blog/elastic-cloud-serverless).
 
 :::{note}
