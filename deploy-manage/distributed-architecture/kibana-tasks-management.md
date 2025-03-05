@@ -11,7 +11,7 @@ mapped_pages:
 * **Scaling**: Multiple {{kib}} instances can read from and update the same task queue in {{es}}, allowing the work load to be distributed across instances. If a {{kib}} instance no longer has capacity to run tasks, you can increase capacity by adding additional {{kib}} instances.
 * **Load Balancing**: Task Manager is equipped with a reactive self-healing mechanism, which allows it to reduce the amount of work it executes in reaction to an increased load related error rate in {{es}}. Additionally, when Task Manager experiences an increase in recurring tasks, it attempts to space out the work to better balance the load.
 
-::::{important} 
+::::{important}
 Task definitions for alerts and actions are stored in the index called `.kibana_task_manager`.
 
 You must have at least one replica of this index for production deployments.
