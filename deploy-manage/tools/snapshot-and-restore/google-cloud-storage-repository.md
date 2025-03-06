@@ -91,7 +91,6 @@ PUT _snapshot/my_gcs_repository
 }
 ```
 %  TEST[skip:we don’t have gcs setup while testing this]
-%  TEST[skip:we don’t have gcs setup while testing this]
 
 The `credentials_file` settings are [reloadable](../../security/secure-settings.md#reloadable-secure-settings). You can define these settings before the node is started, or call the [Nodes reload secure settings API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-nodes-reload-secure-settings) after the settings are defined to apply them to a running node.
 
@@ -120,6 +119,7 @@ PUT _snapshot/my_gcs_repository
   }
 }
 ```
+%  TEST[skip:we don’t have gcs setup while testing this]
 
 Some settings are sensitive and must be stored in the [Elasticsearch keystore](../../security/secure-settings.md). This is the case for the service account file:
 

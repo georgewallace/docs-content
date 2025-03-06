@@ -127,7 +127,6 @@ PUT my-index/_settings
 }
 ```
 %  TEST[continued]
-%  TEST[continued]
 
 If an index is already in the cold phase, include the cold, warm, and hot tiers.
 
@@ -151,6 +150,7 @@ PUT my-index/_settings
   "index.routing.allocation.include._tier_preference": "data_warm,data_hot"
 }
 ```
+%  TEST[continued]
 
 This situation can occur in a system that defaults to data tiers when, e.g., an ILM policy that uses node attributes is restored and transitions the managed indices from the hot phase into the warm phase. In this case the node attribute configuration indicates the correct tier where the index should be allocated.
 

@@ -445,7 +445,6 @@ If you set `ccs_minimize_roundtrips=true`, then you will also see partial result
 GET /_async_search/FklQYndoTDJ2VEFlMEVBTzFJMGhJVFEaLVlKYndBWWZSMUdicUc4WVlEaFl4ZzoxNTU=
 ```
 %  TEST[continued s/FklQYndoTDJ2VEFlMEVBTzFJMGhJVFEaLVlKYndBWWZSMUdicUc4WVlEaFl4ZzoxNTU=/${body.id}/]
-%  TEST[continued s/FklQYndoTDJ2VEFlMEVBTzFJMGhJVFEaLVlKYndBWWZSMUdicUc4WVlEaFl4ZzoxNTU=/${body.id}/]
 
 Response:
 
@@ -527,6 +526,7 @@ After searches on all the clusters have completed, querying the [get async searc
 ```console
 GET /_async_search/FklQYndoTDJ2VEFlMEVBTzFJMGhJVFEaLVlKYndBWWZSMUdicUc4WVlEaFl4ZzoxNTU=
 ```
+%  TEST[continued s/FklQYndoTDJ2VEFlMEVBTzFJMGhJVFEaLVlKYndBWWZSMUdicUc4WVlEaFl4ZzoxNTU=/${body.id}/]
 
 Response:
 

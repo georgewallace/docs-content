@@ -153,7 +153,6 @@ The response will look like this:
 }
 ```
 %  TESTRESPONSE[skip:the result is for illustrating purposes only]
-%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. The affected snapshot lifecycle policy.
 2. The information about the last failure for the policy.

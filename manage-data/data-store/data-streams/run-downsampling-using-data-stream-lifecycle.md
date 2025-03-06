@@ -230,7 +230,6 @@ Now that you’ve created and added documents to the data stream, check to confi
 GET _data_stream
 ```
 %  TEST[skip: temporal_ranges and index names won’t match]
-%  TEST[skip: temporal_ranges and index names won’t match]
 
 If the data stream lifecycle policy has not yet been applied, your results will be like the following. Note the original `index_name`: `.ds-datastream-2024.04.29-000001`.
 
@@ -287,7 +286,6 @@ Next, run a search query:
 ```console
 GET datastream/_search
 ```
-%  TEST[continued]
 %  TEST[skip: timestamp values won’t match]
 
 The query returns your ten newly added documents.
@@ -332,6 +330,7 @@ By default, data stream lifecycle actions are executed every five minutes. Downs
 ```console
 GET _data_stream
 ```
+%  TEST[skip: temporal_ranges and index names won’t match]
 
 After the data stream lifecycle action was executed, original `.ds-datastream-2024.04.29-000001` index is replaced with a new, downsampled index, in this case `downsample-1h-.ds-datastream-2024.04.29-000001`.
 
@@ -365,6 +364,7 @@ Run a search query on the datastream (note that when querying downsampled indice
 ```console
 GET datastream/_search
 ```
+%  TEST[continued]
 
 The new downsampled index contains just one document that includes the `min`, `max`, `sum`, and `value_count` statistics based off of the original sampled metrics.
 

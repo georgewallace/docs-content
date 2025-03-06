@@ -254,7 +254,6 @@ Now that you’ve created and added documents to the data stream, check to confi
 GET _data_stream
 ```
 %  TEST[skip: The @timestamp value won’t match an accepted range in the TSDS]
-%  TEST[skip: The @timestamp value won’t match an accepted range in the TSDS]
 
 If the ILM policy has not yet been applied, your results will be like the following. Note the original `index_name`: `.ds-datastream-<timestamp>-000001`.
 
@@ -305,7 +304,6 @@ Next, run a search query:
 ```console
 GET datastream/_search
 ```
-%  TEST[continued]
 %  TEST[skip: The @timestamp value won’t match an accepted range in the TSDS]
 
 The query returns your ten newly added documents.
@@ -335,6 +333,7 @@ By default, index lifecycle management checks every ten minutes for indices that
 ```console
 GET _data_stream
 ```
+%  TEST[skip: The @timestamp value won’t match an accepted range in the TSDS]
 
 After the ILM policy has taken effect, the original `.ds-datastream-2022.08.26-000001` index is replaced with a new, downsampled index, in this case `downsample-6tkn-.ds-datastream-2022.08.26-000001`.
 
@@ -366,6 +365,7 @@ Run a search query on the datastream (note that when querying downsampled indice
 ```console
 GET datastream/_search
 ```
+%  TEST[continued]
 
 The new downsampled index contains just one document that includes the `min`, `max`, `sum`, and `value_count` statistics based off of the original sampled metrics.
 

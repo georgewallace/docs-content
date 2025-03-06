@@ -146,7 +146,6 @@ GET .watcher-history*/_search?pretty
 }
 ```
 %  TEST[continued]
-%  TEST[continued]
 
 ## Take action [health-take-action]
 
@@ -223,6 +222,7 @@ GET .watcher-history*/_search?pretty
   }
 }
 ```
+%  TEST[continued]
 
 ## Delete the watch [health-delete]
 

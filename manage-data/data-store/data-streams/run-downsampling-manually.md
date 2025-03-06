@@ -257,7 +257,6 @@ You can use the search API to check if the documents have been indexed correctly
 ```console
 GET /my-data-stream/_search
 ```
-%  TEST[skip:Because we’ve skipped the previous steps]
 %  TEST[continued]
 
 Run the following aggregation on the data to calculate some interesting statistics:
@@ -423,6 +422,7 @@ Re-run the earlier search query (note that when querying downsampled indices the
 ```console
 GET /my-data-stream/_search
 ```
+%  TEST[skip:Because we’ve skipped the previous steps]
 
 The TSDS with the new downsampled backing index contains just one document. For counters, this document would only have the last value. For gauges, the field type is now `aggregate_metric_double`. You see the `min`, `max`, `sum`, and `value_count` statistics based off of the original sampled metrics:
 
@@ -575,6 +575,7 @@ GET /my-data-stream/_search
     }
 }
 ```
+%  TEST[continued]
 
 This example demonstrates how downsampling can dramatically reduce the number of documents stored for time series data, within whatever time boundaries you choose. It’s also possible to perform downsampling on already downsampled data, to further reduce storage and associated costs, as the time series data ages and the data resolution becomes less critical.
 

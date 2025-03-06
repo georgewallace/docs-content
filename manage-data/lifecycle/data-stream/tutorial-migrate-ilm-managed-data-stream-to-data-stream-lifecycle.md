@@ -80,16 +80,12 @@ POST dsl-data-stream/_doc?
 POST dsl-data-stream/_rollover
 ```
 %  TEST[continued]
-%  TEST[continued]
 
 We’ll use the [GET _data_stream](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-get-data-stream) API to inspect the state of the data stream:
 
 ```console
 GET _data_stream/dsl-data-stream
 ```
-%  TEST[continued]
-%  TEST[continued]
-%  TEST[continued]
 %  TEST[continued]
 
 Inspecting the response we’ll see that both backing indices are managed by {{ilm-init}} and that the next generation index will also be managed by {{ilm-init}}:
@@ -204,6 +200,7 @@ We can inspect the data stream to check that the next generation will indeed be 
 ```console
 GET _data_stream/dsl-data-stream
 ```
+%  TEST[continued]
 
 ```console-result
 {
@@ -267,10 +264,12 @@ We’ll now rollover the data stream to see the new generation index being manag
 ```console
 POST dsl-data-stream/_rollover
 ```
+%  TEST[continued]
 
 ```console
 GET _data_stream/dsl-data-stream
 ```
+%  TEST[continued]
 
 ```console-result
 {
@@ -365,6 +364,7 @@ PUT _data_stream/dsl-data-stream/_lifecycle
 ```console
 GET _data_stream/dsl-data-stream
 ```
+%  TEST[continued]
 
 ```console-result
 {

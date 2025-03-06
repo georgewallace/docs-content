@@ -14,7 +14,7 @@ To update the lifecycle of an existing data stream you do the following actions:
 2. [Remove lifecycle for a data stream](#delete-lifecycle)
 
 
-## Set a data stream’s lifecycle [set-lifecycle] 
+## Set a data stream’s lifecycle [set-lifecycle]
 
 To add or to change the retention period of your data stream you can use the [PUT lifecycle API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-data-lifecycle).
 
@@ -44,8 +44,6 @@ The changes in the lifecycle are applied on all backing indices of the data stre
 ```console
 GET .ds-my-data-stream-*/_lifecycle/explain
 ```
-%  TEST[continued]
-%  TEST[teardown:data_stream_cleanup]
 %  TEST[continued]
 
 The response will look like:
@@ -95,7 +93,7 @@ The response will look like:
 
 
 
-## Remove lifecycle for a data stream [delete-lifecycle] 
+## Remove lifecycle for a data stream [delete-lifecycle]
 
 To remove the lifecycle of a data stream you can use the [delete lifecycle API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-delete-data-lifecycle). As consequence, the maintenance operations that were applied by the lifecycle will no longer be applied to the data stream and all its backing indices. For example:
 
@@ -109,6 +107,8 @@ You can then use the [explain API](https://www.elastic.co/docs/api/doc/elasticse
 ```console
 GET .ds-my-data-stream-*/_lifecycle/explain
 ```
+%  TEST[continued]
+%  TEST[teardown:data_stream_cleanup]
 
 ```console-result
 {

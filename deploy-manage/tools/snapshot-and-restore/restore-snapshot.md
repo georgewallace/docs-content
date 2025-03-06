@@ -93,7 +93,6 @@ DELETE my-index
 DELETE _data_stream/logs-my_app-default
 ```
 %  TEST[setup:setup-snapshots]
-%  TEST[setup:setup-snapshots]
 In the restore request, explicitly specify any indices and data streams to restore.
 
 ```console
@@ -118,7 +117,8 @@ POST _snapshot/my_repository/my_snapshot_2099.05.06/_restore
 {
   "indices": "my-index,logs-my_app-default",
   "rename_pattern": "(.+)",
-  "rename_replacement": "restored-$1"
+  "rename_replacement": "restored-
+If the rename options produce two or more indices or data streams with the same name, the restore operation fails."
 }
 ```
 %  TEST[setup:setup-snapshots]

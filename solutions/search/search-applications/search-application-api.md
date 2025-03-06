@@ -175,7 +175,6 @@ When you actually perform a search with no parameters, it will execute the under
 POST _application/search_application/my_search_application/_search
 ```
 %  TEST[continued]
-%  TEST[continued]
 
 Searching with the `query_string` and/or `default_field` parameters will perform a [`query_string`](elasticsearch://reference/query-languages/query-dsl-query-string-query.md) query.
 

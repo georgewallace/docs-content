@@ -24,7 +24,6 @@ A successful call to the cluster settings update API for adding or updating remo
 GET /_remote/info
 ```
 %  TEST[skip:TODO]
-%  TEST[skip:TODO]
 
 The API should return `"connected" : true`. When using [API key authentication](../../deploy-manage/remote-clusters/remote-clusters-api-key.md), it should also return `"cluster_credentials": "::es_redacted::"`.
 
@@ -44,7 +43,6 @@ The API should return `"connected" : true`. When using [API key authentication](
   }
 }
 ```
-%  TEST[skip:TODO]
 %  TEST[skip:TODO]
 
 1. The remote cluster has connected successfully.
@@ -250,6 +248,7 @@ A local cluster uses the presence of a cross-cluster API key to determine the mo
 ```console
 GET /_remote/info
 ```
+%  TEST[skip:TODO]
 
 The API should return `"connected" : true`. When using [API key authentication](../../deploy-manage/remote-clusters/remote-clusters-api-key.md), it should also return `"cluster_credentials": "::es_redacted::"`.
 
@@ -269,6 +268,7 @@ The API should return `"connected" : true`. When using [API key authentication](
   }
 }
 ```
+%  TEST[skip:TODO]
 
 1. The remote cluster has connected successfully.
 2. If present, indicates the remote cluster has connected using [API key authentication](../../deploy-manage/remote-clusters/remote-clusters-api-key.md) instead of [certificate based authentication](../../deploy-manage/remote-clusters/remote-clusters-cert.md).
