@@ -45,6 +45,7 @@ PUT semantic-embeddings
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. The name of the field to contain the generated embeddings.
 2. The field to contain the embeddings is a `semantic_text` field. Since no `inference_id` is provided, the default endpoint `.elser-2-elasticsearch` for the [`elasticsearch` service](../../../explore-analyze/elastic-inference/inference-api/elasticsearch-inference-integration.md) is used. To use a different {{infer}} service, you must create an {{infer}} endpoint first using the [Create {{infer}} API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put) and then specify it in the `semantic_text` field mapping using the `inference_id` parameter.
@@ -88,6 +89,7 @@ POST _reindex?wait_for_completion=false
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. The default batch size for reindexing is 1000. Reducing size to a smaller number makes the update of the reindexing process quicker which enables you to follow the progress closely and detect errors early.
 
@@ -97,12 +99,14 @@ The call returns a task ID to monitor the progress:
 ```console
 GET _tasks/<task_id>
 ```
+%  TEST[skip:TBD]
 
 Reindexing large datasets can take a long time. You can test this workflow using only a subset of the dataset. Do this by cancelling the reindexing process, and only generating embeddings for the subset that was reindexed. The following API request will cancel the reindexing task:
 
 ```console
 POST _tasks/<task_id>/_cancel
 ```
+%  TEST[skip:TBD]
 
 
 ## Semantic search [semantic-text-semantic-search]
@@ -120,6 +124,7 @@ GET semantic-embeddings/_search
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. The `semantic_text` field on which you want to perform the search.
 2. The query text.

@@ -31,6 +31,7 @@ You’ll need a running {{es}} cluster, together with {{kib}} to use the Dev Too
 ```sh
 curl -fsSL https://elastic.co/start-local | sh
 ```
+%  NOTCONSOLE
 
 
 ## Step 1: Create an index [full-text-filter-tutorial-create-index]
@@ -40,6 +41,7 @@ Create the `cooking_blog` index to get started:
 ```console
 PUT /cooking_blog
 ```
+%  TESTSETUP
 
 Now define the mappings for the index:
 
@@ -99,6 +101,7 @@ PUT /cooking_blog/_mapping
   }
 }
 ```
+%  TEST
 
 1. The `standard` analyzer is used by default for `text` fields if an `analyzer` isn’t specified. It’s included here for demonstration purposes.
 2. [Multi-fields](elasticsearch://reference/elasticsearch/mapping-reference/multi-fields.md) are used here to index `text` fields as both `text` and `keyword` [data types](elasticsearch://reference/elasticsearch/mapping-reference/field-data-types.md). This enables both full-text search and exact matching/filtering on the same field. Note that if you used [dynamic mapping](../../manage-data/data-store/mapping/dynamic-field-mapping.md), these multi-fields would be created automatically.
@@ -129,6 +132,7 @@ POST /cooking_blog/_bulk?refresh=wait_for
 {"index":{"_id":"5"}}
 {"title":"Crispy Oven-Fried Chicken","description":"Get that perfect crunch without the deep fryer! This oven-fried chicken recipe delivers crispy, juicy results every time. A healthier take on the classic comfort food.","author":"Maria Rodriguez","date":"2023-05-20","category":"Main Course","tags":["chicken","oven-fried","healthy"],"rating":4.9}
 ```
+%  TEST[continued]
 
 
 ## Step 3: Perform basic full-text searches [full-text-filter-tutorial-match-query]
@@ -154,6 +158,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 1. By default, the `match` query uses `OR` logic between the resulting tokens. This means it will match documents that contain either "fluffy" or "pancakes", or both, in the description field.
 
@@ -200,6 +205,12 @@ At search time, {{es}} defaults to the analyzer defined in the field mapping. In
   }
 }
 ```
+%  TESTRESPONSE[s/"took": 0/"took": "$body.took"/]
+%  TESTRESPONSE[s/"total": 1/"total": $body._shards.total/]
+%  TESTRESPONSE[s/"successful": 1/"successful": $body._shards.successful/]
+%  TESTRESPONSE[s/"value": 1/"value": $body.hits.total.value/]
+%  TESTRESPONSE[s/"max_score": 1.8378843/"max_score": $body.hits.max_score/]
+%  TESTRESPONSE[s/"_score": 1.8378843/"_score": $body.hits.hits.0._score/]
 
 1. The `hits` object contains the total number of matching documents and their relation to the total.
 2. `max_score` is the highest relevance score among all matching documents. In this example, we only have one matching document.
@@ -229,6 +240,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 ::::{dropdown} Example response
 ```console-result
@@ -251,6 +263,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TESTRESPONSE[s/"took": 0/"took": "$body.took"/]
 
 ::::
 
@@ -275,6 +288,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 
 ## Step 4: Search across multiple fields at once [full-text-filter-tutorial-multi-match]
@@ -294,6 +308,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 This query searches for "vegetarian curry" across the title, description, and tags fields. Each field is treated with equal importance.
 
@@ -310,6 +325,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 1. The `^` syntax applies a boost to specific fields:* `title^3`: The title field is 3 times more important than an unboosted field
 * `description^2`: The description is 2 times more important
@@ -363,6 +379,9 @@ Learn more about fields and per-field boosting in the [`multi_match` query](elas
   }
 }
 ```
+%  TESTRESPONSE[s/"took": 0/"took": "$body.took"/]
+%  TESTRESPONSE[s/"_score": 7.546015/"_score": $body.hits.hits.0._score/]
+%  TESTRESPONSE[s/"max_score": 7.546015/"max_score": $body.hits.max_score/]
 
 1. The title contains "Vegetarian" and "Curry", which matches our search terms. The title field has the highest boost (^3), contributing significantly to this document’s relevance score.
 2. The description contains "curry" and related terms like "vegetables", further increasing the document’s relevance.
@@ -399,6 +418,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 1. Note the use of `category.keyword` here. This refers to the [`keyword`](elasticsearch://reference/elasticsearch/mapping-reference/keyword.md) multi-field of the `category` field, ensuring an exact, case-sensitive match.
 
@@ -430,6 +450,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 1. Greater than or equal to May 1, 2023.
 2. Less than or equal to May 31, 2023.
@@ -452,6 +473,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 1. The `term` query has zero flexibility. For example, here the queries `maria` or `maria rodriguez` would have zero hits, due to case sensitivity.
 
@@ -525,6 +547,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TEST[continued]
 
 1. The `must_not` clause excludes documents that match the specified criteria. This is a powerful tool for filtering out unwanted results.
 
@@ -570,6 +593,7 @@ GET /cooking_blog/_search
   }
 }
 ```
+%  TESTRESPONSE[s/"took": 1/"took": "$body.took"/]
 
 1. The title contains "Spicy" and "Curry", matching our should condition. With the default [best_fields](elasticsearch://reference/query-languages/query-dsl-multi-match-query.md#type-best-fields) behavior, this field contributes most to the relevance score.
 2. While the description also contains matching terms, only the best matching field’s score is used by default.

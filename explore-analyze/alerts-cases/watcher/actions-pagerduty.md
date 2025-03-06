@@ -28,6 +28,7 @@ The following snippet shows a simple PagerDuty action definition:
   }
 }
 ```
+%  NOTCONSOLE
 
 1. Description of the message
 
@@ -59,6 +60,7 @@ To give the PagerDuty incident some more context, you can attach the payload as 
   }
 }
 ```
+%  NOTCONSOLE
 
 ## Pagerduty action attributes [pagerduty-action-attributes]
 

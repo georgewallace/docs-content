@@ -188,6 +188,7 @@ PUT mylogs-pre-ilm*/_settings <1>
   }
 }
 ```
+%  TEST[continued]
 
 1. Updates all indices with names that start with `mylogs-pre-ilm`
 

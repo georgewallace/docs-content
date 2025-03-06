@@ -58,6 +58,7 @@ POST /_security/api_key
   }
 }
 ```
+%  TEST[skip:TODO]
 
 1. `indices.name` must be the name(s) of the Search Application(s), not the underlying {{es}} indices.
 2. `restriction.workflows` must be set to the concrete value `search_application_query`.
@@ -80,6 +81,7 @@ The response will look like this:
   "encoded": "djFDQ0pZa0J2YjVQZzlULV9KZ086enRWSS0xUTRSalM4cUZEeEFWZXQ1dw"
 }
 ```
+%  TEST[skip:TODO]
 
 The encoded value can then be directly used in the Authorization header. Here’s an example using cURL:
 
@@ -95,6 +97,7 @@ curl -XPOST "http://localhost:9200/_application/search_application/website-produ
   }
 }'
 ```
+%  NOTCONSOLE
 
 ::::{tip} 
 If `expiration` is not present, by default {{es}} API keys never expire. The API key can be invalidated using the [invalidate API key API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-invalidate-api-key).
@@ -167,6 +170,7 @@ PUT _application/search_application/website-product-search
   }
 }
 ```
+%  TEST[skip:TODO]
 
 Using that definition, the Search Application Search API performs the following parameter validation:
 

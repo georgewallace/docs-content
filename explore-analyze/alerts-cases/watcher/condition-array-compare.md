@@ -31,6 +31,7 @@ For example, the following `array_compare` condition returns `true` if there is 
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The path to the array in the execution context that you want to evaluate, specified in dot notation.
 2. The path to the field in each array element that you want to evaluate.

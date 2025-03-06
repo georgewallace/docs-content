@@ -127,6 +127,7 @@ PUT _watcher/settings
   "index.routing.allocation.include.role": "watcher"
 }
 ```
+%  TEST[skip:indexes don’t assign]
 
 When the {{watcher}} service is stopped, the scheduler stops with it. Trigger engines use a separate thread pool from the one used to execute watches.
 
@@ -204,6 +205,7 @@ The following snippet shows the basic structure of the *Watch Execution Context*
     "vars" : { ... } <6>
 }
 ```
+%  NOTCONSOLE
 
 1. Any static metadata specified in the watch definition.
 2. The current watch payload.
@@ -247,6 +249,7 @@ For example, the following snippet shows how templates enable dynamic subjects i
   }
 }
 ```
+%  NOTCONSOLE
 
 
 #### Inline templates and scripts [inline-templates-scripts]
@@ -263,6 +266,7 @@ To define an inline template or script, you simply specify it directly in the va
   }
 }
 ```
+%  NOTCONSOLE
 
 For a script, you simply specify the inline script as the value of the `script` field. For example:
 
@@ -271,6 +275,7 @@ For a script, you simply specify the inline script as the value of the `script` 
   "script" : "return true"
 }
 ```
+%  NOTCONSOLE
 
 You can also explicitly specify the inline type by using a formal object definition as the field value. For example:
 
@@ -285,6 +290,7 @@ You can also explicitly specify the inline type by using a formal object definit
   }
 }
 ```
+%  NOTCONSOLE
 
 The formal object definition for a script would be:
 
@@ -295,6 +301,7 @@ The formal object definition for a script would be:
   }
 }
 ```
+%  NOTCONSOLE
 
 
 #### Stored templates and scripts [stored-templates-scripts]
@@ -320,4 +327,5 @@ To reference a stored script or template, you use the formal object definition a
   }
 }
 ```
+%  NOTCONSOLE
 

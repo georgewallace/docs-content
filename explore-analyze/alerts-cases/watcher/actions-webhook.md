@@ -32,6 +32,7 @@ The following snippet shows a simple webhook action definition:
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The id of the action
 2. An optional [transform](transform.md) to transform the payload before executing the `webhook` action
@@ -64,6 +65,7 @@ You can use basic authentication when sending a request to a secured webservice.
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The username and password for the user creating the issue
 
@@ -92,6 +94,7 @@ You can specify query parameters to send with the request with the `params` fiel
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The parameter values can contain templated strings.
 
@@ -115,6 +118,7 @@ You can specify request headers to send with the request with the `headers` fiel
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The header values can contain templated strings.
 

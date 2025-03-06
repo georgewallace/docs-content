@@ -22,6 +22,7 @@ The `script` {{watcher-transform}} is often useful when used in combination with
   }
 }
 ```
+%  NOTCONSOLE
 
 1. A simple `painless` script that creates a new payload with a single `time` field holding the scheduled time.
 

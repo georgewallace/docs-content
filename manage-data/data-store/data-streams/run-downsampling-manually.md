@@ -223,6 +223,7 @@ PUT _ingest/pipeline/my-timestamp-pipeline
   ]
 }
 ```
+%  TEST[continued]
 
 Next, use a bulk API request to automatically create your TSDS and index a set of ten documents:
 
@@ -249,12 +250,15 @@ PUT /my-data-stream/_bulk?refresh&pipeline=my-timestamp-pipeline
 {"create": {}}
 {"@timestamp":"2022-06-21T15:38:30Z","kubernetes":{"host":"gke-apps-0","node":"gke-apps-0-0","pod":"gke-apps-0-0-0","container":{"cpu":{"usage":{"nanocores":40018,"core":{"ns":12828317850},"node":{"pct":2.77905e-05},"limit":{"pct":2.77905e-05}}},"memory":{"available":{"bytes":1062428344},"usage":{"bytes":265142477,"node":{"pct":0.01770037710617187},"limit":{"pct":9.923134671484496e-05}},"workingset":{"bytes":2294743},"rss":{"bytes":340623},"pagefaults":224530,"majorpagefaults":0},"start_time":"2021-03-30T07:59:06Z","name":"container-name-44"},"namespace":"namespace26"}}
 ```
+%  TEST[continued]
 
 You can use the search API to check if the documents have been indexed correctly:
 
 ```console
 GET /my-data-stream/_search
 ```
+%  TEST[skip:Because we’ve skipped the previous steps]
+%  TEST[continued]
 
 Run the following aggregation on the data to calculate some interesting statistics:
 
@@ -296,6 +300,8 @@ GET /my-data-stream/_search
     }
 }
 ```
+%  TEST[skip:Because we’ve skipped the previous steps]
+%  TEST[continued]
 
 
 ## Downsample the TSDS [downsampling-manual-run]
@@ -305,6 +311,7 @@ A TSDS can’t be downsampled directly. You need to downsample its backing indic
 ```console
 GET /_data_stream/my-data-stream
 ```
+%  TEST[continued]
 
 This returns:
 
@@ -346,6 +353,11 @@ This returns:
   ]
 }
 ```
+%  TESTRESPONSE[s/".ds-my-data-stream-2023.07.26-000001"/$body.data_streams.0.indices.0.index_name/]
+%  TESTRESPONSE[s/"ltOJGmqgTVm4T-Buoe7Acg"/$body.data_streams.0.indices.0.index_uuid/]
+%  TESTRESPONSE[s/"2023-07-26T09:26:42.000Z"/$body.data_streams.0.time_series.temporal_ranges.0.start/]
+%  TESTRESPONSE[s/"2023-07-26T13:26:42.000Z"/$body.data_streams.0.time_series.temporal_ranges.0.end/]
+%  TESTRESPONSE[s/"replicated": false/"replicated": false,"failure_store":{"enabled": false, "indices": [], "rollover_on_write": true}/]
 
 1. The backing index for this data stream.
 
@@ -357,6 +369,7 @@ Roll over the TSDS using the [rollover API](https://www.elastic.co/docs/api/doc/
 ```console
 POST /my-data-stream/_rollover/
 ```
+%  TEST[continued]
 
 Copy the name of the `old_index` from the response. In the following steps, replace the index name with that of your `old_index`.
 
@@ -365,6 +378,7 @@ The old index needs to be set to read-only mode. Run the following request:
 ```console
 PUT /.ds-my-data-stream-2023.07.26-000001/_block/write
 ```
+%  TEST[skip:We don’t know the index name at test time]
 
 Next, use the [downsample API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-downsample) to downsample the index, setting the time series interval to one hour:
 
@@ -374,6 +388,7 @@ POST /.ds-my-data-stream-2023.07.26-000001/_downsample/.ds-my-data-stream-2023.0
   "fixed_interval": "1h"
 }
 ```
+%  TEST[skip:We don’t know the index name at test time]
 
 Now you can [modify the data stream](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-modify-data-stream), and replace the original index with the downsampled one:
 
@@ -396,6 +411,7 @@ POST _data_stream/_modify
   ]
 }
 ```
+%  TEST[skip:We don’t know the index name at test time]
 
 You can now delete the old backing index. But be aware this will delete the original data. Don’t delete the index if you may need the original data in the future.
 
@@ -517,6 +533,7 @@ The TSDS with the new downsampled backing index contains just one document. For 
   }
 }
 ```
+%  TEST[skip:Because we’ve skipped the previous step]
 
 Re-run the earlier aggregation. Even though the aggregation runs on the downsampled TSDS that only contains 1 document, it returns the same results as the earlier aggregation on the original TSDS.
 

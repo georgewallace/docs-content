@@ -105,6 +105,7 @@ In the event that snapshots are failing for other reasons check the logs on the 
 ```console
 GET _slm/policy/<affected-policy-name>
 ```
+%  TEST[skip:These policies do not exist]
 
 The response will look like this:
 
@@ -151,6 +152,8 @@ The response will look like this:
   }
 }
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. The affected snapshot lifecycle policy.
 2. The information about the last failure for the policy.

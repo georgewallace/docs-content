@@ -54,6 +54,7 @@ POST _transform/_preview
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. The destination index for the {{transform}}. It is ignored by `_preview`.
 2. Two `group_by` fields is selected. This means the {{transform}} contains a unique row per `user` and `customer_id` combination. Within this data set, both these fields are unique. By including both in the {{transform}}, it gives more context to the final results.
@@ -80,6 +81,7 @@ The preview {{transforms}} API enables you to see the layout of the {{transform}
     ]
   }
 ```
+%  NOTCONSOLE
 
 :::::
 
@@ -133,6 +135,7 @@ POST _transform/_preview
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. Filter the source data to select only flights that are not cancelled.
 2. The destination index for the {{transform}}. It is ignored by `_preview`.
@@ -155,6 +158,7 @@ The preview shows you that the new index would contain data like this for each c
   ]
 }
 ```
+%  NOTCONSOLE
 
 This {{transform}} makes it easier to answer questions such as:
 
@@ -221,6 +225,7 @@ PUT _transform/suspicious_client_ips
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. The destination index for the {{transform}}.
 2. Configures the {{transform}} to run continuously. It uses the `timestamp` field to synchronize the source and destination indices. The worst case ingestion delay is 60 seconds.
@@ -233,12 +238,14 @@ After you create the {{transform}}, you must start it:
 ```console
 POST _transform/suspicious_client_ips/_start
 ```
+%  TEST[skip:setup kibana sample data]
 
 Shortly thereafter, the first results should be available in the destination index:
 
 ```console
 GET sample_weblogs_by_clientip/_search
 ```
+%  TEST[skip:setup kibana sample data]
 
 The search result shows you data like this for each client IP:
 
@@ -272,6 +279,7 @@ The search result shows you data like this for each client IP:
       }
     ]
 ```
+%  NOTCONSOLE
 
 ::::{note}
 Like other Kibana sample data sets, the web log sample dataset contains timestamps relative to when you installed it, including timestamps in the future. The {{ctransform}} will pick up the data points once they are in the past. If you installed the web log sample dataset some time ago, you can uninstall and reinstall it and the timestamps will change.
@@ -340,6 +348,7 @@ PUT _transform/last-log-from-clientip
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. Specifies the field for grouping the data.
 2. Specifies the date field that is used for sorting the data.
@@ -352,6 +361,7 @@ After you create the {{transform}}, start it:
 ```console
 POST _transform/last-log-from-clientip/_start
 ```
+%  TEST[skip:setup kibana sample data]
 
 ::::
 
@@ -360,6 +370,7 @@ After the {{transform}} processes the data, search the destination index:
 ```console
 GET last-log-from-clientip/_search
 ```
+%  TEST[skip:setup kibana sample data]
 
 The search result shows you data like this for each client IP:
 
@@ -408,6 +419,7 @@ The search result shows you data like this for each client IP:
   }
 }
 ```
+%  NOTCONSOLE
 
 This {{transform}} makes it easier to answer questions such as:
 
@@ -459,6 +471,7 @@ POST _transform/_preview
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. The data is grouped by a date histogram of the time field with a one hour interval.
 2. Calculates the maximum value of the `bytes` field.
@@ -503,6 +516,7 @@ The API call above returns a response similar to this:
   ]
 }
 ```
+%  NOTCONSOLE
 
 ## Getting customer name and email address by customer ID [example-customer-names]
 
@@ -547,6 +561,7 @@ POST _transform/_preview
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. The data is grouped by a `terms` aggregation on the `customer_id` field.
 2. Specifies the fields to return (email and name fields) in a descending order by the order date.
@@ -584,3 +599,4 @@ The API returns a response that is similar to this:
   ]
 }
 ```
+%  NOTCONSOLE

@@ -42,6 +42,7 @@ GET my-index/_search
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. First pass query providing documents to be rescored.
 2. The unique identifier of the trained model uploaded to {{es}}.

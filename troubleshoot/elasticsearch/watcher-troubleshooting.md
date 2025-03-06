@@ -14,6 +14,7 @@ If you get the *Dynamic Mapping is Disabled* error when you try to add a watch, 
 ```console
 GET .watches/_mapping
 ```
+%  TEST[skip:deprecation warning]
 
 If the index mappings are missing, follow these steps to restore the correct mappings:
 

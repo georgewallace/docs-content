@@ -62,6 +62,8 @@ POST _render/template
   }
 }
 ```
+%  TEST[continued]
+%  TEST[continued]
 
 When rendered, the template outputs a [search request body](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search).
 
@@ -100,6 +102,7 @@ POST _render/template
   }
 }
 ```
+%  TEST[continued]
 
 
 ### Run a templated search [run-templated-search] 
@@ -117,6 +120,7 @@ GET my-index/_search/template
   }
 }
 ```
+%  TEST[continued]
 
 The response uses the same properties as the [search API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-search)'s response.
 
@@ -149,6 +153,7 @@ The response uses the same properties as the [search API](https://www.elastic.co
   }
 }
 ```
+%  TESTRESPONSE[s/"took": 36/"took": "$body.took"/]
 
 
 ### Run multiple templated searches [run-multiple-templated-searches] 
@@ -162,6 +167,8 @@ GET my-index/_msearch/template
 { }
 { "id": "my-other-search-template", "params": { "query_type": "match_all" }}
 ```
+%  TEST[continued]
+%  TEST[s/my-other-search-template/my-search-template/]
 
 
 ### Get search templates [get-search-templates] 
@@ -171,12 +178,14 @@ To retrieve a search template, use the [get stored script API](https://www.elast
 ```console
 GET _scripts/my-search-template
 ```
+%  TEST[continued]
 
 To get a list of all search templates and other stored scripts, use the [cluster state API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-state).
 
 ```console
 GET _cluster/state/metadata?pretty&filter_path=metadata.stored_scripts
 ```
+%  TEST[continued]
 
 
 ### Delete a search template [delete-search-template] 
@@ -186,6 +195,7 @@ To delete a search template, use the [delete stored script API](https://www.elas
 ```console
 DELETE _scripts/my-search-template
 ```
+%  TEST[continued]
 
 
 ### Set default values [search-template-set-default-values] 
@@ -617,6 +627,7 @@ POST _render/template
   }
 }
 ```
+%  TEST[continued]
 
 When rendered, template outputs as:
 
@@ -726,6 +737,7 @@ POST _render/template
   }
 }
 ```
+%  TEST[continued]
 
 When rendered, template outputs:
 
@@ -787,6 +799,7 @@ POST _render/template
   }
 }
 ```
+%  TEST[continued]
 
 When rendered the template outputs:
 
@@ -913,6 +926,7 @@ POST _render/template
   }
 }
 ```
+%  TEST[continued]
 
 When rendered, template outputs:
 

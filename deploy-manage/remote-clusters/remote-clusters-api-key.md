@@ -167,6 +167,8 @@ PUT /_cluster/settings
   }
 }
 ```
+%  TEST[setup:host]
+%  TEST[s/127.0.0.1:{{remote-interface-default-port}}/${transport_host}/]
 
 1. The cluster alias of this remote cluster is `cluster_one`.
 2. Specifies the hostname and remote cluster port of a seed node in the remote cluster.
@@ -177,6 +179,7 @@ You can use the [remote cluster info API](https://www.elastic.co/docs/api/doc/el
 ```console
 GET /_remote/info
 ```
+%  TEST[continued]
 
 The API response indicates that the local cluster is connected to the remote cluster with the cluster alias `cluster_one`:
 
@@ -196,6 +199,10 @@ The API response indicates that the local cluster is connected to the remote clu
   }
 }
 ```
+%  TESTRESPONSE[s/127.0.0.1:{{remote-interface-default-port}}/$body.cluster_one.seeds.0/]
+%  TESTRESPONSE[s/ifeval::(.|\n)*endif::[]//]
+%  TEST[s/"connected" : true/"connected" : $body.cluster_one.connected/]
+%  TEST[s/"num_nodes_connected" : 1/"num_nodes_connected" : $body.cluster_one.num_nodes_connected/]
 
 1. The number of nodes in the remote cluster the local cluster is connected to.
 2. Indicates whether to skip the remote cluster if searched through {{ccs}} but no nodes are available.
@@ -238,6 +245,10 @@ PUT _cluster/settings
   }
 }
 ```
+%  TEST[setup:host]
+%  TEST[s/127.0.0.1:{{remote-interface-default-port}}/${transport_host}/]
+%  TEST[s/{{remote-interface-default-port-plus1}}/9301/]
+%  TEST[s/{{remote-interface-default-port-plus2}}/9302/]
 
 You can dynamically update settings for a remote cluster after the initial configuration. The following request updates the compression settings for `cluster_two`, and the compression and ping schedule settings for `cluster_three`.
 
@@ -264,6 +275,7 @@ PUT _cluster/settings
   }
 }
 ```
+%  TEST[continued]
 
 You can delete a remote cluster from the cluster settings by passing `null` values for each remote cluster setting. The following request removes `cluster_two` from the cluster settings, leaving `cluster_one` and `cluster_three` intact:
 
@@ -284,6 +296,7 @@ PUT _cluster/settings
   }
 }
 ```
+%  TEST[continued]
 
 
 ### Statically configure remote clusters [_statically_configure_remote_clusters]
@@ -355,6 +368,7 @@ POST /_security/role/remote-replication
   ]
 }
 ```
+%  TEST[skip:TODO]
 
 After creating the local `remote-replication` role, use the [Create or update users](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user) API to create a user on the local cluster cluster and assign the `remote-replication` role. For example, the following request assigns the `remote-replication` role to a user named `cross-cluster-user`:
 
@@ -365,6 +379,7 @@ POST /_security/user/cross-cluster-user
   "roles" : [ "remote-replication" ]
 }
 ```
+%  TEST[skip:TODO]
 
 Note that you only need to create this user on the local cluster.
 
@@ -391,6 +406,7 @@ POST /_security/role/remote-search
   ]
 }
 ```
+%  TEST[skip:TODO]
 
 After creating the `remote-search` role, use the [Create or update users](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-security-put-user) API to create a user on the local cluster and assign the `remote-search` role. For example, the following request assigns the `remote-search` role to a user named `cross-search-user`:
 
@@ -401,5 +417,6 @@ POST /_security/user/cross-search-user
   "roles" : [ "remote-search" ]
 }
 ```
+%  TEST[skip:TODO]
 
 Note that you only need to create this user on the local cluster.

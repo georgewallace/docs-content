@@ -60,6 +60,7 @@ This example uses a `scripted_metric` aggregation which is not supported on {{es
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The `init_script` creates a long type `timestamp_latest` and a string type `last_doc` in the `state` object.
 2. The `map_script` defines `current_date` based on the timestamp of the document, then compares `current_date` with `state.timestamp_latest`, finally returns `state.last_doc` from the shard. By using `new HashMap(...)` you copy the source document, this is important whenever you want to pass the full source object from one phase to the next.
@@ -93,6 +94,7 @@ You can retrieve the last value in a similar way:
   }
 }
 ```
+%  NOTCONSOLE
 
 ### Getting top hits by using stored scripts [top-hits-stored-scripts]
 
@@ -203,6 +205,7 @@ This snippet shows how to extract time based features by using Painless in a {{t
  ...
 }
 ```
+%  NOTCONSOLE
 
 1. Name of the aggregation.
 2. Contains the Painless script that returns the hour of the day.
@@ -255,6 +258,7 @@ PUT _transform/data_log
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. To define the length of the sessions, we use a bucket script.
 2. The bucket path is a map of script variables and their associated path to the buckets you want to use for the variable. In this particular case, `min` and `max` are variables mapped to `time_frame.gte.value` and `time_frame.lte.value`.
@@ -300,6 +304,7 @@ This example uses a `scripted_metric` aggregation which is not supported on {{es
   ...
 }
 ```
+%  NOTCONSOLE
 
 1. The `aggregations` object of the {{transform}} that contains all aggregations.
 2. Object of the `scripted_metric` aggregation.
@@ -362,6 +367,7 @@ POST _transform/_preview
   }
 }
 ```
+%  TEST[skip:setup kibana sample data]
 
 1. The indices referenced in the `source` object are compared to each other.
 2. The `dest` index contains the results of the comparison.
@@ -411,6 +417,7 @@ This example shows how to derive multiple features from a single transaction. Le
 }
 ...
 ```
+%  NOTCONSOLE
 
 ::::
 
@@ -487,6 +494,7 @@ POST _transform/_preview
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The data is grouped by `sessionid`.
 2. The aggregations counts the number of paths and enumerate the viewed pages during the session.
@@ -526,3 +534,4 @@ The API call results in a similar response:
 }
 ...
 ```
+%  NOTCONSOLE

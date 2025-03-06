@@ -32,6 +32,7 @@ For example, the following email action uses a template to include data from the
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The id of the action.
 2. The action type is set to `email`.
@@ -74,6 +75,7 @@ To configure attachments, specify a name for the attached file and the type of a
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The ID of the attachment, which is used as the file name in the email attachment.
 2. The type of the attachment and its specific configuration.

@@ -59,6 +59,7 @@ PUT my-index
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. The name of the field to contain the generated tokens. It must be referenced in the {{infer}} pipeline configuration in the next step.
 2. The field to contain the tokens is a `sparse_vector` field.
@@ -122,6 +123,7 @@ POST _reindex?wait_for_completion=false
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. The default batch size for reindexing is 1000. Reducing `size` to a smaller number makes the update of the reindexing process quicker which enables you to follow the progress closely and detect errors early.
 
@@ -131,6 +133,7 @@ The call returns a task ID to monitor the progress:
 ```console
 GET _tasks/<task_id>
 ```
+%  TEST[skip:TBD]
 
 You can also open the Trained Models UI, select the Pipelines tab under ELSER to follow the progress.
 
@@ -139,6 +142,7 @@ Reindexing large datasets can take a long time. You can test this workflow using
 ```console
 POST _tasks/<task_id>/_cancel
 ```
+%  TEST[skip:TBD]
 
 
 ### Semantic search by using the `sparse_vector` query [text-expansion-query]
@@ -157,6 +161,7 @@ GET my-index/_search
    }
 }
 ```
+%  TEST[skip:TBD]
 
 The result is the top 10 documents that are closest in meaning to your query text from the `my-index` index sorted by their relevancy. The result also contains the extracted tokens for each of the relevant search results with their weights. Tokens are learned associations capturing relevance, they are not synonyms. To learn more about what tokens are, refer to [this page](/explore-analyze/machine-learning/nlp/ml-nlp-elser.md#elser-tokens). It is possible to exclude tokens from source, refer to [this section](#save-space) to learn more.
 
@@ -197,6 +202,7 @@ The result is the top 10 documents that are closest in meaning to your query tex
   ]
 }
 ```
+%  NOTCONSOLE
 
 ### Combining semantic search with other queries [text-expansion-compound-query]
 
@@ -230,6 +236,7 @@ GET my-index/_search
   "min_score": 10 <4>
 }
 ```
+%  TEST[skip:TBD]
 
 1. Both the `sparse_vector` and the `query_string` queries are in a `should` clause of a `bool` query.
 2. The `boost` value is `1` for the `sparse_vector` query which is the default value. This means that the relevance score of the results of this query are not boosted.
@@ -272,6 +279,7 @@ PUT my-index
   }
 }
 ```
+%  TEST[skip:TBD]
 
 ::::{note}
 Depending on your data, the `sparse_vector` query may be faster with `track_total_hits: false`.

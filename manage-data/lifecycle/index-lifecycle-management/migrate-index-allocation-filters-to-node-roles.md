@@ -90,6 +90,7 @@ On {{ech}} deployments, remove the `cloud-hot-warm-allocation-0` index template 
 ```console
 DELETE _template/.cloud-hot-warm-allocation-0
 ```
+%  TEST[skip:no cloud template]
 
 If you’re using a custom index template, update it to remove the [attribute-based allocation filters](../../../deploy-manage/distributed-architecture/shard-allocation-relocation-recovery/index-level-shard-allocation.md) you used to assign new indices to the hot tier.
 
@@ -114,6 +115,7 @@ PUT my-index/_settings
   "index.routing.allocation.include._tier_preference": "data_hot"
 }
 ```
+%  TEST[continued]
 
 For indices that have already transitioned out of the hot phase, the tier preference should include the appropriate fallback tiers to ensure index shards can be allocated if the preferred tier is unavailable. For example, specify the hot tier as the fallback for indices already in the warm phase.
 
@@ -124,6 +126,8 @@ PUT my-index/_settings
   "index.routing.allocation.include._tier_preference": "data_warm,data_hot"
 }
 ```
+%  TEST[continued]
+%  TEST[continued]
 
 If an index is already in the cold phase, include the cold, warm, and hot tiers.
 

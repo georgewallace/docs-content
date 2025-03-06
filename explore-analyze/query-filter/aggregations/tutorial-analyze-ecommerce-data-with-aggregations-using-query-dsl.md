@@ -45,6 +45,7 @@ Before we start analyzing the data, let’s examine the structure of the documen
 ```console
 GET kibana_sample_data_ecommerce/_mapping
 ```
+%  TEST[skip:Using Kibana sample data]
 
 The response shows the field mappings for the `kibana_sample_data_ecommerce` index.
 
@@ -305,6 +306,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Set `size` to 0 to avoid returning matched documents in the response and return only the aggregation results
 2. A meaningful name that describes what this metric represents
@@ -337,6 +339,7 @@ GET kibana_sample_data_ecommerce/_search
   }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Total number of orders in the dataset
 2. `hits` is empty because we set `size` to 0
@@ -362,6 +365,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. A descriptive name for this set of statistics
 2. `stats` returns count, min, max, avg, and sum at once
@@ -381,6 +385,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. `"count"`: Total number of orders in the dataset
 2. `"min"`: Lowest individual order value in the dataset
@@ -418,6 +423,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Name reflecting the business purpose of this breakdown
 2. `terms` aggregation groups documents by field values
@@ -475,6 +481,7 @@ GET kibana_sample_data_ecommerce/_search
   }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Due to Elasticsearch’s distributed architecture, when [terms aggregations](elasticsearch://reference/data-analysis/aggregations/search-aggregations-bucket-terms-aggregation.md) run across multiple shards, the doc counts may have a small margin of error. This value indicates the maximum possible error in the counts.
 2. Count of documents in categories beyond the requested size.
@@ -504,6 +511,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Descriptive name for the time-series aggregation results.
 2. The `date_histogram` aggregation groups documents into time-based buckets, similar to terms aggregation but for dates.
@@ -694,6 +702,7 @@ GET kibana_sample_data_ecommerce/_search
   }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Results of our named aggregation "daily_orders"
 2. Time-based buckets from date_histogram aggregation
@@ -743,6 +752,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Order categories by their total revenue instead of count
 2. Define metrics to calculate within each category
@@ -780,6 +790,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Category name
 2. Number of orders
@@ -825,6 +836,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Daily revenue
 2. Uses the [`cardinality`](elasticsearch://reference/data-analysis/aggregations/search-aggregations-metrics-cardinality-aggregation.md) aggregation to count unique customers per day
@@ -1331,6 +1343,7 @@ GET kibana_sample_data_ecommerce/_search
   }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Calculate daily revenue first.
 2. Create a smoothed version of the daily revenue.
@@ -1708,6 +1721,7 @@ GET kibana_sample_data_ecommerce/_search
   }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Date of the bucket is in default ISO format because we didn’t specify a format
 2. Number of orders for this day
@@ -1752,6 +1766,7 @@ GET kibana_sample_data_ecommerce/_search
  }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. Name for our running total
 2. `cumulative_sum` adds up values across buckets
@@ -2126,6 +2141,7 @@ GET kibana_sample_data_ecommerce/_search
   }
 }
 ```
+%  TEST[skip:Using Kibana sample data]
 
 1. `daily_sales`: Results from our daily sales date histogram
 2. `buckets`: Array of time-based buckets

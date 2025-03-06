@@ -34,6 +34,7 @@ GET index/_search
   }
 }
 ```
+% TEST[continued]
 
 1. `pagerank` must be mapped as a [Numeric](elasticsearch://reference/elasticsearch/mapping-reference/number.md)
 

@@ -27,6 +27,7 @@ The following snippet shows a simple `index` action definition:
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The id of the action
 2. An optional [condition](condition.md) to restrict action execution
@@ -78,6 +79,7 @@ The following snippet shows a multi-document `index` action definition:
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The document’s index
 2. An optional `_id` for the document

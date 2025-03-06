@@ -44,6 +44,7 @@ POST /_security/user/user1/_password
   "password" : "new-test-password"
 }
 ```
+% TEST[continued]
 
 ## Using the `user` API [native-users-api]
 

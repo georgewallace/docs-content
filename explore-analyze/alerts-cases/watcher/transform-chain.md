@@ -35,6 +35,7 @@ You can use chain {{watcher-transforms}} to build more complex transforms out of
   ]
 }
 ```
+%  NOTCONSOLE
 
 1. The `chain` {{watcher-transform}} definition
 2. The first transform in the chain (in this case, a `search` {{watcher-transform}})

@@ -133,6 +133,7 @@ Check the current status of the cluster according the shards capacity indicator:
 ```console
 GET _health_report/shards_capacity
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 The response will look like this:
 
@@ -161,6 +162,7 @@ The response will look like this:
   }
 }
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. Current value of the setting `cluster.max_shards_per_node`
 2. Current number of open shards across the cluster
@@ -204,6 +206,7 @@ The response will look like this:
   }
 }
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 When a long-term solution is in place, we recommend you reset the `cluster.max_shards_per_node` limit.
 
@@ -368,6 +371,7 @@ GET _health_report/shards_capacity
   }
 }
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. Current value of the setting `cluster.max_shards_per_node.frozen`.
 2. Current number of open shards used by frozen nodes across the cluster.
@@ -411,6 +415,7 @@ The response will look like this:
   }
 }
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 When a long-term solution is in place, we recommend you reset the `cluster.max_shards_per_node.frozen` limit.
 

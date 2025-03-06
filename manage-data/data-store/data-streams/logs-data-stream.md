@@ -35,6 +35,7 @@ PUT _index_template/my-index-template
   "priority": 101 <2>
 }
 ```
+%  TEST
 
 1. The index mode setting.
 2. The index template priority. By default, Elasticsearch ships with a `logs-*-*` index template with a priority of 100. To make sure your index template takes priority over the default `logs-*-*` template, set its `priority` to a number higher than 100. For more information, see [Avoid index pattern collisions](../templates.md#avoid-index-pattern-collisions).

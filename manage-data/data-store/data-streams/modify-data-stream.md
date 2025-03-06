@@ -498,4 +498,5 @@ POST _aliases
   ]
 }
 ```
+%  TEST[s/^/PUT _data_stream/logs-nginx.access-prod\nPUT _data_stream/logs-my_app-default\n/]
 

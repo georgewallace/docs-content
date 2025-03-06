@@ -81,6 +81,7 @@ POST _reindex?wait_for_completion=false
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. The default batch size for reindexing is 1000. Reducing size to a smaller number makes the update of the reindexing process quicker which enables you to follow the progress closely and detect errors early.
 
@@ -90,6 +91,7 @@ The call returns a task ID to monitor the progress:
 ```console
 GET _tasks/<task_id>
 ```
+%  TEST[skip:TBD]
 
 Reindexing large datasets can take a long time. You can test this workflow using only a subset of the dataset.
 
@@ -98,6 +100,7 @@ To cancel the reindexing process and generate embeddings for the subset that was
 ```console
 POST _tasks/<task_id>/_cancel
 ```
+%  TEST[skip:TBD]
 
 
 ## Perform hybrid search [hybrid-search-perform-search]

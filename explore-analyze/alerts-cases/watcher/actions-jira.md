@@ -42,6 +42,7 @@ The following snippet shows a simple jira action definition:
   }
 }
 ```
+%  NOTCONSOLE
 
 1. The name of a Jira account configured in `elasticsearch.yml`.
 2. The key of the Jira project in which the issue will be created.

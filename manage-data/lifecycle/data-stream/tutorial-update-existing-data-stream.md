@@ -44,6 +44,9 @@ The changes in the lifecycle are applied on all backing indices of the data stre
 ```console
 GET .ds-my-data-stream-*/_lifecycle/explain
 ```
+%  TEST[continued]
+%  TEST[teardown:data_stream_cleanup]
+%  TEST[continued]
 
 The response will look like:
 
@@ -76,6 +79,8 @@ The response will look like:
   }
 }
 ```
+%  TEST[continued]
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. The name of the backing index.
 2. This index is managed by a data stream lifecycle.
@@ -97,6 +102,7 @@ To remove the lifecycle of a data stream you can use the [delete lifecycle API](
 ```console
 DELETE _data_stream/my-data-stream/_lifecycle
 ```
+%  TEST[continued]
 
 You can then use the [explain API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-explain-data-lifecycle) again to see that the indices are no longer managed.
 
@@ -118,6 +124,7 @@ GET .ds-my-data-stream-*/_lifecycle/explain
   }
 }
 ```
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. The name of the backing index.
 2. Indication that the index is not managed by the data stream lifecycle.

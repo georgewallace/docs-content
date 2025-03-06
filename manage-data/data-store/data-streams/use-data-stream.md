@@ -100,6 +100,8 @@ To re-open a closed backing index, submit an [open index API request](https://ww
 ```console
 POST /.ds-my-data-stream-2099.03.07-000001/_open/
 ```
+%  TEST[setup:my_index]
+%  TEST[s/.ds-my-data-stream-2099.03.07-000001/my-index-000001/]
 
 To re-open all closed backing indices for a data stream, submit an open index API request to the stream:
 
@@ -124,6 +126,7 @@ POST /_reindex
   }
 }
 ```
+%  TEST[continued]
 
 
 ## Update documents in a data stream by query [update-docs-in-a-data-stream-by-query]
@@ -223,6 +226,10 @@ Response:
   }
 }
 ```
+%  TESTRESPONSE[s/"took": 20/"took": $body.took/]
+%  TESTRESPONSE[s/"max_score": 0.2876821/"max_score": $body.hits.max_score/]
+%  TESTRESPONSE[s/"_index": ".ds-my-data-stream-2099.03.08-000003"/"_index": $body.hits.hits.0._index/]
+%  TESTRESPONSE[s/"_score": 0.2876821/"_score": $body.hits.hits.0._score/]
 
 1. Backing index containing the matching document
 2. Document ID for the document
@@ -242,12 +249,19 @@ PUT /.ds-my-data-stream-2099-03-08-000003/_doc/bfspvnIBr7VVZlfp2lqX?if_seq_no=0&
   "message": "Login successful"
 }
 ```
+%  TEST[setup:my_index]
+%  TEST[s/.ds-my-data-stream-2099.03.08-000003/my-index-000001/]
+%  TEST[s/bfspvnIBr7VVZlfp2lqX/1/]
+%  TEST[s/if_seq_no=0/if_seq_no=1/]
 
 To delete the document, use the [delete API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-delete):
 
 ```console
 DELETE /.ds-my-data-stream-2099.03.08-000003/_doc/bfspvnIBr7VVZlfp2lqX
 ```
+%  TEST[setup:my_index]
+%  TEST[s/.ds-my-data-stream-2099.03.08-000003/my-index-000001/]
+%  TEST[s/bfspvnIBr7VVZlfp2lqX/1/]
 
 To delete or update multiple documents with a single request, use the [bulk API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk)'s `delete`, `index`, and `update` actions. For `index` actions, include valid [`if_seq_no` and `if_primary_term`](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-bulk#bulk-optimistic-concurrency-control) arguments.
 
@@ -256,4 +270,7 @@ PUT /_bulk?refresh
 { "index": { "_index": ".ds-my-data-stream-2099.03.08-000003", "_id": "bfspvnIBr7VVZlfp2lqX", "if_seq_no": 0, "if_primary_term": 1 } }
 { "@timestamp": "2099-03-08T11:06:07.000Z", "user": { "id": "8a4f500d" }, "message": "Login successful" }
 ```
+%  TEST[setup:my_index]
+%  TEST[s/.ds-my-data-stream-2099.03.08-000003/my-index-000001/]
+%  TEST[s/bfspvnIBr7VVZlfp2lqX/1/]
 

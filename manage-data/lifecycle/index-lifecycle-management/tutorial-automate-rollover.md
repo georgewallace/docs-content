@@ -118,6 +118,7 @@ PUT _index_template/timeseries_template
   }
 }
 ```
+%  TEST[continued]
 
 1. Apply the template when a document is indexed into the `timeseries` target.
 2. The name of the {{ilm-init}} policy used to manage the data stream.
@@ -140,6 +141,7 @@ POST timeseries/_doc
   "@timestamp": "1591890611"
 }
 ```
+%  TEST[continued]
 
 When a rollover condition in the lifecycle policy is met, the `rollover` action:
 
@@ -162,6 +164,7 @@ For example, the following request gets information about the `timeseries` data 
 ```console
 GET .ds-timeseries-*/_ilm/explain
 ```
+%  TEST[continued]
 
 The following response shows the data stream’s first generation backing index is waiting for the `hot` phase’s `rollover` action. It remains in this state and {{ilm-init}} continues to call `check-rollover-ready` until a rollover condition is met.
 
@@ -200,6 +203,7 @@ The following response shows the data stream’s first generation backing index 
   }
 }
 ```
+%  TESTRESPONSE[skip:no way to know if we will get this response immediately]
 
 1. The age of the index used for calculating when to rollover the index via the `max_age`
 2. The policy used to manage the index
@@ -254,6 +258,7 @@ PUT _index_template/timeseries_template
   }
 }
 ```
+%  TEST[continued]
 
 1. Apply the template to a new index if its name starts with `timeseries-`.
 2. The name of the lifecycle policy to apply to each new index.
@@ -277,6 +282,7 @@ PUT timeseries-000001
   }
 }
 ```
+%  TEST[continued]
 
 When the rollover conditions are met, the `rollover` action:
 
@@ -293,4 +299,5 @@ Retrieving the status information for managed indices is very similar to the dat
 ```console
 GET timeseries-*/_ilm/explain
 ```
+%  TEST[continued]
 

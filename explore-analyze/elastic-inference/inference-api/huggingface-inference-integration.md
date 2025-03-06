@@ -97,6 +97,7 @@ PUT _inference/text_embedding/hugging-face-embeddings
   }
 }
 ```
+%  TEST[skip:TBD]
 
 1. A valid Hugging Face access token. You can find on the [settings page of your account](https://huggingface.co/settings/tokens).
 2. The {{infer}} endpoint URL you created on Hugging Face.
