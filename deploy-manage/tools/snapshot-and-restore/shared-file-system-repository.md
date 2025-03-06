@@ -78,7 +78,6 @@ PUT _snapshot/my_fs_backup
 ```
 %  TEST[skip:no access to path]
 ::::::
-::::::
 
 ::::::{tab-item} Windows
 Windows installations support both DOS and Microsoft UNC paths. Escape any backslashes in the paths. For UNC paths, provide the server and share name as a prefix.
