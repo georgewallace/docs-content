@@ -103,7 +103,7 @@ The response will look like this:
 }
 ```
 %  TESTRESPONSE[skip:the result is for illustrating purposes only]
-::::::
+
 ::::::
 
 :::::::
@@ -194,7 +194,7 @@ The response will look like this:
 }
 ```
 %  TESTRESPONSE[skip:the result is for illustrating purposes only]
-::::::
+
 ::::::
 
 :::::::
