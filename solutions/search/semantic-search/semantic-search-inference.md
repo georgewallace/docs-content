@@ -1209,7 +1209,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
   ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} HuggingFace
@@ -1279,7 +1279,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} OpenAI
@@ -1340,7 +1340,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} Azure OpenAI
@@ -1401,7 +1401,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} Azure AI Studio
@@ -1462,7 +1462,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} Google Vertex AI
@@ -1523,7 +1523,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} Mistral
@@ -1584,7 +1584,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} Amazon Bedrock
@@ -1645,7 +1645,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 ::::::{tab-item} AlibabaCloud AI Search
@@ -1706,7 +1706,7 @@ As a result, you receive the top 10 documents that are closest in meaning to the
     ]
 ```
 %  NOTCONSOLE
-::::::
+
 ::::::
 
 :::::::
