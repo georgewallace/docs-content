@@ -117,8 +117,7 @@ POST _snapshot/my_repository/my_snapshot_2099.05.06/_restore
 {
   "indices": "my-index,logs-my_app-default",
   "rename_pattern": "(.+)",
-  "rename_replacement": "restored-
-If the rename options produce two or more indices or data streams with the same name, the restore operation fails."
+  "rename_replacement": "restored-$1
 }
 ```
 %  TEST[setup:setup-snapshots]
