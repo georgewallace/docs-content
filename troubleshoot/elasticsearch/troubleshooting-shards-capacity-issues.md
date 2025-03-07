@@ -163,11 +163,10 @@ The response will look like this:
   }
 }
 ```
-%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. Current value of the setting `cluster.max_shards_per_node`
 2. Current number of open shards across the cluster
-
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 Using the [`cluster settings API`](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings), update the [`cluster.max_shards_per_node`](elasticsearch://reference/elasticsearch/configuration-reference/miscellaneous-cluster-settings.md#cluster-max-shards-per-node) setting:
 
@@ -372,11 +371,10 @@ GET _health_report/shards_capacity
   }
 }
 ```
-%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. Current value of the setting `cluster.max_shards_per_node.frozen`.
 2. Current number of open shards used by frozen nodes across the cluster.
-
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 Using the [`cluster settings API`](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-put-settings), update the [`cluster.max_shards_per_node.frozen`](elasticsearch://reference/elasticsearch/configuration-reference/miscellaneous-cluster-settings.md#cluster-max-shards-per-node-frozen) setting:
 

@@ -205,7 +205,6 @@ The following snippet shows the basic structure of the *Watch Execution Context*
     "vars" : { ... } <6>
 }
 ```
-%  NOTCONSOLE
 
 1. Any static metadata specified in the watch definition.
 2. The current watch payload.
@@ -213,7 +212,7 @@ The following snippet shows the basic structure of the *Watch Execution Context*
 4. A timestamp that shows when the watch execution started.
 5. Information about the trigger event. For a `schedule` trigger, this consists of the `triggered_time` (when the watch was triggered) and the `scheduled_time` (when the watch was scheduled to be triggered).
 6. Dynamic variables that can be set and accessed by different constructs during the execution. These variables are scoped to a single execution (i.e they’re not persisted and can’t be used between different executions of the same watch)
-
+%  NOTCONSOLE
 
 
 ### Using scripts [scripts]

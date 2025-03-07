@@ -128,11 +128,10 @@ PUT _inference/sparse_embedding/my-elser-model
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. Adaptive allocations will be enabled with the minimum of 1 and the maximum of 10 allocations.
 2. The `model_id` must be the ID of one of the built-in ELSER models. Valid values are `.elser_model_2` and `.elser_model_2_linux-x86_64`. For further details, refer to the [ELSER model documentation](../../../explore-analyze/machine-learning/nlp/ml-nlp-elser.md).
-
+%  TEST[skip:TBD]
 
 
 ## Elastic Rerank via the `elasticsearch` service [inference-example-elastic-reranker] 
@@ -162,11 +161,10 @@ PUT _inference/rerank/my-elastic-rerank
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The `model_id` must be the ID of the built-in Elastic Rerank model: `.rerank-v1`.
 2. [Adaptive allocations](../../../deploy-manage/autoscaling/trained-model-autoscaling.md#enabling-autoscaling-through-apis-adaptive-allocations) will be enabled with the minimum of 1 and the maximum of 10 allocations.
-
+%  TEST[skip:TBD]
 
 
 ## E5 via the `elasticsearch` service [inference-example-elasticsearch] 
@@ -186,10 +184,9 @@ PUT _inference/text_embedding/my-e5-model
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The `model_id` must be the ID of one of the built-in E5 models. Valid values are `.multilingual-e5-small` and `.multilingual-e5-small_linux-x86_64`. For further details, refer to the [E5 model documentation](../../../explore-analyze/machine-learning/nlp/ml-nlp-e5.md).
-
+%  TEST[skip:TBD]
 
 ::::{note} 
 You might see a 502 bad gateway error in the response when using the {{kib}} Console. This error usually just reflects a timeout, while the model downloads in the background. You can check the download progress in the {{ml-app}} UI. If using the Python client, you can set the `timeout` parameter to a higher value.
@@ -213,11 +210,10 @@ PUT _inference/text_embedding/my-msmarco-minilm-model <1>
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. Provide an unique identifier for the inference endpoint. The `inference_id` must be unique and must not match the `model_id`.
 2. The `model_id` must be the ID of a text embedding model which has already been [uploaded through Eland](../../../explore-analyze/machine-learning/nlp/ml-nlp-import-model.md#ml-nlp-import-script).
-
+%  TEST[skip:TBD]
 
 
 ## Setting adaptive allocation for E5 via the `elasticsearch` service [inference-example-adaptive-allocation] 
@@ -257,10 +253,9 @@ PUT _inference/sparse_embedding/use_existing_deployment
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The `deployment_id` of the already existing model deployment.
-
+%  TEST[skip:TBD]
 
 The API response contains the `model_id`, and the threads and allocations settings from the model deployment:
 

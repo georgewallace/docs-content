@@ -71,12 +71,11 @@ GET /my-data-stream/_eql/search?filter_path=-hits.events    <1>
   "size": 200                                               <3>
 }
 ```
-%  TEST[setup:atomic_red_regsvr32]
 
 1. `?filter_path=-hits.events` excludes the `hits.events` property from the response. This search is only intended to get an event count, not a list of matching events.
 2. Matches any event with a `process.name` of `regsvr32.exe`.
 3. Returns up to 200 hits for matching events.
-
+%  TEST[setup:atomic_red_regsvr32]
 
 The response returns 143 related events.
 

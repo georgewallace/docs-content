@@ -352,14 +352,13 @@ This returns:
   ]
 }
 ```
+
+1. The backing index for this data stream.
 %  TESTRESPONSE[s/".ds-my-data-stream-2023.07.26-000001"/$body.data_streams.0.indices.0.index_name/]
 %  TESTRESPONSE[s/"ltOJGmqgTVm4T-Buoe7Acg"/$body.data_streams.0.indices.0.index_uuid/]
 %  TESTRESPONSE[s/"2023-07-26T09:26:42.000Z"/$body.data_streams.0.time_series.temporal_ranges.0.start/]
 %  TESTRESPONSE[s/"2023-07-26T13:26:42.000Z"/$body.data_streams.0.time_series.temporal_ranges.0.end/]
 %  TESTRESPONSE[s/"replicated": false/"replicated": false,"failure_store":{"enabled": false, "indices": [], "rollover_on_write": true}/]
-
-1. The backing index for this data stream.
-
 
 Before a backing index can be downsampled, the TSDS needs to be rolled over and the old index needs to be made read-only.
 

@@ -15,12 +15,14 @@ The examples that use the `scripted_metric` aggregation are not supported on {{e
 
 These examples demonstrate how to use Painless in {{transforms}}. You can learn more about the Painless scripting language in the [Painless guide](elasticsearch://reference/scripting-languages/painless/painless.md).
 
-* [Getting top hits by using scripted metric aggregation](#painless-top-hits)
-* [Getting time features by using aggregations](#painless-time-features)
-* [Getting duration by using bucket script](#painless-bucket-script)
-* [Counting HTTP responses by using scripted metric aggregation](#painless-count-http)
-* [Comparing indices by using scripted metric aggregations](#painless-compare)
-* [Getting web session details by using scripted metric aggregation](#painless-web-session)
+- [Painless examples \[transform-painless-examples\]](#painless-examples-transform-painless-examples)
+  - [Getting top hits by using scripted metric aggregation \[painless-top-hits\]](#getting-top-hits-by-using-scripted-metric-aggregation-painless-top-hits)
+    - [Getting top hits by using stored scripts \[top-hits-stored-scripts\]](#getting-top-hits-by-using-stored-scripts-top-hits-stored-scripts)
+  - [Getting time features by using aggregations \[painless-time-features\]](#getting-time-features-by-using-aggregations-painless-time-features)
+  - [Getting duration by using bucket script \[painless-bucket-script\]](#getting-duration-by-using-bucket-script-painless-bucket-script)
+  - [Counting HTTP responses by using scripted metric aggregation \[painless-count-http\]](#counting-http-responses-by-using-scripted-metric-aggregation-painless-count-http)
+  - [Comparing indices by using scripted metric aggregations \[painless-compare\]](#comparing-indices-by-using-scripted-metric-aggregations-painless-compare)
+  - [Getting web session details by using scripted metric aggregation \[painless-web-session\]](#getting-web-session-details-by-using-scripted-metric-aggregation-painless-web-session)
 
 ::::{note}
 
@@ -60,12 +62,12 @@ This example uses a `scripted_metric` aggregation which is not supported on {{es
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The `init_script` creates a long type `timestamp_latest` and a string type `last_doc` in the `state` object.
 2. The `map_script` defines `current_date` based on the timestamp of the document, then compares `current_date` with `state.timestamp_latest`, finally returns `state.last_doc` from the shard. By using `new HashMap(...)` you copy the source document, this is important whenever you want to pass the full source object from one phase to the next.
 3. The `combine_script` returns `state` from each shard.
 4. The `reduce_script` iterates through the value of `s.timestamp_latest` returned by each shard and returns the document with the latest timestamp (`last_doc`). In the response, the top hit (in other words, the `latest_doc`) is nested below the `latest_doc` field.
+%  NOTCONSOLE
 
 Check the [scope of scripts](elasticsearch://reference/data-analysis/aggregations/search-aggregations-metrics-scripted-metric-aggregation.md#scripted-metric-aggregation-scope) for detailed explanation on the respective scripts.
 
@@ -173,10 +175,10 @@ You can also use the power of [stored scripts](https://www.elastic.co/docs/api/d
                 "id":"last-value-reduce"
              }
     ```
-    %  NOTCONSOLE
 
     1. The parameter `field_with_last_value` can be set any field that you want the latest value for.
-
+    %  NOTCONSOLE
+    
 ## Getting time features by using aggregations [painless-time-features]
 
 This snippet shows how to extract time based features by using Painless in a {{transform}}. The snippet uses an index where `@timestamp` is defined as a `date` type field.

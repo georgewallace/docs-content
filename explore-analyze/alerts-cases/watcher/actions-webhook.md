@@ -32,7 +32,6 @@ The following snippet shows a simple webhook action definition:
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The id of the action
 2. An optional [transform](transform.md) to transform the payload before executing the `webhook` action
@@ -42,6 +41,7 @@ The following snippet shows a simple webhook action definition:
 6. The port to connect to
 7. The path (URI) to use in the HTTP request
 8. The body to send with the request
+%  NOTCONSOLE
 
 You can use basic authentication when sending a request to a secured webservice. For example, the following `webhook` action creates a new issue in GitHub:
 
@@ -65,9 +65,9 @@ You can use basic authentication when sending a request to a secured webservice.
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The username and password for the user creating the issue
+%  NOTCONSOLE
 
 ::::{note}
 By default, both the username and the password are stored in the `.watches` index in plain text. When the {{es}} {{security-features}} are enabled, {{watcher}} can encrypt the password before storing it.
@@ -94,9 +94,9 @@ You can specify query parameters to send with the request with the `params` fiel
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The parameter values can contain templated strings.
+%  NOTCONSOLE
 
 ## Custom request headers [webhook-custom-request-headers]
 
@@ -118,9 +118,9 @@ You can specify request headers to send with the request with the `headers` fiel
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The header values can contain templated strings.
+%  NOTCONSOLE
 
 ## Webhook action attributes [_webhook_action_attributes]
 

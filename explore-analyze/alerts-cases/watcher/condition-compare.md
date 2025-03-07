@@ -37,10 +37,10 @@ To use the `compare` condition, you specify the value in the execution context t
   }
 }
 ```
-%  NOTCONSOLE
 
 1. Use dot notation to reference a value in the execution context.
 2. Specify a comparison operator and the value you want to compare against.
+%  NOTCONSOLE
 
 You can also compare two values in the execution context by specifying the compared value as a path of the form of `{{path}}`. For example, the following condition compares the `ctx.payload.aggregations.status.buckets.error.doc_count` to the `ctx.payload.aggregations.handled.buckets.true.doc_count`:
 

@@ -198,14 +198,13 @@ POST _snapshot/my_repository/my_snapshot_2099.05.06/_restore
   "indices": "-*"                   <2>
 }
 ```
+
+1. Exclude the cluster state from the restore operation.
+2. Exclude the other indices and data streams in the snapshot from the restore operation.
 %  TEST[setup:setup-snapshots]
 %  TEST[s/^/DELETE my-index\nDELETE _data_stream/logs-my_app-default\n/]
 %  TEST[s/_restore/_restore?wait_for_completion=true/]
 %  TEST[s/"feature_states": [ "geoip" ],//]
-
-1. Exclude the cluster state from the restore operation.
-2. Exclude the other indices and data streams in the snapshot from the restore operation.
-
 
 
 ## Restore an entire cluster [restore-entire-cluster]

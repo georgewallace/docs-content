@@ -58,11 +58,10 @@ POST /_security/api_key
   }
 }
 ```
-%  TEST[skip:TODO]
 
 1. `indices.name` must be the name(s) of the Search Application(s), not the underlying {{es}} indices.
 2. `restriction.workflows` must be set to the concrete value `search_application_query`.
-
+%  TEST[skip:TODO]
 
 ::::{important} 
 It is crucial to specify the workflow restriction. Without this the {{es}} API key can directly call `_search` and issue arbitrary {{es}} queries. This is insecure when dealing with untrusted clients.

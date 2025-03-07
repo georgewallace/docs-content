@@ -263,9 +263,9 @@ PUT quantized-image-index
   }
 }
 ```
-%  TEST[continued]
 
 1. Index your `float` vectors.
+%  TEST[continued]
 
     ```console
     POST quantized-image-index/_bulk?refresh=true
@@ -449,12 +449,11 @@ Reference the deployed text embedding model or the model deployment in the `quer
 }
 (...)
 ```
-%  NOTCONSOLE
 
 1. The {{nlp}} task to perform. It must be `text_embedding`.
 2. The ID of the text embedding model to use to generate the dense vectors from the query string. Use the same model that generated the embeddings from the input text in the index you search against. You can use the value of the `deployment_id` instead in the `model_id` argument.
 3. The query string from which the model generates the dense vector representation.
-
+%  NOTCONSOLE
 
 For more information on how to deploy a trained model and use it to create text embeddings, refer to this [end-to-end example](../../../explore-analyze/machine-learning/nlp/ml-nlp-text-emb-vector-search-example.md).
 
@@ -1015,7 +1014,6 @@ POST /my-index/_search
   }
 }
 ```
-%  TEST[skip: setup not provided]
 
 1. The number of results to return, note its only 10 and we will oversample by 2x, gathering 20 nearest neighbors.
 2. The number of results to return from the KNN search. This will do an approximate KNN search with 50 candidates per HNSW graph and use the quantized vectors, returning the 20 most similar vectors according to the quantized score. Additionally, since this is the top-level `knn` object, the global top 20 results will from all shards will be gathered before rescoring. Combining with `rescore`, this is oversampling by `2x`, meaning gathering 20 nearest neighbors according to quantized scoring and rescoring with higher fidelity float vectors.
@@ -1023,7 +1021,7 @@ POST /my-index/_search
 4. The script to rescore the results. Script score will interact directly with the originally provided float32 vector.
 5. The weight of the original query, here we simply throw away the original score
 6. The weight of the rescore query, here we only use the rescore query
-
+%  TEST[skip: setup not provided]
 
 
 ##### Use a `script_score` query to rescore per shard [dense-vector-knn-search-rescoring-script-score]
@@ -1055,13 +1053,12 @@ POST /my-index/_search
   }
 }
 ```
-%  TEST[skip: setup not provided]
 
 1. The number of results to return
 2. The `knn` query to perform the initial search, this is executed per-shard
 3. The number of candidates to use for the initial approximate `knn` search. This will search using the quantized vectors and return the top 20 candidates per shard to then be scored
 4. The script to score the results. Script score will interact directly with the originally provided float32 vector.
-
+%  TEST[skip: setup not provided]
 
 
 ## Exact kNN [exact-knn]

@@ -118,11 +118,10 @@ PUT _index_template/timeseries_template
   }
 }
 ```
-%  TEST[continued]
 
 1. Apply the template when a document is indexed into the `timeseries` target.
 2. The name of the {{ilm-init}} policy used to manage the data stream.
-
+%  TEST[continued]
 
 ::::
 
@@ -203,14 +202,13 @@ The following response shows the data stream’s first generation backing index 
   }
 }
 ```
-%  TESTRESPONSE[skip:no way to know if we will get this response immediately]
 
 1. The age of the index used for calculating when to rollover the index via the `max_age`
 2. The policy used to manage the index
 3. The age of the indexed used to transition to the next phase (in this case it is the same with the age of the index).
 4. The step {{ilm-init}} is performing on the index
 5. The definition of the current phase (the `hot` phase)
-
+%  TESTRESPONSE[skip:no way to know if we will get this response immediately]
 
 
 ## Manage time series data without data streams [manage-time-series-data-without-data-streams]
@@ -258,12 +256,11 @@ PUT _index_template/timeseries_template
   }
 }
 ```
-%  TEST[continued]
 
 1. Apply the template to a new index if its name starts with `timeseries-`.
 2. The name of the lifecycle policy to apply to each new index.
 3. The name of the alias used to reference these indices. Required for policies that use the rollover action.
-
+%  TEST[continued]
 
 
 ### Bootstrap the initial time series index with a write index alias [ilm-gs-alias-bootstrap]

@@ -69,12 +69,12 @@ Aggregation results are in the response’s `aggregations` object:
   }
 }
 ```
+
+1. Results for the `my-agg-name` aggregation.
 %  TESTRESPONSE[s/"took": 78/"took": "$body.took"/]
 %  TESTRESPONSE[s/...$/"took": "$body.took", "timed_out": false, "_shards": "$body._shards", /]
 %  TESTRESPONSE[s/"hits": [...]/"hits": "$body.hits.hits"/]
 %  TESTRESPONSE[s/"buckets": []/"buckets":[{"key":"get","doc_count":5}]/]
-
-1. Results for the `my-agg-name` aggregation.
 
 ## Change an aggregation’s scope [change-agg-scope]
 
@@ -198,12 +198,12 @@ The response nests sub-aggregation results under their parent aggregation:
   }
 }
 ```
-%  TESTRESPONSE[s/.../"took": "$body.took", "timed_out": false, "_shards": "$body._shards", "hits": "$body.hits",/]
-%  TESTRESPONSE[s/"key": "foo"/"key": "get"/]
-%  TESTRESPONSE[s/"value": 75.0/"value": $body.aggregations.my-agg-name.buckets.0.my-sub-agg-name.value/]
 
 1. Results for the parent aggregation, `my-agg-name`.
 2. Results for `my-agg-name`'s sub-aggregation, `my-sub-agg-name`.
+%  TESTRESPONSE[s/.../"took": "$body.took", "timed_out": false, "_shards": "$body._shards", "hits": "$body.hits",/]
+%  TESTRESPONSE[s/"key": "foo"/"key": "get"/]
+%  TESTRESPONSE[s/"value": 75.0/"value": $body.aggregations.my-agg-name.buckets.0.my-sub-agg-name.value/]
 
 ## Add custom metadata [add-metadata-to-an-agg]
 
@@ -283,10 +283,10 @@ Some aggregations return a different aggregation type from the type in the reque
   }
 }
 ```
-%  TESTRESPONSE[s/.../"took": "$body.took", "timed_out": false, "_shards": "$body._shards", "hits": "$body.hits",/]
-%  TESTRESPONSE[s/"buckets": []/"buckets":[{"key":1070000.0,"doc_count":5}]/]
 
 1. The aggregation type, `histogram`, followed by a `#` separator and the aggregation’s name, `my-agg-name`.
+%  TESTRESPONSE[s/.../"took": "$body.took", "timed_out": false, "_shards": "$body._shards", "hits": "$body.hits",/]
+%  TESTRESPONSE[s/"buckets": []/"buckets":[{"key":1070000.0,"doc_count":5}]/]
 
 ## Use scripts in an aggregation [use-scripts-in-an-agg]
 

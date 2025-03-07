@@ -59,13 +59,12 @@ PUT my-index
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The name of the field to contain the generated tokens. It must be referenced in the {{infer}} pipeline configuration in the next step.
 2. The field to contain the tokens is a `sparse_vector` field.
 3. The name of the field from which to create the sparse vector representation. In this example, the name of the field is `content`. It must be referenced in the {{infer}} pipeline configuration in the next step.
 4. The field type which is text in this example.
-
+%  TEST[skip:TBD]
 
 To learn how to optimize space, refer to the [Saving disk space by excluding the ELSER tokens from document source](/manage-data/ingest/transform-enrich/ingest-pipelines.md) with an [{{infer}} processor](elasticsearch://reference/ingestion-tools/enrich-processor/inference-processor.md) to use ELSER to infer against the data that is being ingested in the pipeline.
 
@@ -123,10 +122,9 @@ POST _reindex?wait_for_completion=false
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The default batch size for reindexing is 1000. Reducing `size` to a smaller number makes the update of the reindexing process quicker which enables you to follow the progress closely and detect errors early.
-
+%  TEST[skip:TBD]
 
 The call returns a task ID to monitor the progress:
 
@@ -236,13 +234,12 @@ GET my-index/_search
   "min_score": 10 <4>
 }
 ```
-%  TEST[skip:TBD]
 
 1. Both the `sparse_vector` and the `query_string` queries are in a `should` clause of a `bool` query.
 2. The `boost` value is `1` for the `sparse_vector` query which is the default value. This means that the relevance score of the results of this query are not boosted.
 3. The `boost` value is `4` for the `query_string` query. The relevance score of the results of this query is increased causing them to rank higher in the search results.
 4. Only the results with a score equal to or higher than `10` are displayed.
-
+%  TEST[skip:TBD]
 
 
 ## Optimizing performance [optimization]

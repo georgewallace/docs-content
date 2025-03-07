@@ -167,12 +167,11 @@ PUT /_cluster/settings
   }
 }
 ```
-%  TEST[setup:host]
-%  TEST[s/127.0.0.1:{{remote-interface-default-port}}/${transport_host}/]
 
 1. The cluster alias of this remote cluster is `cluster_one`.
 2. Specifies the hostname and remote cluster port of a seed node in the remote cluster.
-
+%  TEST[setup:host]
+%  TEST[s/127.0.0.1:{{remote-interface-default-port}}/${transport_host}/]
 
 You can use the [remote cluster info API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-cluster-remote-info) to verify that the local cluster is successfully connected to the remote cluster:
 
@@ -199,15 +198,14 @@ The API response indicates that the local cluster is connected to the remote clu
   }
 }
 ```
-%  TESTRESPONSE[s/127.0.0.1:{{remote-interface-default-port}}/$body.cluster_one.seeds.0/]
-%  TESTRESPONSE[s/ifeval::(.|\n)*endif::[]//]
-%  TEST[s/"connected" : true/"connected" : $body.cluster_one.connected/]
-%  TEST[s/"num_nodes_connected" : 1/"num_nodes_connected" : $body.cluster_one.num_nodes_connected/]
 
 1. The number of nodes in the remote cluster the local cluster is connected to.
 2. Indicates whether to skip the remote cluster if searched through {{ccs}} but no nodes are available.
 3. If present, indicates the remote cluster has connected using API key authentication.
-
+%  TESTRESPONSE[s/127.0.0.1:{{remote-interface-default-port}}/$body.cluster_one.seeds.0/]
+%  TESTRESPONSE[s/ifeval::(.|\n)*endif::[]//]
+%  TEST[s/"connected" : true/"connected" : $body.cluster_one.connected/]
+%  TEST[s/"num_nodes_connected" : 1/"num_nodes_connected" : $body.cluster_one.num_nodes_connected/]
 
 ### Dynamically configure remote clusters [_dynamically_configure_remote_clusters]
 

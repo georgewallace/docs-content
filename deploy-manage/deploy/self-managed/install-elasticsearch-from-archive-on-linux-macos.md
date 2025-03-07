@@ -69,11 +69,10 @@ curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-9.0.0-be
 tar -xzf elasticsearch-9.0.0-beta1-darwin-x86_64.tar.gz
 cd elasticsearch-9.0.0-beta1/ <2>
 ```
-%  NOTCONSOLE
 
 1. Compares the SHA of the downloaded `.tar.gz` archive and the published checksum, which should output `elasticsearch-{{version}}-darwin-x86_64.tar.gz: OK`.
 2. This directory is known as `$ES_HOME`.
-
+%  NOTCONSOLE
 
 
 ## Enable automatic creation of system indices [targz-enable-indices]
@@ -165,11 +164,10 @@ You can test that your {{es}} node is running by sending an HTTPS request to por
 ```sh
 curl --cacert $ES_HOME/config/certs/http_ca.crt -u elastic:$ELASTIC_PASSWORD https://localhost:9200 <1>
 ```
-%  NOTCONSOLE
 
 1. Ensure that you use `https` in your call, or the request will fail.`--cacert`
 :   Path to the generated `http_ca.crt` certificate for the HTTP layer.
-
+%  NOTCONSOLE
 
 
 The call returns a response like this:

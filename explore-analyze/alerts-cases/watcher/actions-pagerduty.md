@@ -28,9 +28,9 @@ The following snippet shows a simple PagerDuty action definition:
   }
 }
 ```
-%  NOTCONSOLE
 
 1. Description of the message
+%  NOTCONSOLE
 
 ## Adding meta information to a PagerDuty incident [adding-context-and-payloads-to-pagerduty-actions]
 

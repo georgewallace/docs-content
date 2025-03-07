@@ -29,11 +29,11 @@ The following snippet shows a simple logging action definition:
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The id of the action.
 2. An optional [transform](transform.md) to transform the payload before executing the `logging` action.
 3. The text to be logged.
+%  NOTCONSOLE
 
 ## Logging action attributes [logging-action-attributes]
 

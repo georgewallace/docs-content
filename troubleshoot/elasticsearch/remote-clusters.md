@@ -43,11 +43,10 @@ The API should return `"connected" : true`. When using [API key authentication](
   }
 }
 ```
-%  TEST[skip:TODO]
 
 1. The remote cluster has connected successfully.
 2. If present, indicates the remote cluster has connected using [API key authentication](../../deploy-manage/remote-clusters/remote-clusters-api-key.md) instead of [certificate based authentication](../../deploy-manage/remote-clusters/remote-clusters-cert.md).
-
+%  TEST[skip:TODO]
 
 
 ### Enabling the remote cluster server [remote-clusters-troubleshooting-enable-server]
@@ -268,11 +267,10 @@ The API should return `"connected" : true`. When using [API key authentication](
   }
 }
 ```
-%  TEST[skip:TODO]
 
 1. The remote cluster has connected successfully.
 2. If present, indicates the remote cluster has connected using [API key authentication](../../deploy-manage/remote-clusters/remote-clusters-api-key.md) instead of [certificate based authentication](../../deploy-manage/remote-clusters/remote-clusters-cert.md).
-
+%  TEST[skip:TODO]
 
 Besides checking the response of the remote cluster info API, you can also check the logs.
 

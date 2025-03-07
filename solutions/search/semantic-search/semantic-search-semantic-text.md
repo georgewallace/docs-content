@@ -45,11 +45,10 @@ PUT semantic-embeddings
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The name of the field to contain the generated embeddings.
 2. The field to contain the embeddings is a `semantic_text` field. Since no `inference_id` is provided, the default endpoint `.elser-2-elasticsearch` for the [`elasticsearch` service](../../../explore-analyze/elastic-inference/inference-api/elasticsearch-inference-integration.md) is used. To use a different {{infer}} service, you must create an {{infer}} endpoint first using the [Create {{infer}} API](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-inference-put) and then specify it in the `semantic_text` field mapping using the `inference_id` parameter.
-
+%  TEST[skip:TBD]
 
 ::::{note}
 If you’re using web crawlers or connectors to generate indices, you have to [update the index mappings](https://www.elastic.co/docs/api/doc/elasticsearch/operation/operation-indices-put-mapping) for these indices to include the `semantic_text` field. Once the mapping is updated, you’ll need to run a full web crawl or a full connector sync. This ensures that all existing documents are reprocessed and updated with the new semantic embeddings, enabling semantic search on the updated data.
@@ -89,10 +88,9 @@ POST _reindex?wait_for_completion=false
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The default batch size for reindexing is 1000. Reducing size to a smaller number makes the update of the reindexing process quicker which enables you to follow the progress closely and detect errors early.
-
+%  TEST[skip:TBD]
 
 The call returns a task ID to monitor the progress:
 
@@ -124,11 +122,10 @@ GET semantic-embeddings/_search
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. The `semantic_text` field on which you want to perform the search.
 2. The query text.
-
+%  TEST[skip:TBD]
 
 As a result, you receive the top 10 documents that are closest in meaning to the query from the `semantic-embedding` index.
 

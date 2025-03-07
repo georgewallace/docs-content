@@ -39,10 +39,10 @@ For example, the following chain input loads data from an HTTP server using the 
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The inputs in a chain are specified as an array to guarantee the order in which the inputs are processed. (JSON does not guarantee the order of arbitrary objects.)
 2. Loads the `path` set by the `first` input.
+%  NOTCONSOLE
 
 ## Accessing chained input data [_accessing_chained_input_data]
 

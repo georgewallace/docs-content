@@ -77,8 +77,6 @@ The response will look like:
   }
 }
 ```
-%  TEST[continued]
-%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. The name of the backing index.
 2. This index is managed by a data stream lifecycle.
@@ -90,7 +88,8 @@ The response will look like:
 8. The time that has passed since this index was [rolled over](../index-lifecycle-management/rollover.md).
 9. The time that will be used to determine when it’s safe to delete this index and all its data.
 10. The data retention for this index as well is at least 30 days, as it was recently updated.
-
+%  TEST[continued]
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 
 ## Remove lifecycle for a data stream [delete-lifecycle]
@@ -124,11 +123,10 @@ GET .ds-my-data-stream-*/_lifecycle/explain
   }
 }
 ```
-%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
 1. The name of the backing index.
 2. Indication that the index is not managed by the data stream lifecycle.
 3. The name of another backing index.
 4. Indication that the index is not managed by the data stream lifecycle.
-
+%  TESTRESPONSE[skip:the result is for illustrating purposes only]
 

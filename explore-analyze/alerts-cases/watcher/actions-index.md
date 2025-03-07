@@ -27,13 +27,13 @@ The following snippet shows a simple `index` action definition:
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The id of the action
 2. An optional [condition](condition.md) to restrict action execution
 3. An optional [transform](transform.md) to transform the payload and prepare the data that should be indexed
 4. The index, alias, or data stream to which the data will be written
 5. An optional `_id` for the document
+%  NOTCONSOLE
 
 ## Index action attributes [index-action-attributes]
 
@@ -79,10 +79,10 @@ The following snippet shows a multi-document `index` action definition:
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The document’s index
 2. An optional `_id` for the document
 3. A new `severity` field derived from the original document
 4. The payload `_doc` field which is an array of documents
 5. Since the `_index` was informed per document this should be empty
+%  NOTCONSOLE

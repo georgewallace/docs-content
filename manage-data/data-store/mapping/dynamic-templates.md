@@ -35,12 +35,11 @@ Dynamic templates are specified as an array of named objects:
     ...
   ]
 ```
-%  NOTCONSOLE
 
 1. The template name can be any string value.
 2. The match conditions can include any of : `match_mapping_type`, `match`, `match_pattern`, `unmatch`, `path_match`, `path_unmatch`.
 3. The mapping that the matched field should use.
-
+%  NOTCONSOLE
 
 ## Validating dynamic templates [dynamic-templates-validation]
 

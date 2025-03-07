@@ -42,13 +42,12 @@ GET my-index/_search
   }
 }
 ```
-%  TEST[skip:TBD]
 
 1. First pass query providing documents to be rescored.
 2. The unique identifier of the trained model uploaded to {{es}}.
 3. Named parameters to be passed to the query templates used for feature.
 4. The number of documents that should be examined by the rescorer on each shard.
-
+%  TEST[skip:TBD]
 
 
 ### Known limitations [learning-to-rank-rescorer-limitations]

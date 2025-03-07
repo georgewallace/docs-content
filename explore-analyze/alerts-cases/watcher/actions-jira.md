@@ -42,7 +42,6 @@ The following snippet shows a simple jira action definition:
   }
 }
 ```
-%  NOTCONSOLE
 
 1. The name of a Jira account configured in `elasticsearch.yml`.
 2. The key of the Jira project in which the issue will be created.
@@ -51,6 +50,7 @@ The following snippet shows a simple jira action definition:
 5. The description of the Jira issue.
 6. The labels to apply to the Jira issue.
 7. The priority of the Jira issue.
+%  NOTCONSOLE
 
 ## Jira action attributes [jira-action-attributes]
 

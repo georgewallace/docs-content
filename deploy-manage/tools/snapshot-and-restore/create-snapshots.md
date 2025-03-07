@@ -353,11 +353,10 @@ PUT _slm/policy/nightly-cluster-state-snapshots
   }
 }
 ```
-%  TEST[s/my_secure_repository/my_repository/]
 
 1. Includes the cluster state. This also includes all feature states by default.
 2. Excludes regular data streams and indices.
-
+%  TEST[s/my_secure_repository/my_repository/]
 
 If you take dedicated snapshots of the cluster state, you’ll need to exclude the cluster state from your other snapshots. For example:
 

@@ -97,7 +97,6 @@ Which returns the following information:
   }
 }
 ```
-%  TESTRESPONSE[skip:no way to know if we will get this response immediately]
 
 1. The policy being used to manage the index: `shrink-index`
 2. The index age: 5.1 days
@@ -107,7 +106,7 @@ Which returns the following information:
 6. The step that failed to execute: `shrink`
 7. The type of error and a description of that error.
 8. The definition of the current phase from the `shrink-index` policy
-
+%  TESTRESPONSE[skip:no way to know if we will get this response immediately]
 
 To resolve this, you could update the policy to shrink the index to a single shard after 5 days:
 

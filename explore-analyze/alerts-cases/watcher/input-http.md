@@ -68,9 +68,9 @@ To load the data from other Elasticsearch APIs, specify the API endpoint as the 
   }
 }
 ```
-%  NOTCONSOLE
 
 1. Enabling this attribute returns the `bytes` values in the response in human readable format.
+%  NOTCONSOLE
 
 ## Calling external web services [input-http-auth-basic-example]
 
