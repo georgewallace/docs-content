@@ -321,6 +321,7 @@ $$$pipeline-custom-logs-index-template$$$
     ```console
     POST logs-my_app-default/_rollover/
     ```
+    %  TEST[continued]
 
 
 $$$pipeline-custom-logs-configuration$$$

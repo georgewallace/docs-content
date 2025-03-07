@@ -102,4 +102,6 @@ This will not have an immediate effect on the data stream. The mapping `host.ip`
 ```console
 POST logs-foo-bar/_rollover
 ```
+%  TEST[continued]
+%  TEST[teardown:data_stream_cleanup]
 

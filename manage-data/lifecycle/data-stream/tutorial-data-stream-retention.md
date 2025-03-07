@@ -138,6 +138,7 @@ Considering our example, if we retrieve the lifecycle of `my-data-stream`:
 ```console
 GET _data_stream/my-data-stream/_lifecycle
 ```
+%  TEST[continued]
 
 We see that it will remain the same with what the user configured:
 

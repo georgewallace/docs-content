@@ -41,6 +41,7 @@ If you’re confident your changes won’t destabilize the cluster, you can temp
     ```console
     GET _health_report/shards_capacity
     ```
+    %  TESTRESPONSE[skip:the result is for illustrating purposes only]
 
     The response will look like this:
 

@@ -465,6 +465,7 @@ DELETE my-index
 # Delete a data stream
 DELETE _data_stream/logs-my_app-default
 ```
+%  TEST[setup:setup-snapshots]
 
 
 ## Restore to a different cluster [restore-different-cluster]

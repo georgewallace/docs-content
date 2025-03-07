@@ -38,6 +38,7 @@ In order to check the status of failing {{slm}} policies we need to go to Kibana
     ```console
     GET _slm/policy/<affected-policy-name>
     ```
+    %  TEST[skip:These policies do not exist]
 
     The response will look like this:
 

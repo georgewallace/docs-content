@@ -1362,6 +1362,7 @@ GET retrievers_example/_search
     "_source": false
 }
 ```
+%  TEST[skip: no_access_to_ml]
 
 
 ## Example: RRF with semantic reranker [retrievers-examples-rrf-ranking-on-text-similarity-reranker-results]
@@ -1410,6 +1411,7 @@ GET /retrievers_example/_search
     "_source": false
 }
 ```
+%  TEST[skip: no_access_to_ml]
 
 
 ## Example: Chaining multiple semantic rerankers [retrievers-examples-chaining-text-similarity-reranker-retrievers]

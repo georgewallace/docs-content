@@ -139,6 +139,8 @@ PUT _snapshot/my_fs_backup
   }
 }
 ```
+%  TEST[skip:no access to path]
+::::::
 ::::::
 
 :::::::

@@ -545,6 +545,7 @@ Finally, a parameterless search using this template would fall back to a default
 ```console
 POST _application/search_application/my_search_application/_search
 ```
+%  TEST[continued]
 
 
 ### ELSER search [search-application-api-elser-template]

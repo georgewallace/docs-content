@@ -479,6 +479,7 @@ Audiences:  aud8
 Algorithms: HS256
 HMAC UTF-8: hmac-oidc-key-string-for-hs256-algorithm
 ```
+%  NOTCONSOLE
 
 
 ### JWT realm settings [hmac-oidc-example-jwt-realm]

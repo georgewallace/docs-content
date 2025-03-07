@@ -57,4 +57,6 @@ sql> SELECT * FROM library WHERE release_date < '2000-01-01';
 Dan Simmons    |Hyperion       |482            |1989-05-26T00:00:00.000Z
 Frank Herbert  |Dune           |604            |1965-06-01T00:00:00.000Z
 ```
+%  TESTRESPONSE[s/|/\|/ s/+/\+/]
+%  TESTRESPONSE[non_json]
 

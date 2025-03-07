@@ -40,6 +40,7 @@ In order to get the shards assigned we need enable a new tier in the deployment.
     ```console
     GET /my-index-000001/_settings/index.routing.allocation.include._tier_preference?flat_settings
     ```
+    %  TEST[continued]
 
     The response will look like this:
 

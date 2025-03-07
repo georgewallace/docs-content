@@ -240,6 +240,7 @@ Looking at the data again, there’s a timestamp, some other data that you’re 
 ```txt
 [2021-04-27T16:16:34.699+0000][82460][gc,heap,exit]   class space    used 266K, capacity 384K, committed 384K, reserved 1048576K
 ```
+%  NOTCONSOLE
 
 You can assign variables to each part of the data in the `gc` field, and then return only the parts that you want. Anything in curly braces `{}` is considered a variable. For example, the variables `[%{@timestamp}][%{{code}}][%{{desc}}]` will match the first three chunks of data, all of which are in square brackets `[]`.
 

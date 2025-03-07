@@ -226,6 +226,9 @@ POST byte-image-index/_search
   "fields": [ "title" ]
 }
 ```
+%  TEST[continued]
+%  TEST[s/"k": 10/"k": 3/]
+%  TEST[s/"num_candidates": 100/"num_candidates": 3/]
 
 
 ### Byte quantized kNN search [knn-search-quantized-example]
@@ -322,6 +325,9 @@ POST quantized-image-index/_search
   }
 }
 ```
+%  TEST[continued]
+%  TEST[s/"k": 15/"k": 3/]
+%  TEST[s/"num_candidates": 100/"num_candidates": 3/]
 
 
 ### Filtered kNN search [knn-search-filter-example]
@@ -747,6 +753,7 @@ Now we have filtered based on the top level `"creation_time"` and only one docum
     }
 }
 ```
+%  TESTRESPONSE[s/"took": 4/"took" : "$body.took"/]
 
 
 ### Nested kNN Search with Inner hits [nested-knn-search-inner-hits]

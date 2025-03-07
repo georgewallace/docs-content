@@ -26,6 +26,7 @@ If the index mappings are missing, follow these steps to restore the correct map
     ```console
     DELETE .watches
     ```
+    %  TEST[skip:index deletion and deprecation warning]
 
 5. Disable direct access to the `.watches` index:
 

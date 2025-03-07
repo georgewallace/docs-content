@@ -173,6 +173,7 @@ You can also use the power of [stored scripts](https://www.elastic.co/docs/api/d
                 "id":"last-value-reduce"
              }
     ```
+    %  NOTCONSOLE
 
     1. The parameter `field_with_last_value` can be set any field that you want the latest value for.
 
