@@ -107,11 +107,11 @@ Preloading data into the filesystem cache makes search *slower* if the total siz
 
 ### Replicas might help with throughput, but not always [_replicas_might_help_with_throughput_but_not_always]
 
-In addition to improving resiliency, replicas can help improve throughput. For instance if you have a single-shard index and three nodes, you need to set the number of replicas to two in order to have three copies of your shard in total so that all nodes handle requests.
+In addition to improving resiliency, replicas can help improve throughput. For instance if you have a single-shard index and three nodes, you need to set the number of replicas to two to have three copies of your shard in total so that all nodes handle requests.
 
 Now imagine that you have a two-shards index and two nodes. In one case, the number of replicas is zero, meaning that each node holds a single shard. In the second case the number of replicas is one, meaning that each node has two shards. Which setup performs best in terms of search performance? Usually, the setup with fewer shards per node in total performs better. The reason is that it gives a greater share of the available filesystem cache to each shard, and the filesystem cache is probably Elasticsearch's number one performance factor. At the same time, beware that a setup without replicas is subject to failure in case of a single node failure, so there's a trade-off between throughput and availability.
 
-So what is the right number of replicas? If you have a cluster that has `num_nodes` nodes, `num_primaries` primary shards *in total* and if you want to be able to cope with `max_failures` node failures at once at most, then the right number of replicas for you is `max(max_failures, ceil(num_nodes / num_primaries) - 1)`.
+So what's the right number of replicas? If you have a cluster that has `num_nodes` nodes, `num_primaries` primary shards *in total* and if you want to be able to cope with `max_failures` node failures at once at most, then the right number of replicas for you is `max(max_failures, ceil(num_nodes / num_primaries) - 1)`.
 
 
 ### Use `preference` to optimize cache utilization [preference-cache-optimization]
@@ -251,7 +251,7 @@ GET index/_search
 
 ### Consider mapping identifiers as `keyword` [map-ids-as-keyword]
 
-Not all numeric data should be mapped as a [numeric](elasticsearch://reference/elasticsearch/mapping-reference/number.md) field data type. {{es}} optimizes numeric fields, such as `integer` or `long`, for [`range`](elasticsearch://reference/query-languages/query-dsl/query-dsl-range-query.md) queries. However, [`keyword`](elasticsearch://reference/elasticsearch/mapping-reference/keyword.md) fields are better for [`term`](elasticsearch://reference/query-languages/query-dsl/query-dsl-term-query.md) and other [term-level](elasticsearch://reference/query-languages/query-dsl/term-level-queries.md) queries.
+Not all numeric data needs to be mapped as a [numeric](elasticsearch://reference/elasticsearch/mapping-reference/number.md) field data type. {{es}} optimizes numeric fields, such as `integer` or `long`, for [`range`](elasticsearch://reference/query-languages/query-dsl/query-dsl-range-query.md) queries. However, [`keyword`](elasticsearch://reference/elasticsearch/mapping-reference/keyword.md) fields are better for [`term`](elasticsearch://reference/query-languages/query-dsl/query-dsl-term-query.md) and other [term-level](elasticsearch://reference/query-languages/query-dsl/term-level-queries.md) queries.
 
 Identifiers, such as an International Standard Book Number (ISBN) or a product ID, are rarely used in `range` queries. However, they're often retrieved using term-level queries.
 
@@ -339,7 +339,7 @@ GET bicycles,other_cycles/_search
 
 On the `other_cycles` index, {{es}} quickly figures out that `bicycle` doesn't exist in the terms dictionary of the `cycle_type` field and returns a search response with no hits.
 
-This is a powerful way of making queries cheaper by putting common values in a dedicated index. This idea can also combine across multiple fields: for instance if you track the color of each cycle and your `bicycles` index ends up with a majority of black bikes, you could split it into a `bicycles-black` and a `bicycles-other-colors` index.
+This is a powerful way of making queries cheaper by putting common values in a dedicated index. This idea can also combine across multiple fields: for instance if you track the color of each cycle and your `bicycles` index ends up with a majority of black bikes, you can split it into a `bicycles-black` and a `bicycles-other-colors` index.
 
 `constant_keyword` isn't strictly required for this optimization: it's also possible to update the client-side logic to route queries to the relevant indices based on filters. However `constant_keyword` does this transparently and allows you to decouple search requests from the index topology in exchange for very little overhead.
 
@@ -366,7 +366,7 @@ If your field uses [`match_only_text`](elasticsearch://reference/elasticsearch/m
 Indices that are read-only might benefit from being [merged down to a single segment]({{es-apis}}operation/operation-indices-forcemerge). This is typically the case with time-based indices: only the index for the current time frame gets new documents while older indices are read-only. Shards that have been force-merged into a single segment can use more efficient data structures to perform searches.
 
 ::::{important}
-Don't force-merge indices to which you're still writing, or to which you'll write again in the future. Instead, rely on the automatic background merge process to perform merges as needed to keep the index running smoothly. If you continue to write to a force-merged index then its performance might become much worse.
+Don't force-merge indices to which you're still writing, or to which you plan to write again in the future. Instead, rely on the automatic background merge process to perform merges as needed to keep the index running smoothly. If you continue to write to a force-merged index then its performance might become much worse.
 ::::
 
 
@@ -428,7 +428,7 @@ GET index/_search
 }
 ```
 
-In that case we rounded to the minute, so if the current time is `16:31:29`, the range query matches everything whose value of the `my_date` field is between `15:31:00` and `16:31:59`. And if several users run a query that contains this range in the same minute, the query cache helps speed things up a bit. The longer the interval that is used for rounding, the more the query cache can help, but beware that too aggressive rounding might also hurt user experience.
+In that case we rounded to the minute, so if the current time is `16:31:29`, the range query matches everything whose value of the `my_date` field is between `15:31:00` and `16:31:59`. And if several users run a query that contains this range in the same minute, the query cache helps speed things up a bit. The longer the interval that's used for rounding, the more the query cache can help, but beware that too aggressive rounding might also hurt user experience.
 
 ::::{note}
 It might be tempting to split ranges into a large cacheable part and smaller not cacheable parts to use the query cache, as shown in the following example:
