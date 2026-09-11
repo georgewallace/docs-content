@@ -1,4 +1,5 @@
 ---
+navigation_title: Tune for search speed
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-search-speed.html
 applies_to:
@@ -13,7 +14,7 @@ type: how-to
 description: Elasticsearch performance tuning guide covering hardware setup, index design, and query optimization techniques to reduce search latency and improve throughput.
 ---
 
-# Tune for search speed [tune-for-search-speed]
+# Tune Elasticsearch for search speed [tune-for-search-speed]
 
 This page provides guidance on tuning {{es}} for faster search performance. While hardware and system-level settings play an important role, the structure of your documents and the design of your queries often have the biggest impact. Use these recommendations to optimize field mappings, caching behavior, and query design for high-throughput, low-latency search at scale.
 
