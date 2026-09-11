@@ -10,7 +10,7 @@ applies_to:
 products:
   - id: elasticsearch
 type: how-to
-description: Optimize Elasticsearch search performance with hardware tuning, index design choices, and Query DSL query techniques.
+description: Elasticsearch performance tuning guide covering hardware setup, index design, and query optimization techniques to reduce search latency and improve throughput.
 ---
 
 # Tune for search speed [tune-for-search-speed]
