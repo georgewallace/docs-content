@@ -101,7 +101,7 @@ For {{eck}} deployments refer to the [ECK storage recommendations](/deploy-manag
 When the machine running {{es}} restarts, the filesystem cache is empty, so it takes some time before the operating system loads hot regions of the index into memory so that search operations are fast. You can explicitly tell the operating system which files to load into memory eagerly depending on the file extension using the [`index.store.preload`](elasticsearch://reference/elasticsearch/index-settings/preloading-data-into-file-system-cache.md) setting.
 
 ::::{warning}
-Loading data into the filesystem cache eagerly on too many indices or too many files makes search *slower* if the filesystem cache isn't large enough to hold all the data. Use with caution.
+Preloading data into the filesystem cache makes search *slower* if the total size of the preloaded data exceeds available RAM. Use with caution.
 ::::
 
 
@@ -353,7 +353,7 @@ Index sorting also benefits ES|QL queries. When the query sort order is congruen
 
 ### Faster phrase queries with `index_phrases` [faster-phrase-queries]
 
-The [`text`](elasticsearch://reference/elasticsearch/mapping-reference/text.md) field has an [`index_phrases`](elasticsearch://reference/elasticsearch/mapping-reference/index-phrases.md) option that indexes 2-shingles and is automatically leveraged by query parsers to run phrase queries that don't have a slop. If your use-case involves running lots of phrase queries, this can speed up queries significantly.
+The [`text`](elasticsearch://reference/elasticsearch/mapping-reference/text.md) field has an [`index_phrases`](elasticsearch://reference/elasticsearch/mapping-reference/index-phrases.md) option that indexes two-term word combinations (shingles) and is automatically leveraged by query parsers to run phrase queries that don't have a slop. If your use-case involves running lots of phrase queries, this can speed up queries significantly.
 
 This optimization also applies to ES|QL `MATCH_PHRASE` calls, which emit standard phrase queries internally.
 
@@ -484,7 +484,7 @@ ES|QL applies its own equivalent date-rounding optimization automatically during
 
 ### Faster prefix queries with `index_prefixes` [faster-prefix-queries]
 
-The [`text`](elasticsearch://reference/elasticsearch/mapping-reference/text.md) field has an [`index_prefixes`](elasticsearch://reference/elasticsearch/mapping-reference/index-prefixes.md) option that indexes prefixes of all terms and is automatically leveraged by query parsers to run prefix queries. If your use-case involves running lots of prefix queries, this can speed up queries significantly.
+The [`text`](elasticsearch://reference/elasticsearch/mapping-reference/text.md) field has an [`index_prefixes`](elasticsearch://reference/elasticsearch/mapping-reference/index-prefixes.md) option that indexes term prefixes within a configurable length range (two to five characters by default) and is automatically leveraged by query parsers to run prefix queries. If your use-case involves running lots of prefix queries, this can speed up queries significantly.
 
 
 ### Warm up global ordinals [_warm_up_global_ordinals]
@@ -506,7 +506,7 @@ PUT index
 ```
 
 ::::{note}
-Query DSL `terms`, `composite`, and `significant_terms` aggregations use global ordinals. ES|QL `STATS BY` uses a separate grouping implementation and doesn't benefit from eager global ordinals.
+Query DSL `terms`, `composite`, `significant_terms`, and `diversified_sampler` aggregations use global ordinals. ES|QL `STATS BY` uses a separate grouping implementation and doesn't benefit from eager global ordinals.
 ::::
 
 
