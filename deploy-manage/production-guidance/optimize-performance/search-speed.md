@@ -373,7 +373,7 @@ Don't force-merge indices to which you're still writing, or to which you plan to
 
 ## Query DSL optimizations [search-speed-query-dsl]
 
-The following recommendations apply only to [Query DSL](elasticsearch://reference/query-languages/querydsl.md) queries. If you use ES|QL or another query interface, refer to [Other query languages](#other-query-languages) in this guide.
+The following recommendations apply only to [Query DSL](elasticsearch://reference/query-languages/querydsl.md) queries. If you use ES|QL or another query interface, refer to [Other query languages](#search-speed-other-languages) in this guide.
 
 ### Avoid scripts [_avoid_scripts]
 
