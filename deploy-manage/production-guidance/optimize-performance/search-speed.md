@@ -43,7 +43,7 @@ deployment:
   ece: all
 ```
 
-{{es}} heavily relies on the filesystem cache to make search fast. In general, make sure that at least half the available memory goes to the filesystem cache so that {{es}} can keep hot regions of the index in physical memory.
+{{es}} relies heavily on the filesystem cache to make search fast. In general, make sure that at least half the available memory goes to the filesystem cache so that {{es}} can keep hot regions of the index in physical memory.
 
 By default, {{es}} automatically sets its [Java Virtual Machine (JVM) heap size](/deploy-manage/deploy/self-managed/important-settings-configuration.md#heap-size-settings) to follow this best practice. However, in self-managed or {{eck}} deployments, you have the flexibility to allocate even more memory to the filesystem cache, which can lead to performance improvements depending on your workload.
 
@@ -108,7 +108,7 @@ Preloading data into the filesystem cache makes search *slower* if the total siz
 
 ### Replicas might help with throughput, but not always [_replicas_might_help_with_throughput_but_not_always]
 
-In addition to improving resiliency, replicas can help improve throughput. For instance if you have a single-shard index and three nodes, you need to set the number of replicas to two to have three copies of your shard in total so that all nodes handle requests.
+In addition to improving resiliency, replicas can help improve throughput. For instance, if you have a single-shard index and three nodes, you need to set the number of replicas to two to have three copies of your shard in total so that all nodes handle requests.
 
 Now imagine that you have a two-shards index and two nodes. In one case, the number of replicas is zero, meaning that each node holds a single shard. In the second case the number of replicas is one, meaning that each node has two shards. Which setup performs best in terms of search performance? Usually, the setup with fewer shards per node in total performs better. The reason is that it gives a greater share of the available filesystem cache to each shard, and the filesystem cache is probably Elasticsearch's number one performance factor. At the same time, beware that a setup without replicas is subject to failure in case of a single node failure, so there's a trade-off between throughput and availability.
 
