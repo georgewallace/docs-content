@@ -237,40 +237,141 @@ Use this section when your search returns results but they're in the wrong order
 
 ### Diagnose scoring with the Explain API [troubleshooting-relevance-explain]
 
-When a document ranks unexpectedly high or low, use the [Explain API]({{es-apis}}operation/operation-explain) to see exactly how {{es}} calculated its score:
+When a document ranks unexpectedly high or low, use the [Explain API]({{es-apis}}operation/operation-explain) to see exactly how {{es}} calculated its score. Replace `2` with the `_id` of the document you want to inspect:
 
 ```console
-GET /my-index-000001/_explain/<doc-id>
+GET /my-index-000001/_explain/2
 {
   "query": {
     "match": {
-      "title": "search query"
+      "title": "search relevance"
     }
   }
 }
 ```
 
-The response breaks down the score by field and clause. Look for:
+The response shows whether the document matched and breaks the score down by term and field:
 
-- Fields that contribute no score when you expect them to: check whether the field is mapped and searched correctly.
-- Unexpectedly high scores from low-value fields: check field boosts and `copy_to` mappings.
-- A score of `0`: the document matched a filter but no scoring clause fired.
+```console-result
+{
+  "_index": "my-index-000001",
+  "_id": "2",
+  "matched": true,
+  "explanation": {
+    "value": 2.1845279,
+    "description": "sum of:",
+    "details": [
+      {
+        "value": 1.0922639,
+        "description": "weight(title:search in 1) [PerFieldSimilarity], result of:",
+        "details": [
+          {
+            "value": 1.0922639,
+            "description": "score(freq=1.0), computed as boost * idf * tf from:",
+            "details": [
+              { "value": 2.2,       "description": "boost" },
+              { "value": 1.2039728, "description": "idf, computed as log(1 + (N - n + 0.5) / (n + 0.5))" },
+              { "value": 0.4123711, "description": "tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl))" }
+            ]
+          }
+        ]
+      },
+      {
+        "value": 1.0922639,
+        "description": "weight(title:relevance in 1) [PerFieldSimilarity], result of: ..."
+      }
+    ]
+  }
+}
+```
+
+Read the response like this:
+
+- `"matched": true` confirms the document matched the query.
+- Each entry in `details` shows one term's contribution. `boost`, `idf` (how rare the term is), and `tf` (how often it appears) multiply together to produce the term score.
+- A high `boost` value (here `2.2`) means the field mapping or query applied a field boost — verify this is intentional.
+- A `value` of `0.0` with `"description": "No matching clauses"` means the document passed a filter but no scoring clause fired, which produces a result with score `0`.
+
+When a document does not match at all:
+
+```console
+GET /my-index-000001/_explain/4
+{
+  "query": {
+    "match": {
+      "title": "search relevance"
+    }
+  }
+}
+```
+
+```console-result
+{
+  "_index": "my-index-000001",
+  "_id": "4",
+  "matched": false,
+  "explanation": {
+    "value": 0.0,
+    "description": "No matching clauses",
+    "details": [
+      { "value": 0.0, "description": "no match on optional clause (title:search)" },
+      { "value": 0.0, "description": "no match on optional clause (title:relevance)" }
+    ]
+  }
+}
+```
+
+`"matched": false` with `"No matching clauses"` means the tokens in the query did not appear in the indexed field. This is usually a token mismatch — see [Fix token mismatches between index and query](#troubleshooting-relevance-tokens).
 
 For a visual representation, use the [Search Profiler](../../explore-analyze/query-filter/tools/search-profiler.md) in {{kib}}.
 
 ### Fix token mismatches between index and query [troubleshooting-relevance-tokens]
 
-When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [Analyze API]({{es-apis}}operation/operation-indices-analyze) to compare how each side tokenizes the same text:
+When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [Analyze API]({{es-apis}}operation/operation-indices-analyze) to inspect what tokens {{es}} produces for a given field and text.
+
+First, check how the indexed field tokenizes the text:
 
 ```console
 GET /my-index-000001/_analyze
 {
   "field": "title",
-  "text": "my search query"
+  "text": "Getting started with Elasticsearch"
 }
 ```
 
-Run the same call with `"analyzer": "standard"` (or whichever analyzer your query uses) to compare output. If the tokens differ, the query does not find the document.
+```console-result
+{
+  "tokens": [
+    { "token": "getting",       "position": 0 },
+    { "token": "start",         "position": 1 },
+    { "token": "with",          "position": 2 },
+    { "token": "elasticsearch", "position": 3 }
+  ]
+}
+```
+
+Then run the same text through the analyzer your query uses. If your `title` field uses the `english` analyzer but the query runs with `standard` (the default for `match`), the tokens differ:
+
+```console
+GET /my-index-000001/_analyze
+{
+  "analyzer": "standard",
+  "text": "Getting started with Elasticsearch"
+}
+```
+
+```console-result
+{
+  "tokens": [
+    { "token": "getting",       "position": 0 },
+    { "token": "started",       "position": 1 },
+    { "token": "with",          "position": 2 },
+    { "token": "elasticsearch", "position": 3 }
+  ]
+}
+```
+
+The index produced `"start"` (stemmed by the English analyzer) but the query produces `"started"`. These tokens don't match, so the document won't appear in results. To fix this, set `search_analyzer` on the field to match the index analyzer, or explicitly pass `analyzer` in the query.
 
 Refer to [Test an analyzer](../../manage-data/data-store/text-analysis/test-an-analyzer.md) for a detailed walkthrough.
 
@@ -284,9 +385,23 @@ Synonyms only expand queries when the synonym filter is part of the **search ana
    GET /my-index-000001/_analyze
    {
      "analyzer": "my_search_analyzer",
-     "text": "my term"
+     "text": "car"
    }
    ```
+
+   If synonyms are working, the response includes extra tokens with `"type": "SYNONYM"`:
+
+   ```console-result
+   {
+     "tokens": [
+       { "token": "car",        "position": 0, "type": "<ALPHANUM>" },
+       { "token": "automobile", "position": 0, "type": "SYNONYM" },
+       { "token": "vehicle",    "position": 0, "type": "SYNONYM" }
+     ]
+   }
+   ```
+
+   If you only see the original token and no `SYNONYM` entries, the synonym filter is not part of the search analyzer chain.
 
 2. If you updated the synonym set, confirm whether you need to reload or reindex:
    - Synonym sets managed via the [Synonyms API](elasticsearch://reference/elasticsearch/rest-apis/synonyms-apis.md) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
@@ -309,12 +424,57 @@ GET /my-index-000001/_search
 {
   "explain": true,
   "query": {
-    "match": {
-      "title": "search query"
+    "multi_match": {
+      "query": "search relevance",
+      "fields": ["title^3", "body"]
     }
   }
 }
 ```
+
+Each hit in the response includes an `_explanation` block showing how the boost affected the score:
+
+```console-result
+{
+  "hits": {
+    "hits": [
+      {
+        "_id": "2",
+        "_score": 6.553584,
+        "_explanation": {
+          "value": 6.553584,
+          "description": "max of:",
+          "details": [
+            {
+              "value": 6.553584,
+              "description": "sum of:",
+              "details": [
+                {
+                  "value": 3.276792,
+                  "description": "weight(title:search in 1) [PerFieldSimilarity], result of:",
+                  "details": [
+                    {
+                      "value": 3.276792,
+                      "description": "score(freq=1.0), computed as boost * idf * tf from:",
+                      "details": [
+                        { "value": 6.6000004, "description": "boost" },
+                        { "value": 1.2039728, "description": "idf" },
+                        { "value": 0.4123711, "description": "tf" }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
+```
+
+The `boost` value here is `6.6` (the BM25 default `2.2` multiplied by the `^3` field boost). If you don't see the boost you configured reflected in this value, verify the field name in the `fields` array matches the mapping exactly.
 
 ### Fix the wrong fields being searched [troubleshooting-relevance-fields]
 
