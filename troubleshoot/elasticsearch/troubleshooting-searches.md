@@ -404,7 +404,7 @@ Synonyms only expand queries when the synonym filter is part of the **search ana
    If you only see the original token and no `SYNONYM` entries, the synonym filter is not part of the search analyzer chain.
 
 2. If you updated the synonym set, confirm whether you need to reload or reindex:
-   - Synonym sets managed via the [Synonyms API](elasticsearch://reference/elasticsearch/rest-apis/synonyms-apis.md) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
+   - Synonym sets managed via the [Synonyms API]({{es-apis}}group/endpoint-synonyms) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
    - Custom synonym files configured as index-time analyzers require a full reindex to take effect on already-indexed documents. If the file is configured as a search-time analyzer with `updateable: true`, you can reload it without reindexing using the same reload API.
 
 Refer to [Search with synonyms](../../solutions/search/full-text/search-with-synonyms.md) for setup and reload guidance.
