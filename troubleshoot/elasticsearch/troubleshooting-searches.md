@@ -231,6 +231,27 @@ You can update dynamic index settings with the [update index settings API]({{es-
 For static settings, you need to create a new index with the correct settings. Next, you can reindex the data into that index. For data streams, refer to [Change a static index setting for a data stream](../../manage-data/data-store/data-streams/modify-data-stream.md#change-static-index-setting-for-a-data-stream).
 
 
+## Find slow queries [troubleshooting-slow-searches]
+```{applies_to}
+stack:
+```
+
+Start with [slow logs](/deploy-manage/monitor/logging-configuration/slow-logs.md), which pinpoint the search requests that take too long to run. Once you've identified a slow request, determine where it comes from. How you do this depends on your version.
+
+{applies_to}`stack: preview 9.4` Use [query logging](/deploy-manage/monitor/logging-configuration/query-logs.md) to determine the query source. A single configuration captures end-to-end request duration across all query types, including Query DSL, {{esql}}, EQL, and SQL.
+
+If you can't use query logging, enable [audit logging](/deploy-manage/security/logging-configuration/enabling-audit-logs.md) instead to determine the query source. Add the following settings to the [`elasticsearch.yml`](/deploy-manage/stack-settings.md) configuration file to trace queries. The resulting logging is verbose, so disable these settings when not troubleshooting.
+
+```yaml
+xpack.security.audit.enabled: true
+xpack.security.audit.logfile.events.include: _all
+xpack.security.audit.logfile.events.emit_request_body: true
+```
+
+Refer to [Advanced tuning: finding and fixing slow Elasticsearch queries](https://www.elastic.co/blog/advanced-tuning-finding-and-fixing-slow-elasticsearch-queries) for more information.
+
+For {{esql}}-specific slow query diagnosis and prevention, refer to [Optimize {{esql}} query performance](elasticsearch://reference/query-languages/esql/esql-query-performance.md).
+
 ## Troubleshoot relevance quality [troubleshooting-relevance-quality]
 
 Use this section when your search returns results but they're in the wrong order, irrelevant, or missing expected matches. These symptoms point to a relevance problem rather than a technical error.
@@ -256,7 +277,7 @@ The response shows whether the document matched and breaks the score down by ter
 {
   "_index": "my-index-000001",
   "_id": "2",
-  "matched": true,
+  "matched": true, <1>
   "explanation": {
     "value": 2.1845279,
     "description": "sum of:",
@@ -269,9 +290,9 @@ The response shows whether the document matched and breaks the score down by ter
             "value": 1.0922639,
             "description": "score(freq=1.0), computed as boost * idf * tf from:",
             "details": [
-              { "value": 2.2,       "description": "boost" },
-              { "value": 1.2039728, "description": "idf, computed as log(1 + (N - n + 0.5) / (n + 0.5))" },
-              { "value": 0.4123711, "description": "tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl))" }
+              { "value": 2.2,       "description": "boost" }, <2>
+              { "value": 1.2039728, "description": "idf, computed as log(1 + (N - n + 0.5) / (n + 0.5))" }, <3>
+              { "value": 0.4123711, "description": "tf, computed as freq / (freq + k1 * (1 - b + b * dl / avgdl))" } <3>
             ]
           }
         ]
@@ -284,13 +305,9 @@ The response shows whether the document matched and breaks the score down by ter
   }
 }
 ```
-
-Read the response like this:
-
-- `"matched": true` confirms the document matched the query.
-- Each entry in `details` shows one term's contribution. `boost`, `idf` (how rare the term is), and `tf` (how often it appears) multiply together to produce the term score.
-- A high `boost` value (here `2.2`) means the field mapping or query applied a field boost — verify this is intentional.
-- A `value` of `0.0` with `"description": "No matching clauses"` means the document passed a filter but no scoring clause fired, which produces a result with score `0`.
+1. Confirms the document matched the query.
+2. A high `boost` value (here `2.2`) means the field mapping or query applied a field boost — verify this is intentional.
+3. Each entry in `details` shows one term's contribution. `boost`, `idf` (how rare the term is), and `tf` (how often it appears) multiply together to produce the term score.
 
 When a document does not match at all:
 
@@ -494,24 +511,3 @@ Check the following:
 - If you changed the model or endpoint, reindex the affected documents so their embeddings match the current model.
 - Use the `_explain` API to verify that the vector similarity scores are non-zero for documents you expect to match.
 - If embeddings are missing or zero-length, the inference pipeline might have failed silently during indexing.
-
-## Find slow queries [troubleshooting-slow-searches]
-```{applies_to}
-stack:
-```
-
-Start with [slow logs](/deploy-manage/monitor/logging-configuration/slow-logs.md), which pinpoint the search requests that take too long to run. Once you've identified a slow request, determine where it comes from. How you do this depends on your version.
-
-{applies_to}`stack: preview 9.4` Use [query logging](/deploy-manage/monitor/logging-configuration/query-logs.md) to determine the query source. A single configuration captures end-to-end request duration across all query types, including Query DSL, {{esql}}, EQL, and SQL.
-
-If you can't use query logging, enable [audit logging](/deploy-manage/security/logging-configuration/enabling-audit-logs.md) instead to determine the query source. Add the following settings to the [`elasticsearch.yml`](/deploy-manage/stack-settings.md) configuration file to trace queries. The resulting logging is verbose, so disable these settings when not troubleshooting.
-
-```yaml
-xpack.security.audit.enabled: true
-xpack.security.audit.logfile.events.include: _all
-xpack.security.audit.logfile.events.emit_request_body: true
-```
-
-Refer to [Advanced tuning: finding and fixing slow Elasticsearch queries](https://www.elastic.co/blog/advanced-tuning-finding-and-fixing-slow-elasticsearch-queries) for more information.
-
-For {{esql}}-specific slow query diagnosis and prevention, refer to [Optimize {{esql}} query performance](elasticsearch://reference/query-languages/esql/esql-query-performance.md).
