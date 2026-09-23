@@ -432,7 +432,7 @@ GET /my-index-000001/_search
 }
 ```
 
-Each hit in the response includes an `_explanation` block showing how the boost affected the score:
+Each result in the response includes an `_explanation` block showing how the boost affected the score:
 
 ```console-result
 {
@@ -482,7 +482,7 @@ When a `multi_match` query returns irrelevant results, the field list might be t
 
 - The `fields` array in your `multi_match`: remove low-signal fields or add explicit boosts to prioritize the right ones.
 - Whether `copy_to` is pulling unrelated content into a combined field. Use the [Get mapping API]({{es-apis}}operation/operation-indices-get-mapping) to inspect which fields copy into your target field.
-- The `type` parameter: `best_fields` ranks by the single best matching field; `most_fields` sums scores across fields. Switch between them to see which fits your use case.
+- The `type` parameter: `best_fields` ranks by the single best matching field, while `most_fields` sums scores across fields. Switch between them to see which fits your use case.
 
 ### Fix poor semantic search results [troubleshooting-relevance-semantic]
 
