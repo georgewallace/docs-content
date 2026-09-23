@@ -1,5 +1,7 @@
 ---
 navigation_title: Searches
+description: Diagnose and fix common Elasticsearch search problems including missing results, unexpected ordering, slow queries, and relevance issues.
+type: troubleshooting
 mapped_pages:
   - https://www.elastic.co/guide/en/elasticsearch/reference/current/troubleshooting-searches.html
   - https://www.elastic.co/guide/en/serverless/current/devtools-dev-tools-troubleshooting.html
@@ -197,7 +199,7 @@ GET /my-index-000001/_validate/query?rewrite=true
 }
 ```
 
-Use the [explain API]({{es-apis}}operation/operation-explain) to find out why a specific document matches or doesn’t match a query:
+Use the [explain API]({{es-apis}}operation/operation-explain) to find out why a specific document matches or doesn’t match a query. For deeper relevance debugging, refer to [Troubleshoot relevance quality](#troubleshooting-relevance-quality).
 
 ```console
 GET /my-index-000001/_explain/0
@@ -228,6 +230,110 @@ You can update dynamic index settings with the [update index settings API]({{es-
 
 For static settings, you need to create a new index with the correct settings. Next, you can reindex the data into that index. For data streams, refer to [Change a static index setting for a data stream](../../manage-data/data-store/data-streams/modify-data-stream.md#change-static-index-setting-for-a-data-stream).
 
+
+## Troubleshoot relevance quality [troubleshooting-relevance-quality]
+
+Use this section when your search returns results but they're in the wrong order, irrelevant, or missing expected matches. These symptoms point to a relevance problem rather than a technical error.
+
+### Diagnose scoring with the Explain API [troubleshooting-relevance-explain]
+
+When a document ranks unexpectedly high or low, use the [Explain API]({{es-apis}}operation/operation-explain) to see exactly how {{es}} calculated its score:
+
+```console
+GET /my-index-000001/_explain/<doc-id>
+{
+  "query": {
+    "match": {
+      "title": "search query"
+    }
+  }
+}
+```
+
+The response breaks down the score by field and clause. Look for:
+
+- Fields that contribute no score when you expect them to: check whether the field is mapped and searched correctly.
+- Unexpectedly high scores from low-value fields: check field boosts and `copy_to` mappings.
+- A score of `0`: the document matched a filter but no scoring clause fired.
+
+For a visual representation, use the [Search Profiler](../../explore-analyze/query-filter/tools/search-profiler.md) in {{kib}}.
+
+### Fix token mismatches between index and query [troubleshooting-relevance-tokens]
+
+When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [Analyze API]({{es-apis}}operation/operation-indices-analyze) to compare how each side tokenizes the same text:
+
+```console
+GET /my-index-000001/_analyze
+{
+  "field": "title",
+  "text": "my search query"
+}
+```
+
+Run the same call with `"analyzer": "standard"` (or whichever analyzer your query uses) to compare output. If the tokens differ, the query does not find the document.
+
+Refer to [Test an analyzer](../../manage-data/data-store/text-analysis/test-an-analyzer.md) for a detailed walkthrough.
+
+### Fix synonyms not applying [troubleshooting-relevance-synonyms]
+
+Synonyms only expand queries when the synonym filter is part of the **search analyzer**, not the index analyzer. If synonyms aren't matching, check:
+
+1. Use the Analyze API with your index's search analyzer to confirm the synonym expansion is happening:
+
+   ```console
+   GET /my-index-000001/_analyze
+   {
+     "analyzer": "my_search_analyzer",
+     "text": "my term"
+   }
+   ```
+
+2. If you updated the synonym set, confirm whether you need to reload or reindex:
+   - Synonym sets managed via the [Synonyms API](elasticsearch://reference/elasticsearch/rest-apis/synonyms-apis.md) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
+   - Custom synonym files configured as index-time analyzers require a full reindex to take effect on already-indexed documents. If the file is configured as a search-time analyzer with `updateable: true`, you can reload it without reindexing using the same reload API.
+
+Refer to [Search with synonyms](../../solutions/search/full-text/search-with-synonyms.md) for setup and reload guidance.
+
+### Fix boosting not working as expected [troubleshooting-relevance-boosting]
+
+If boosted fields or documents aren't ranking as expected, use the Explain API to confirm the boost applies. Common causes:
+
+- **Field boosts in `multi_match`**: verify the `^` syntax is correct and the field exists in the mapping.
+- **`function_score`**: check that the filter on each function matches the documents you expect.
+- **`script_score`**: confirm the script returns the value you intend. Log the script output with a test query.
+
+Run your query with `"explain": true` in the request body to see per-result score breakdowns inline:
+
+```console
+GET /my-index-000001/_search
+{
+  "explain": true,
+  "query": {
+    "match": {
+      "title": "search query"
+    }
+  }
+}
+```
+
+### Fix the wrong fields being searched [troubleshooting-relevance-fields]
+
+When a `multi_match` query returns irrelevant results, the field list might be too broad or misconfigured. Check:
+
+- The `fields` array in your `multi_match`: remove low-signal fields or add explicit boosts to prioritize the right ones.
+- Whether `copy_to` is pulling unrelated content into a combined field. Use the [Get mapping API]({{es-apis}}operation/operation-indices-get-mapping) to inspect which fields copy into your target field.
+- The `type` parameter: `best_fields` ranks by the single best matching field; `most_fields` sums scores across fields. Switch between them to see which fits your use case.
+
+### Fix poor semantic search results [troubleshooting-relevance-semantic]
+
+If semantic search returns results that are off-topic or miss obvious matches, the most common cause is an embedding model mismatch: documents and queries were embedded by different models or at different times.
+
+Check the following:
+
+- Confirm the same inference endpoint handles both indexing and querying.
+- If you changed the model or endpoint, reindex the affected documents so their embeddings match the current model.
+- Use the `_explain` API to verify that the vector similarity scores are non-zero for documents you expect to match.
+- If embeddings are missing or zero-length, the inference pipeline might have failed silently during indexing.
 
 ## Find slow queries [troubleshooting-slow-searches]
 ```{applies_to}
