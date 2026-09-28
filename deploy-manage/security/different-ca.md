@@ -26,10 +26,10 @@ Create a new CA certificate, or get the CA certificate of your organization, and
 The following examples use PKCS#12 files, but the same steps apply to JKS keystores.
 ::::
 
-::::{warning}
+::::{important}
 These instructions generate node certificates without DNS names or IP addresses in the Subject Alternative Name (SAN) field. This is the recommended configuration for transport layer certificates, but it requires `xpack.security.transport.ssl.verification_mode` to be set to `certificate` in your `elasticsearch.yml`. Without this setting, nodes will attempt hostname verification and fail to establish transport connections.
 
-Before proceeding, confirm that your cluster is already configured with:
+Before proceeding, confirm that your cluster is already configured with the following setting:
 
 ```yaml
 xpack.security.transport.ssl.verification_mode: certificate
