@@ -1,9 +1,14 @@
 ---
 navigation_title: Search relevance
+meta_title: Troubleshoot search relevance in Elasticsearch
 description: Diagnose and fix common Elasticsearch search relevance problems including unexpected scoring, token mismatches, synonyms not applying, and poor semantic search results.
 type: troubleshooting
+applies_to:
+  stack:
+  serverless:
 products:
   - id: elasticsearch
+  - id: cloud-serverless
 ---
 
 # Troubleshoot search relevance [troubleshooting-search-relevance]
@@ -60,7 +65,7 @@ The response shows whether the document matched and breaks the score down by ter
 }
 ```
 1. Confirms the document matched the query.
-2. A high `boost` value (here `2.2`) means the field mapping or query applied a field boost — verify this is intentional.
+2. The `boost` value (here `2.2`) is the effective boost passed to the BM25 scorer. For an unmodified field, this equals `1.0 × (1 + k1) = 2.2` by default. A higher value, for example `6.6` for a `^3` field boost, indicates a user-specified boost was applied.
 3. Each entry in `details` shows one term's contribution. `boost`, `idf` (how rare the term is), and `tf` (how often it appears) multiply together to produce the term score.
 
 When a document does not match at all:
@@ -92,7 +97,7 @@ GET /my-index-000001/_explain/4
 }
 ```
 
-`"matched": false` with `"No matching clauses"` means the tokens in the query did not appear in the indexed field. This is usually a token mismatch — see [Fix token mismatches between index and query](#troubleshooting-relevance-tokens).
+`"matched": false` with `"No matching clauses"` means the tokens in the query did not appear in the indexed field. This is usually a token mismatch. Refer to [Fix token mismatches between index and query](#troubleshooting-relevance-tokens).
 
 For a visual representation, use the [Search Profiler](../../explore-analyze/query-filter/tools/search-profiler.md) in {{kib}}.
 
