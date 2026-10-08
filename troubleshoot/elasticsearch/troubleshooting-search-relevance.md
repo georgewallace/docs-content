@@ -15,7 +15,7 @@ products:
 
 Use this page when your search returns results but they're in the wrong order, irrelevant, or missing expected matches. These symptoms point to a relevance problem rather than a technical error.
 
-## Diagnose scoring with the Explain API [troubleshooting-relevance-explain]
+## Diagnose scoring with the explain API [troubleshooting-relevance-explain]
 
 When a document ranks unexpectedly high or low, use the [Explain API]({{es-apis}}operation/operation-explain) to see exactly how {{es}} calculated its score. Replace `2` with the `_id` of the document you want to inspect:
 
@@ -103,7 +103,7 @@ For a visual representation, use the [Search Profiler](../../explore-analyze/que
 
 ## Fix token mismatches between index and query [troubleshooting-relevance-tokens]
 
-When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [Analyze API]({{es-apis}}operation/operation-indices-analyze) to inspect what tokens {{es}} produces for a given field and text.
+When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [analyze API]({{es-apis}}operation/operation-indices-analyze) to inspect what tokens {{es}} produces for a given field and text.
 
 First, check how the indexed field tokenizes the text:
 
@@ -155,7 +155,7 @@ Refer to [Test an analyzer](../../manage-data/data-store/text-analysis/test-an-a
 
 Synonyms only expand queries when the synonym filter is part of the **search analyzer**, not the index analyzer. If synonyms aren't matching, check:
 
-1. Use the Analyze API with your index's search analyzer to confirm the synonym expansion is happening:
+1. Use the analyze API with your index's search analyzer to confirm the synonym expansion is happening:
 
    ```console
    GET /my-index-000001/_analyze
@@ -180,14 +180,14 @@ Synonyms only expand queries when the synonym filter is part of the **search ana
    If you only see the original token and no `SYNONYM` entries, the synonym filter is not part of the search analyzer chain.
 
 2. If you updated the synonym set, confirm whether you need to reload or reindex:
-   - Synonym sets managed via the [Synonyms API]({{es-apis}}group/endpoint-synonyms) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
+   - Synonym sets managed through the [synonyms API]({{es-apis}}group/endpoint-synonyms) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
    - Custom synonym files configured as index-time analyzers require a full reindex to take effect on already-indexed documents. If the file is configured as a search-time analyzer with `updateable: true`, you can reload it without reindexing using the same reload API.
 
 Refer to [Search with synonyms](../../solutions/search/full-text/search-with-synonyms.md) for setup and reload guidance.
 
 ## Fix boosting not working as expected [troubleshooting-relevance-boosting]
 
-If boosted fields or documents aren't ranking as expected, use the Explain API to confirm the boost applies. Common causes:
+If boosted fields or documents aren't ranking as expected, use the explain API to confirm the boost applies. Common causes:
 
 - **Field boosts in `multi_match`**: verify the `^` syntax is correct and the field exists in the mapping.
 - **`function_score`**: check that the filter on each function matches the documents you expect.
@@ -257,7 +257,7 @@ The `boost` value here is `6.6` (the BM25 default `2.2` multiplied by the `^3` f
 When a `multi_match` query returns irrelevant results, the field list might be too broad or misconfigured. Check:
 
 - The `fields` array in your `multi_match`: remove low-signal fields or add explicit boosts to prioritize the right ones.
-- Whether `copy_to` is pulling unrelated content into a combined field. Use the [Get mapping API]({{es-apis}}operation/operation-indices-get-mapping) to inspect which fields copy into your target field.
+- Whether `copy_to` is pulling unrelated content into a combined field. Use the [get mapping API]({{es-apis}}operation/operation-indices-get-mapping) to inspect which fields copy into your target field.
 - The `type` parameter: `best_fields` ranks by the single best matching field, while `most_fields` sums scores across fields. Switch between them to see which fits your use case.
 
 ## Fix poor semantic search results [troubleshooting-relevance-semantic]
