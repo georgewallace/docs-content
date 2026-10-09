@@ -109,7 +109,7 @@ GET /my-index-000001/_explain/4
 
 When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [analyze API]({{es-apis}}operation/operation-indices-analyze) to inspect what tokens {{es}} produces for a given field and text.
 
-First, check how the indexed field tokenizes the text:
+In the following examples, the `title` field uses the `english` analyzer. First, check how the indexed field tokenizes the text:
 
 ```console
 GET /my-index-000001/_analyze
@@ -122,13 +122,14 @@ GET /my-index-000001/_analyze
 ```console-result
 {
   "tokens": [
-    { "token": "getting",       "position": 0 },
+    { "token": "get",           "position": 0 },
     { "token": "start",         "position": 1 },
-    { "token": "with",          "position": 2 },
     { "token": "elasticsearch", "position": 3 }
   ]
 }
 ```
+
+The `english` analyzer removes the stop word `with` and stems `getting` to `get` and `started` to `start`. Removing `with` leaves a gap, so `elasticsearch` keeps position `3`.
 
 Then run the same text through the analyzer your query uses. By default, a `match` query uses the analyzer defined on the field, so the tokens only differ if the field has a different `search_analyzer` or the query overrides the analyzer. For example, if your `title` field uses the `english` analyzer but the query sets `"analyzer": "standard"`, the tokens differ:
 
@@ -151,7 +152,40 @@ GET /my-index-000001/_analyze
 }
 ```
 
-The index produced `"start"` (stemmed by the English analyzer) but the query produces `"started"`. These tokens don't match, so the document won't appear in results. To fix this, remove the `analyzer` override from the query so it uses the field's analyzer, or change the field's `search_analyzer` to match its index analyzer.
+The index contains the stemmed tokens `get` and `start`, but the query produces `getting` and `started`. These tokens don't match, so the document won't appear in results.
+
+To reproduce this with a search, run a `match` query that overrides the field's analyzer. The query term `started` is analyzed as `started`, which doesn't match the indexed token `start`:
+
+```console
+GET /my-index-000001/_search
+{
+  "query": {
+    "match": {
+      "title": {
+        "query": "started",
+        "analyzer": "standard"
+      }
+    }
+  }
+}
+```
+
+```console-result
+{
+  "hits": {
+    "total": {
+      "value": 0,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  }
+}
+```
+
+Without the `analyzer` override, the same query uses the field's `english` analyzer, analyzes `started` as `start`, and matches the document.
+
+To fix this, remove the `analyzer` override from the query so it uses the field's analyzer, or change the field's `search_analyzer` to match its index analyzer.
 
 Refer to [Test an analyzer](../../manage-data/data-store/text-analysis/test-an-analyzer.md) for a detailed walkthrough.
 
