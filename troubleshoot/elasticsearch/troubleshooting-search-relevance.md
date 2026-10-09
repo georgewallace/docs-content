@@ -17,7 +17,11 @@ Use this page when your search returns results but they're in the wrong order, i
 
 ## Diagnose scoring with the explain API [troubleshooting-relevance-explain]
 
-When a document ranks unexpectedly high or low, use the [Explain API]({{es-apis}}operation/operation-explain) to see exactly how {{es}} calculated its score. Replace `2` with the `_id` of the document you want to inspect:
+Use the [explain API]({{es-apis}}operation/operation-explain) to see exactly how {{es}} calculated a document's score, or to find out why a document didn't match. For a visual representation, use the [Search Profiler](../../explore-analyze/query-filter/tools/search-profiler.md) in {{kib}}.
+
+### Find out why a document ranks unexpectedly high or low [troubleshooting-relevance-explain-ranking]
+
+When a document ranks higher or lower than you expect, run the explain API against it. Replace `2` with the `_id` of the document you want to inspect:
 
 ```console
 GET /my-index-000001/_explain/2
@@ -68,7 +72,9 @@ The response shows whether the document matched and breaks the score down by ter
 2. The `boost` value (here `2.2`) is the effective boost passed to the BM25 scorer. For an unmodified field, this equals `1.0 × (1 + k1) = 2.2` by default. A higher value, for example `6.6` for a `^3` field boost, indicates a user-specified boost was applied.
 3. Each entry in `details` shows one term's contribution. `boost`, `idf` (how rare the term is), and `tf` (how often it appears) multiply together to produce the term score.
 
-When a document does not match at all:
+### Find out why a document doesn't match [troubleshooting-relevance-explain-no-match]
+
+When a document you expect in the results is missing, run the explain API against it. Replace `4` with the `_id` of the document you want to inspect:
 
 ```console
 GET /my-index-000001/_explain/4
@@ -99,8 +105,6 @@ GET /my-index-000001/_explain/4
 
 `"matched": false` with `"No matching clauses"` means the tokens in the query did not appear in the indexed field. This is usually a token mismatch. Refer to [Fix token mismatches between index and query](#troubleshooting-relevance-tokens).
 
-For a visual representation, use the [Search Profiler](../../explore-analyze/query-filter/tools/search-profiler.md) in {{kib}}.
-
 ## Fix token mismatches between index and query [troubleshooting-relevance-tokens]
 
 When a query fails to match an expected document, the index and query might be tokenizing text differently. Use the [analyze API]({{es-apis}}operation/operation-indices-analyze) to inspect what tokens {{es}} produces for a given field and text.
@@ -126,7 +130,7 @@ GET /my-index-000001/_analyze
 }
 ```
 
-Then run the same text through the analyzer your query uses. If your `title` field uses the `english` analyzer but the query runs with `standard` (the default for `match`), the tokens differ:
+Then run the same text through the analyzer your query uses. By default, a `match` query uses the analyzer defined on the field, so the tokens only differ if the field has a different `search_analyzer` or the query overrides the analyzer. For example, if your `title` field uses the `english` analyzer but the query sets `"analyzer": "standard"`, the tokens differ:
 
 ```console
 GET /my-index-000001/_analyze
@@ -147,15 +151,15 @@ GET /my-index-000001/_analyze
 }
 ```
 
-The index produced `"start"` (stemmed by the English analyzer) but the query produces `"started"`. These tokens don't match, so the document won't appear in results. To fix this, set `search_analyzer` on the field to match the index analyzer, or explicitly pass `analyzer` in the query.
+The index produced `"start"` (stemmed by the English analyzer) but the query produces `"started"`. These tokens don't match, so the document won't appear in results. To fix this, remove the `analyzer` override from the query so it uses the field's analyzer, or change the field's `search_analyzer` to match its index analyzer.
 
 Refer to [Test an analyzer](../../manage-data/data-store/text-analysis/test-an-analyzer.md) for a detailed walkthrough.
 
 ## Fix synonyms not applying [troubleshooting-relevance-synonyms]
 
-Synonyms only expand queries when the synonym filter is part of the **search analyzer**, not the index analyzer. If synonyms aren't matching, check:
+Synonyms are usually applied at search time, which is the recommended approach because you can update synonym sets without reindexing. Synonym sets managed through the synonyms API or {{kib}} work only in search analyzers. Index-time synonyms are also supported with the `synonym` filter (not `synonym_graph`), but changing them requires a reindex. {{serverless-short}} supports only synonym sets managed through the synonyms API or {{kib}}, not index-time or file-based synonyms. If synonyms aren't matching, check:
 
-1. Use the analyze API with your index's search analyzer to confirm the synonym expansion is happening:
+1. Use the analyze API with the analyzer that applies your synonyms, usually your index's search analyzer, to confirm the synonym expansion is happening:
 
    ```console
    GET /my-index-000001/_analyze
@@ -177,11 +181,11 @@ Synonyms only expand queries when the synonym filter is part of the **search ana
    }
    ```
 
-   If you only see the original token and no `SYNONYM` entries, the synonym filter is not part of the search analyzer chain.
+   If you only see the original token and no `SYNONYM` entries, the synonym filter is not part of that analyzer's chain.
 
 2. If you updated the synonym set, confirm whether you need to reload or reindex:
-   - Synonym sets managed through the [synonyms API]({{es-apis}}group/endpoint-synonyms) can be reloaded without reindexing. Call `POST /<index>/_reload_search_analyzers` to apply the update.
-   - Custom synonym files configured as index-time analyzers require a full reindex to take effect on already-indexed documents. If the file is configured as a search-time analyzer with `updateable: true`, you can reload it without reindexing using the same reload API.
+   - Synonym sets managed through the [synonyms API]({{es-apis}}group/endpoint-synonyms) reload automatically when you update the set. You don't need to reload manually or reindex, as long as the synonym filter sets `"updateable": true`.
+   - {applies_to}`serverless: unavailable` Custom synonym files configured as index-time analyzers require a full reindex to take effect on already-indexed documents. If the file is configured as a search-time analyzer with `"updateable": true`, you can reload it without reindexing by calling the [reload search analyzers API]({{es-apis}}operation/operation-indices-reload-search-analyzers) after you update the file on every node.
 
 Refer to [Search with synonyms](../../solutions/search/full-text/search-with-synonyms.md) for setup and reload guidance.
 
@@ -262,11 +266,11 @@ When a `multi_match` query returns irrelevant results, the field list might be t
 
 ## Fix poor semantic search results [troubleshooting-relevance-semantic]
 
-If semantic search returns results that are off-topic or miss obvious matches, the most common cause is an embedding model mismatch: documents and queries were embedded by different models or at different times.
+If semantic search returns results that are off-topic or miss obvious matches, the most common cause is an embedding model mismatch: documents and queries were embedded by incompatible models or at different times.
 
 Check the following:
 
-- Confirm the same inference endpoint handles both indexing and querying.
+- Verify that the indexing and query-time embeddings come from compatible models. The `inference_id` parameter sets the endpoint used at index time, and `search_inference_id`, if set, sets the endpoint used at query time. The two endpoints can differ, but they must produce compatible embeddings. Refer to the [`semantic_text` field type reference](elasticsearch://reference/elasticsearch/mapping-reference/semantic-text-reference.md) for details.
 - If you changed the model or endpoint, reindex the affected documents so their embeddings match the current model.
 - Use the `_explain` API to verify that the vector similarity scores are non-zero for documents you expect to match.
 - If embeddings are missing or zero-length, the inference pipeline might have failed silently during indexing.
