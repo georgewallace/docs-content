@@ -32,12 +32,14 @@ Bulk requests will yield much better performance than single-document index requ
 In {{serverless-full}}, the minimum response time for a single bulk indexing request is 200ms.
 :::
 
-### Tune bulk request size for large indexing jobs [tune-bulk-request-size]
+#### Tune bulk request size for large indexing jobs [tune-bulk-request-size]
 ```{applies_to}
 serverless: ga
 ```
 
-For large indexing or reindexing operations, aim to keep each bulk request around 4 MB. This helps stay well below the overall concurrent bulk indexing limit of about 100 MB.
+Because {{serverless-full}} uses a standardized infrastructure with a concurrent bulk indexing limit of about 100 MB, you can use specific starting points rather than benchmarking from scratch.
+
+For large indexing or reindexing operations, aim to keep each bulk request around 4 MB. This helps stay well below that limit.
 
 As a starting point, use these batch sizes based on average document size:
 
@@ -50,6 +52,13 @@ Adjust proportionally for other document sizes. There is no one-size-fits-all se
 
 Reindexing also uses bulk requests internally, with a default batch size of 1,000 documents. To tune it, set the `size` field in the `source` object of your [reindex request](elasticsearch://reference/elasticsearch/rest-apis/reindex-indices.md) so that each batch stays around 4 MB.
 
+#### Batch small writes [batch-small-writes]
+```{applies_to}
+serverless: ga
+```
+
+In {{serverless-full}}, there is a 15-minute cooldown before the platform can scale down the resources it uses for indexing. If you send frequent, small writes instead of batching your requests, each write extends the cooldown, so the platform can't scale down. Batch your writes where possible.
+
 ### Use multiple workers/threads to send data to {{es}} [multiple-workers-threads]
 
 A single thread sending bulk requests is unlikely to be able to max out the indexing capacity of an {{es}} cluster. In order to use all resources of the cluster, you should send data from multiple threads or processes. In addition to making better use of the resources of the cluster, this should help reduce the cost of each fsync.
@@ -60,7 +69,7 @@ Make sure to watch for `TOO_MANY_REQUESTS (429)` response codes (`EsRejectedExec
 
 Similarly to sizing bulk requests, only testing can tell what the optimal number of workers is. This can be tested by progressively increasing the number of workers until either I/O or CPU is saturated on the cluster.
 
-### Ramp up concurrency gradually [ramp-up-concurrency]
+#### Ramp up concurrency gradually [ramp-up-concurrency]
 ```{applies_to}
 serverless: ga
 ```
@@ -135,14 +144,9 @@ Force merge is an expensive operation.
 
 When indexing a document that has an explicit id, {{es}} needs to check whether a document with the same id already exists within the same shard, which is a costly operation and gets even more costly as the index grows. By using auto-generated ids, {{es}} can skip this check, which makes indexing faster.
 
-### Batch small writes [batch-small-writes]
-```{applies_to}
-serverless: ga
-```
-
-In {{serverless-full}}, there is a 15-minute cooldown before the platform can scale down the resources it uses for indexing. If you send frequent, small writes instead of batching your requests, each write extends the cooldown, so the platform can't scale down. Batch your writes where possible.
-
 ## Server-side optimizations [server-side-optimizations]
+
+These optimizations tune the {{es}} cluster itself rather than how clients send data. Use them when client-side changes alone don't reach your target throughput.
 
 ::::{note}
 In {{serverless-full}}, Elastic manages infrastructure-level details such as hardware, storage, memory, and replication, so the optimizations in this section don't apply.
